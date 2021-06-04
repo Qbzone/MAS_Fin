@@ -14,5 +14,14 @@ namespace Mas_Projekt_Koniec.Models
         {
 
         }
+
+        public void AddCzlonek(ZespolOperacyjny zespol)
+        {
+            if (!this.Czlonek.Contains(zespol))
+            {
+                this.Czlonek.Add(zespol);
+                zespol.AddSalowi(this);
+            }
+        }
     }
 }

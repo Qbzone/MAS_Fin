@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,12 +10,13 @@ namespace Mas_Projekt_Koniec.Models
     public class Pacjent
     {
         public long Id { get; set; }
+        [Required]
         public bool UbezpiecznieZdrowotne { get; set; }
-        
+
         public Osoba osoba { get; set; }
         public PakietMedyczny PakietMedyczny { get; set; }
         public ICollection<Wizyta> Wizyty { get; set; }
-        public ICollection<Hospitalizacja> Hospitalizacje { get; set; }
+        public ICollection<Hospitalizacja> Hospitalizacja { get; set; }
 
         public Pacjent()
         {
@@ -38,7 +40,34 @@ namespace Mas_Projekt_Koniec.Models
 
         public void AddPakietMedyczny(PakietMedyczny pakietMedyczny)
         {
-            this.PakietMedyczny = pakietMedyczny;
+            if (this.PakietMedyczny == null)
+            {
+                this.PakietMedyczny = pakietMedyczny;
+            }
+        }
+
+        public void RemovePakietMedyczny()
+        {
+            if (this.PakietMedyczny != null)
+            {
+                this.PakietMedyczny = null;
+            }
+        }
+
+        public void AddWizyty(Wizyta wizyta)
+        {
+            if (!this.Wizyty.Contains(wizyta))
+            {
+                this.Wizyty.Add(wizyta);
+            }
+        }
+
+        public void AddHospitalizacja(Hospitalizacja hospitalizacja)
+        {
+            if (!this.Hospitalizacja.Contains(hospitalizacja))
+            {
+                this.Hospitalizacja.Add(hospitalizacja);
+            }
         }
     }
 }

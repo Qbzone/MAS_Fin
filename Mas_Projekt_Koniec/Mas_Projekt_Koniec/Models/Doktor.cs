@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -8,6 +9,8 @@ namespace Mas_Projekt_Koniec.Models
 {
     public class Doktor : Pracownik
     {
+        [Required]
+        [MaxLength(25)]
         public string Specjalizacja { get; set; }
 
         public ZespolOperacyjny Lider { get; set; }
@@ -26,7 +29,32 @@ namespace Mas_Projekt_Koniec.Models
 
         public void AddLider(ZespolOperacyjny zespol)
         {
-            this.Lider = zespol;
+            if (zespol.Doktorzy.Contains(this) && this.Lider != null && zespol.GetLider() == null)
+            {
+                this.Lider = zespol;
+            }
+        }
+
+        public ZespolOperacyjny GetLider()
+        {
+            return this.Lider;
+        }
+
+        public void AddCzlonek(ZespolOperacyjny zespol)
+        {
+            if (!this.Czlonek.Contains(zespol))
+            {
+                this.Czlonek.Add(zespol);
+                zespol.AddDoktorzy(this);
+            }
+        }
+
+        public void AddWizyty(Wizyta wizyta)
+        {
+            if (!this.Wizyty.Contains(wizyta))
+            {
+                this.Wizyty.Add(wizyta);
+            }
         }
     }
 }

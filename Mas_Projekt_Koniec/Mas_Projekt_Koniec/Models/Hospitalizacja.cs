@@ -13,8 +13,10 @@ namespace Mas_Projekt_Koniec.Models
     public class Hospitalizacja
     {
         public long Id { get; set; }
+        [Required]
         public DateTime PoczatekHospitalizacji { get; set; }
         public DateTime KoniecHospitalizacji { get; set; }
+        [Required]
         public StatusHospitalizacji Status { get; set; }
 
         public Pacjent Pacjent { get; set; }
@@ -48,8 +50,45 @@ namespace Mas_Projekt_Koniec.Models
         {
             this.PoczatekHospitalizacji = poczatekHospitalizacji;
             this.Status = StatusHospitalizacji.CREATED;
-            this.Pacjent = pacjent;
-            this.ZespolOperacyjny = zespol;
+            AddPacjent(pacjent);
+            AddZespol(zespol);
+        }
+
+        public void AddZespol(ZespolOperacyjny zespol)
+        {
+            if (this.ZespolOperacyjny == null)
+            {
+                this.ZespolOperacyjny = zespol;
+                zespol.AddHospitalizacja(this);
+            }
+        }
+
+        public void AddPacjent(Pacjent pacjent)
+        {
+            if (this.Pacjent == null)
+            {
+                this.Pacjent = pacjent;
+                pacjent.AddHospitalizacja(this);
+            }
+        }
+
+        public void AddProcedura(Procedura procedura)
+        {
+                this.Procedury.Add(procedura);
+                procedura.AddHospitalizacja(this);
+
+        }
+
+        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
+        {
+            List<ValidationResult> errors = new List<ValidationResult>();
+       
+            if (PoczatekHospitalizacji > KoniecHospitalizacji)
+            {
+                errors.Add(new ValidationResult($"Data początku hospitalizacji musi być mniejsza niż data zakończenia hospitalizacji.", new List<string> { nameof(PoczatekHospitalizacji) }));
+            }
+
+            return errors;
         }
     }
 }
