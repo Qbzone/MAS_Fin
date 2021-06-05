@@ -8,21 +8,24 @@ using System.Threading.Tasks;
 using static Mas_Projekt_Koniec.Models.Hospitalizacja;
 using static Mas_Projekt_Koniec.Models.Wizyta;
 
-public static class OrderStateExtensions
+namespace Mas_Projekt_Koniec.Models
 {
-    public static string GetOrderStateDisplayName(this StatusWizyty statusWizyty)
+    public static class OrderStateExtensions
     {
-        return statusWizyty.GetType().GetMember(statusWizyty.ToString())
-            .First()
-            .GetCustomAttribute<DisplayAttribute>()
-            .Name;
-    }
+        public static string GetOrderStateDisplayName(this StatusWizyty statusWizyty)
+        {
+            return statusWizyty.GetType().GetMember(statusWizyty.ToString())
+                .First()
+                .GetCustomAttribute<DisplayAttribute>()
+                .Name;
+        }
 
-    public static string GetOrderStateDisplayName(this StatusHospitalizacji statusHospitalizacji)
-    {
-        return statusHospitalizacji.GetType().GetMember(statusHospitalizacji.ToString())
-            .First()
-            .GetCustomAttribute<DisplayAttribute>()
-            .Name;
+        public static string GetOrderStateDisplayName(this StatusHospitalizacji statusHospitalizacji)
+        {
+            return statusHospitalizacji.GetType().GetMember(statusHospitalizacji.ToString())
+                .First()
+                .GetCustomAttribute<DisplayAttribute>()
+                .Name;
+        }
     }
 }

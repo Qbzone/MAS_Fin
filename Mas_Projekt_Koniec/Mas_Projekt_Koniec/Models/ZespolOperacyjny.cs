@@ -25,16 +25,25 @@ namespace Mas_Projekt_Koniec.Models
         {
             if (doktorzy.Contains(lider))
             {
-                this.Lider = lider;
-                this.Doktorzy = doktorzy;
-                this.Pielegniarze = pielegniarze;
-                this.Salowi = salowi;
+                foreach (Doktor d in doktorzy)
+                {
+                    AddDoktorzy(d);
+                }
+                AddLider(lider);
+                foreach (Pielegniarz p in pielegniarze)
+                {
+                    AddPielegniarze(p);
+                }
+                foreach (Salowy s in salowi)
+                {
+                    AddSalowi(s);
+                }
             }
         }
 
         public void AddLider(Doktor doktor)
         {
-            if(this.Doktorzy.Contains(doktor) && Lider == null && doktor.GetLider() == null)
+            if (this.Doktorzy.Contains(doktor) && Lider == null && doktor.GetLider() == null)
             {
                 this.Lider = doktor;
                 doktor.AddLider(this);
@@ -78,7 +87,6 @@ namespace Mas_Projekt_Koniec.Models
             if (!this.Hospitalizacje.Contains(hospitalizacja))
             {
                 this.Hospitalizacje.Add(hospitalizacja);
-                hospitalizacja.AddZespol(this);
             }
         }
     }

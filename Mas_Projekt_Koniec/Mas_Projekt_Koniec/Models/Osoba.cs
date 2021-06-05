@@ -50,7 +50,7 @@ namespace Mas_Projekt_Koniec.Models
 
         }
 
-        public Osoba(string imie, string nazwisko, DateTime dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail)
+        public Osoba(string imie, string nazwisko, Date dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail)
         {
             this.Imie = imie;
             this.Nazwisko = nazwisko;
@@ -61,7 +61,7 @@ namespace Mas_Projekt_Koniec.Models
             this.AdresEmail = adresEmail;
         }
 
-        public Osoba(string imie, string nazwisko, DateTime dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail, Pacjent pacjent)
+        public Osoba(string imie, string nazwisko, Date dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail, Pacjent pacjent)
         {
             this.Imie = imie;
             this.Nazwisko = nazwisko;
@@ -73,7 +73,7 @@ namespace Mas_Projekt_Koniec.Models
             AddPacjent(pacjent);
         }
 
-        public Osoba(string imie, string nazwisko, DateTime dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail, Pracownik pracownik)
+        public Osoba(string imie, string nazwisko, Date dataUrodzenia, string numerPesel, string adresZamieszkania, string numerTelefonu, string adresEmail, Pracownik pracownik)
         {
             this.Imie = imie;
             this.Nazwisko = nazwisko;

@@ -42,7 +42,7 @@ namespace Mas_Projekt_Koniec.Models
 
         public Wizyta()
         {
-            
+
         }
 
         public Wizyta(DateTime poczatekWizyty, Pacjent pacjent, Doktor doktor, Procedura procedura)
@@ -56,7 +56,7 @@ namespace Mas_Projekt_Koniec.Models
 
         public void AddDoktor(Doktor doktor)
         {
-            if(this.Doktor == null)
+            if (this.Doktor == null)
             {
                 this.Doktor = doktor;
                 doktor.AddWizyty(this);
@@ -77,7 +77,7 @@ namespace Mas_Projekt_Koniec.Models
             if (this.Procedura == null)
             {
                 this.Procedura = procedura;
-                procedura.AddWizyty(this);
+                procedura.AddWizyta(this);
             }
         }
 

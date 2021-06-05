@@ -35,7 +35,7 @@ namespace Mas_Projekt_Koniec.Models
             this.osoba = osoba;
             this.Id = osoba.Id;
             this.UbezpiecznieZdrowotne = ubezpieczenieZdrowotne;
-            this.PakietMedyczny = pakietMedyczny;
+            AddPakietMedyczny(pakietMedyczny);
         }
 
         public void AddPakietMedyczny(PakietMedyczny pakietMedyczny)
@@ -43,14 +43,7 @@ namespace Mas_Projekt_Koniec.Models
             if (this.PakietMedyczny == null)
             {
                 this.PakietMedyczny = pakietMedyczny;
-            }
-        }
-
-        public void RemovePakietMedyczny()
-        {
-            if (this.PakietMedyczny != null)
-            {
-                this.PakietMedyczny = null;
+                pakietMedyczny.AddPacjent(this);
             }
         }
 

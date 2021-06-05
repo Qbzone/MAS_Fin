@@ -74,15 +74,15 @@ namespace Mas_Projekt_Koniec.Models
 
         public void AddProcedura(Procedura procedura)
         {
-                this.Procedury.Add(procedura);
-                procedura.AddHospitalizacja(this);
+            this.Procedury.Add(procedura);
+            procedura.AddHospitalizacja(this);
 
         }
 
         public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
         {
             List<ValidationResult> errors = new List<ValidationResult>();
-       
+
             if (PoczatekHospitalizacji > KoniecHospitalizacji)
             {
                 errors.Add(new ValidationResult($"Data początku hospitalizacji musi być mniejsza niż data zakończenia hospitalizacji.", new List<string> { nameof(PoczatekHospitalizacji) }));

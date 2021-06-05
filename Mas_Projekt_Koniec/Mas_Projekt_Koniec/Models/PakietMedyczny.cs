@@ -14,21 +14,41 @@ namespace Mas_Projekt_Koniec.Models
         [MaxLength(25)]
         public string NazwaPakietu { get; set; }
 
-        ICollection<Pacjent> Pacjenci { get; set; }
-        ICollection<Procedura> Procedury { get; set; }
+        public ICollection<Pacjent> Pacjenci { get; set; }
+        public ICollection<Procedura> Procedury { get; set; }
 
         public PakietMedyczny()
         {
 
         }
 
-        public PakietMedyczny(string nazwaPakietu, ICollection<Pacjent> pacjenci, ICollection<Procedura> procedury)
+        public PakietMedyczny(string nazwaPakietu, ICollection<Procedura> procedury)
         {
             if (procedury != null)
             {
                 this.NazwaPakietu = nazwaPakietu;
-                this.Pacjenci = pacjenci;
-                this.Procedury = procedury;
+                foreach (Procedura pr in procedury)
+                {
+                    AddProcedura(pr);
+                }
+            }
+        }
+
+        public void AddPacjent(Pacjent pacjent)
+        {
+            if (!this.Pacjenci.Contains(pacjent))
+            {
+                this.Pacjenci.Add(pacjent);
+                pacjent.AddPakietMedyczny(this);
+            }
+        }
+
+        public void AddProcedura(Procedura procedura)
+        {
+            if (!this.Procedury.Contains(procedura))
+            {
+                this.Procedury.Add(procedura);
+                procedura.AddPakietMedyczny(this);
             }
         }
     }

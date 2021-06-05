@@ -30,7 +30,7 @@ namespace Mas_Projekt_Koniec.Models
             if (!this.Czlonek.Contains(zespol))
             {
                 this.Czlonek.Add(zespol);
-                zespol.AddSalowi(this);
+                zespol.AddPielegniarze(this);
             }
         }
     }
