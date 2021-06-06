@@ -1,0 +1,22 @@
+﻿<Window x:Class="MAS_PROJEKT_KONCOWY.ZamowienieWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MAS_PROJEKT_KONCOWY"
+        mc:Ignorable="d"
+        Title="{Binding WindowTitle}" Height="450" Width="800"
+        WindowStartupLocation="CenterScreen">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="25" />
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Label Margin="20,0,0,12" HorizontalAlignment="Center" FontSize="16" Grid.RowSpan="2">Strona Główna</Label>
+        <Button Margin="349,129,0,-160" HorizontalAlignment="Left" FontSize="16" Grid.Row="1">Zapisz na Wizytę</Button>
+    </Grid>
+</Window>

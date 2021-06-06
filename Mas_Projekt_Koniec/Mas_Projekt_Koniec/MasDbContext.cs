@@ -139,13 +139,37 @@ namespace Mas_Projekt_Koniec
 
             modelBuilder.Entity<Pracownik>().HasData(pracownik1, pracownik2, pracownik3, pracownik4);
 
-            var zespolOperacyjny = new ZespolOperacyjny()
+            var zespolOperacyjny1 = new ZespolOperacyjny()
             {
                 Id = 1L,
                 Doktorzy = { pracownik1 },
                 Lider = pracownik1,
                 Pielegniarze = { pracownik2 },
                 Salowi = { pracownik3 }
+            };
+
+            modelBuilder.Entity<ZespolOperacyjny>().HasData(zespolOperacyjny1);
+
+            var wizyta1 = new Wizyta()
+            {
+                Id = 1L,
+                PoczatekWizyty = new DateTime(2021, 25, 12, 12, 0, 0),
+                KoniecWizyty = new DateTime(2021, 25, 12, 12, 15, 0),
+                Status = Wizyta.StatusWizyty.CREATED,
+                Pacjent = pacjent1,
+                Doktor = pracownik1,
+                Procedura = procedura1
+            };
+
+            modelBuilder.Entity<Wizyta>().HasData(wizyta1);
+
+            var hospitalizacja1 = new Hospitalizacja()
+            {
+                Id = 1L,
+                PoczatekHospitalizacji = new DateTime(2021, 25, 12, 12, 0, 0),
+                Status = Hospitalizacja.StatusHospitalizacji.IN_PROGRESS,
+                Pacjent = pacjent1,
+                ZespolOperacyjny = zespolOperacyjny1,
             };
         }
 

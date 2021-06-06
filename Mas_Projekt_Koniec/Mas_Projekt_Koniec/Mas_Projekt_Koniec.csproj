@@ -17,7 +17,33 @@
 
   <ItemGroup>
     <Folder Include="Migration\" />
-    <Folder Include="Services\" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <None Update="App.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="DanePacjenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ListaDoktorow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ListaProcedur.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="ListaTerminow.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="Podsumowanie.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="StronaGlowna.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
+    <None Update="WyszukiwaniePacjenta.xaml">
+      <Generator>MSBuild:Compile</Generator>
+    </None>
   </ItemGroup>
 
 </Project>
