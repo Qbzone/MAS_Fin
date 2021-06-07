@@ -1,22 +1,18 @@
-﻿<Window x:Class="MAS_PROJEKT_KONCOWY.ZamowienieWindow"
+﻿<Window x:Class="Mas_Projekt_Koniec.StronaGlowna"
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
-        xmlns:local="clr-namespace:MAS_PROJEKT_KONCOWY"
+        xmlns:local="clr-namespace:Mas_Projekt_Koniec"
         mc:Ignorable="d"
-        Title="{Binding WindowTitle}" Height="450" Width="800"
-        WindowStartupLocation="CenterScreen">
+        Title="StronaGlowna" Height="450" Width="800">
     <Grid>
         <Grid.RowDefinitions>
-            <RowDefinition Height="25" />
-            <RowDefinition Height="Auto"/>
+            <RowDefinition Height="75" />
+            <RowDefinition Height="75" />
+            <RowDefinition Height="Auto" />
         </Grid.RowDefinitions>
-        <Grid.ColumnDefinitions>
-            <ColumnDefinition />
-        </Grid.ColumnDefinitions>
-
-        <Label Margin="20,0,0,12" HorizontalAlignment="Center" FontSize="16" Grid.RowSpan="2">Strona Główna</Label>
-        <Button Margin="349,129,0,-160" HorizontalAlignment="Left" FontSize="16" Grid.Row="1">Zapisz na Wizytę</Button>
+        <Label Margin="20,0,0,10" HorizontalAlignment="Center" FontSize="40" Grid.Row="0">Strona Główna</Label>
+        <Button x:Name="ZapiszButton" Click="ZapiszButton_Click" Margin="20,0,0,10" Padding ="20" HorizontalAlignment="Center" FontSize="20" Grid.Row="2">Zapisz Pacjentów</Button>
     </Grid>
 </Window>

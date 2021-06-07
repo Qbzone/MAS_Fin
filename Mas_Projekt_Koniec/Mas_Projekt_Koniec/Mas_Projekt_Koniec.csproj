@@ -1,8 +1,9 @@
-<Project Sdk="Microsoft.NET.Sdk">
+﻿<Project Sdk="Microsoft.NET.Sdk">
 
   <PropertyGroup>
-    <OutputType>Exe</OutputType>
-    <TargetFramework>net5.0</TargetFramework>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net5.0-windows</TargetFramework>
+    <UseWPF>true</UseWPF>
   </PropertyGroup>
 
   <ItemGroup>
@@ -13,37 +14,6 @@
       <IncludeAssets>runtime; build; native; contentfiles; analyzers; buildtransitive</IncludeAssets>
     </PackageReference>
     <PackageReference Include="Microsoft.OData.Edm" Version="7.9.0" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Migration\" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <None Update="App.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="DanePacjenta.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="ListaDoktorow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="ListaProcedur.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="ListaTerminow.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="Podsumowanie.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="StronaGlowna.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
-    <None Update="WyszukiwaniePacjenta.xaml">
-      <Generator>MSBuild:Compile</Generator>
-    </None>
   </ItemGroup>
 
 </Project>
