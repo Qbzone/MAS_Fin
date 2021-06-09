@@ -13,8 +13,8 @@ namespace Mas_Projekt_Koniec2.Models
         [MaxLength(25)]
         public string Specjalizacja { get; set; }
 
-        public ZespolOperacyjny Czlonek { get; set; }
-        public long ZespolOperacyjnyId { get; set; }
+        //public ZespolOperacyjny Czlonek { get; set; }
+        //public long ZespolOperacyjnyId { get; set; }
 
         public Pielegniarz()
         {

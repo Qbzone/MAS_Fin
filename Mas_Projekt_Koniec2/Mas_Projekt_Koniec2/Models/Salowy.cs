@@ -8,8 +8,8 @@ namespace Mas_Projekt_Koniec2.Models
 {
     public class Salowy : Pracownik
     {
-        public ZespolOperacyjny Czlonek { get; set; }
-        public long ZespolOperacyjnyId { get; set; }
+        //public ZespolOperacyjny Czlonek { get; set; }
+        //public long ZespolOperacyjnyId { get; set; }
 
         public Salowy()
         {

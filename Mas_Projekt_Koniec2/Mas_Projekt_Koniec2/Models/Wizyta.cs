@@ -11,6 +11,7 @@ namespace Mas_Projekt_Koniec2.Models
 {
     public class Wizyta
     {
+        public long Id { get; set; }
         [Required]
         public DateTime PoczatekWizyty { get; set; }
         public DateTime KoniecWizyty { get; set; }
@@ -19,12 +20,11 @@ namespace Mas_Projekt_Koniec2.Models
         [Required]
         public Pacjent Pacjent { get; set; }
         public long PacjentId { get; set; }
-        [Required]
+        [ForeignKey("DoktorId")]
         public Doktor Doktor { get; set; }
-        public long DoktorId { get; set; }
-        [Required]
+        public long? DoktorId { get; set; }
         public Procedura Procedura { get; set; }
-        public long ProceduraId { get; set; }
+        public long? ProceduraId { get; set; }
         public enum StatusWizyty
         {
             [Display(Name = "Zapisana")]

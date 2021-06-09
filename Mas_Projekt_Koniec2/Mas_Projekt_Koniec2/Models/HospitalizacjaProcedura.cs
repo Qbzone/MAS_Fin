@@ -9,6 +9,7 @@ namespace Mas_Projekt_Koniec2.Models
 {
     public class HospitalizacjaProcedura
     {
+        public long Id { get; set; }
         [Required]
         public Procedura Procedura { get; set; }
         public long ProceduraId { get; set; }

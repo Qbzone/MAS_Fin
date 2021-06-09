@@ -10,7 +10,7 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mas_Projekt_Koniec2.Migrations
 {
     [DbContext(typeof(MasDBContext))]
-    [Migration("20210609150642_InitialMigration")]
+    [Migration("20210609154906_InitialMigration")]
     partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
@@ -63,8 +63,11 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<DateTime>("DataWykonania")
                         .HasColumnType("datetime2");
 
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
                     b.HasKey("ProceduraId", "HospitalizacjaId", "DataWykonania")
-                        .HasName("PakietMedycznyProcedura_pk");
+                        .HasName("HospitalizacjaProcedura_pk");
 
                     b.HasIndex("HospitalizacjaId");
 
@@ -166,6 +169,9 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<long>("ProceduraId")
                         .HasColumnType("bigint");
 
+                    b.Property<long>("Id")
+                        .HasColumnType("bigint");
+
                     b.HasKey("PakietMedycznyId", "ProceduraId")
                         .HasName("PakietMedycznyProcedura_pk");
 
@@ -191,10 +197,15 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<int>("Pensja")
                         .HasColumnType("int");
 
+                    b.Property<long?>("ZespolOperacyjnyId")
+                        .HasColumnType("bigint");
+
                     b.HasKey("Id");
 
                     b.HasIndex("OsobaId")
                         .IsUnique();
+
+                    b.HasIndex("ZespolOperacyjnyId");
 
                     b.ToTable("Pracownik");
 
@@ -229,28 +240,34 @@ namespace Mas_Projekt_Koniec2.Migrations
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Wizyta", b =>
                 {
-                    b.Property<long>("PacjentId")
+                    b.Property<long>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("bigint")
+                        .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+                    b.Property<long?>("DoktorId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("DoktorId")
+                    b.Property<DateTime>("KoniecWizyty")
+                        .HasColumnType("datetime2");
+
+                    b.Property<long>("PacjentId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("PoczatekWizyty")
                         .HasColumnType("datetime2");
 
-                    b.Property<DateTime>("KoniecWizyty")
-                        .HasColumnType("datetime2");
-
-                    b.Property<long>("ProceduraId")
+                    b.Property<long?>("ProceduraId")
                         .HasColumnType("bigint");
 
                     b.Property<int>("Status")
                         .HasColumnType("int");
 
-                    b.HasKey("PacjentId", "DoktorId", "PoczatekWizyty")
-                        .HasName("PakietMedycznyProcedura_pk");
+                    b.HasKey("Id");
 
                     b.HasIndex("DoktorId");
+
+                    b.HasIndex("PacjentId");
 
                     b.HasIndex("ProceduraId");
 
@@ -279,12 +296,6 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .HasColumnType("nvarchar(25)")
                         .HasColumnName("Doktor_Specjalizacja");
 
-                    b.Property<long>("ZespolOperacyjnyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("Doktor_ZespolOperacyjnyId");
-
-                    b.HasIndex("ZespolOperacyjnyId");
-
                     b.HasDiscriminator().HasValue("Doktor");
                 });
 
@@ -296,11 +307,6 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
-
-                    b.Property<long>("ZespolOperacyjnyId")
-                        .HasColumnType("bigint");
-
-                    b.HasIndex("ZespolOperacyjnyId");
 
                     b.HasDiscriminator().HasValue("Pielegniarz");
                 });
@@ -315,12 +321,6 @@ namespace Mas_Projekt_Koniec2.Migrations
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Salowy", b =>
                 {
                     b.HasBaseType("Mas_Projekt_Koniec2.Models.Pracownik");
-
-                    b.Property<long>("ZespolOperacyjnyId")
-                        .HasColumnType("bigint")
-                        .HasColumnName("Salowy_ZespolOperacyjnyId");
-
-                    b.HasIndex("ZespolOperacyjnyId");
 
                     b.HasDiscriminator().HasValue("Salowy");
                 });
@@ -409,6 +409,10 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
+                    b.HasOne("Mas_Projekt_Koniec2.Models.ZespolOperacyjny", null)
+                        .WithMany("Pracownicy")
+                        .HasForeignKey("ZespolOperacyjnyId");
+
                     b.Navigation("Osoba");
                 });
 
@@ -416,9 +420,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     b.HasOne("Mas_Projekt_Koniec2.Models.Doktor", "Doktor")
                         .WithMany("Wizyty")
-                        .HasForeignKey("DoktorId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("DoktorId");
 
                     b.HasOne("Mas_Projekt_Koniec2.Models.Pacjent", "Pacjent")
                         .WithMany("Wizyty")
@@ -428,48 +430,13 @@ namespace Mas_Projekt_Koniec2.Migrations
 
                     b.HasOne("Mas_Projekt_Koniec2.Models.Procedura", "Procedura")
                         .WithMany("Wizyty")
-                        .HasForeignKey("ProceduraId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("ProceduraId");
 
                     b.Navigation("Doktor");
 
                     b.Navigation("Pacjent");
 
                     b.Navigation("Procedura");
-                });
-
-            modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Doktor", b =>
-                {
-                    b.HasOne("Mas_Projekt_Koniec2.Models.ZespolOperacyjny", "Czlonek")
-                        .WithMany("Doktorzy")
-                        .HasForeignKey("ZespolOperacyjnyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Czlonek");
-                });
-
-            modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Pielegniarz", b =>
-                {
-                    b.HasOne("Mas_Projekt_Koniec2.Models.ZespolOperacyjny", "Czlonek")
-                        .WithMany("Pielegniarze")
-                        .HasForeignKey("ZespolOperacyjnyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Czlonek");
-                });
-
-            modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Salowy", b =>
-                {
-                    b.HasOne("Mas_Projekt_Koniec2.Models.ZespolOperacyjny", "Czlonek")
-                        .WithMany("Salowi")
-                        .HasForeignKey("ZespolOperacyjnyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
-
-                    b.Navigation("Czlonek");
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Hospitalizacja", b =>
@@ -507,13 +474,9 @@ namespace Mas_Projekt_Koniec2.Migrations
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.ZespolOperacyjny", b =>
                 {
-                    b.Navigation("Doktorzy");
-
                     b.Navigation("Hospitalizacje");
 
-                    b.Navigation("Pielegniarze");
-
-                    b.Navigation("Salowi");
+                    b.Navigation("Pracownicy");
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Doktor", b =>

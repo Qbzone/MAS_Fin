@@ -99,7 +99,8 @@ namespace Mas_Projekt_Koniec2.Migrations
                 columns: table => new
                 {
                     PakietMedycznyId = table.Column<long>(type: "bigint", nullable: false),
-                    ProceduraId = table.Column<long>(type: "bigint", nullable: false)
+                    ProceduraId = table.Column<long>(type: "bigint", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -127,11 +128,9 @@ namespace Mas_Projekt_Koniec2.Migrations
                     Pensja = table.Column<int>(type: "int", nullable: false),
                     OsobaId = table.Column<long>(type: "bigint", nullable: false),
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
-                    Doktor_Specjalizacja = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
-                    Doktor_ZespolOperacyjnyId = table.Column<long>(type: "bigint", nullable: true),
-                    Specjalizacja = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
                     ZespolOperacyjnyId = table.Column<long>(type: "bigint", nullable: true),
-                    Salowy_ZespolOperacyjnyId = table.Column<long>(type: "bigint", nullable: true)
+                    Doktor_Specjalizacja = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    Specjalizacja = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
                 },
                 constraints: table =>
                 {
@@ -143,23 +142,11 @@ namespace Mas_Projekt_Koniec2.Migrations
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                     table.ForeignKey(
-                        name: "FK_Pracownik_ZespolOperacyjny_Doktor_ZespolOperacyjnyId",
-                        column: x => x.Doktor_ZespolOperacyjnyId,
-                        principalTable: "ZespolOperacyjny",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
-                        name: "FK_Pracownik_ZespolOperacyjny_Salowy_ZespolOperacyjnyId",
-                        column: x => x.Salowy_ZespolOperacyjnyId,
-                        principalTable: "ZespolOperacyjny",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
-                    table.ForeignKey(
                         name: "FK_Pracownik_ZespolOperacyjny_ZespolOperacyjnyId",
                         column: x => x.ZespolOperacyjnyId,
                         principalTable: "ZespolOperacyjny",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -195,16 +182,18 @@ namespace Mas_Projekt_Koniec2.Migrations
                 name: "Wizyta",
                 columns: table => new
                 {
+                    Id = table.Column<long>(type: "bigint", nullable: false)
+                        .Annotation("SqlServer:Identity", "1, 1"),
                     PoczatekWizyty = table.Column<DateTime>(type: "datetime2", nullable: false),
-                    PacjentId = table.Column<long>(type: "bigint", nullable: false),
-                    DoktorId = table.Column<long>(type: "bigint", nullable: false),
                     KoniecWizyty = table.Column<DateTime>(type: "datetime2", nullable: false),
                     Status = table.Column<int>(type: "int", nullable: false),
-                    ProceduraId = table.Column<long>(type: "bigint", nullable: false)
+                    PacjentId = table.Column<long>(type: "bigint", nullable: false),
+                    DoktorId = table.Column<long>(type: "bigint", nullable: true),
+                    ProceduraId = table.Column<long>(type: "bigint", nullable: true)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PakietMedycznyProcedura_pk", x => new { x.PacjentId, x.DoktorId, x.PoczatekWizyty });
+                    table.PrimaryKey("PK_Wizyta", x => x.Id);
                     table.ForeignKey(
                         name: "FK_Wizyta_Pacjent_PacjentId",
                         column: x => x.PacjentId,
@@ -216,13 +205,13 @@ namespace Mas_Projekt_Koniec2.Migrations
                         column: x => x.DoktorId,
                         principalTable: "Pracownik",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Wizyta_Procedura_ProceduraId",
                         column: x => x.ProceduraId,
                         principalTable: "Procedura",
                         principalColumn: "Id",
-                        onDelete: ReferentialAction.Cascade);
+                        onDelete: ReferentialAction.Restrict);
                 });
 
             migrationBuilder.CreateTable(
@@ -231,11 +220,12 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     ProceduraId = table.Column<long>(type: "bigint", nullable: false),
                     HospitalizacjaId = table.Column<long>(type: "bigint", nullable: false),
-                    DataWykonania = table.Column<DateTime>(type: "datetime2", nullable: false)
+                    DataWykonania = table.Column<DateTime>(type: "datetime2", nullable: false),
+                    Id = table.Column<long>(type: "bigint", nullable: false)
                 },
                 constraints: table =>
                 {
-                    table.PrimaryKey("PakietMedycznyProcedura_pk", x => new { x.ProceduraId, x.HospitalizacjaId, x.DataWykonania });
+                    table.PrimaryKey("HospitalizacjaProcedura_pk", x => new { x.ProceduraId, x.HospitalizacjaId, x.DataWykonania });
                     table.ForeignKey(
                         name: "FK_HospitalizacjaProcedura_Hospitalizacja_HospitalizacjaId",
                         column: x => x.HospitalizacjaId,
@@ -281,20 +271,10 @@ namespace Mas_Projekt_Koniec2.Migrations
                 column: "ProceduraId");
 
             migrationBuilder.CreateIndex(
-                name: "IX_Pracownik_Doktor_ZespolOperacyjnyId",
-                table: "Pracownik",
-                column: "Doktor_ZespolOperacyjnyId");
-
-            migrationBuilder.CreateIndex(
                 name: "IX_Pracownik_OsobaId",
                 table: "Pracownik",
                 column: "OsobaId",
                 unique: true);
-
-            migrationBuilder.CreateIndex(
-                name: "IX_Pracownik_Salowy_ZespolOperacyjnyId",
-                table: "Pracownik",
-                column: "Salowy_ZespolOperacyjnyId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pracownik_ZespolOperacyjnyId",
@@ -305,6 +285,11 @@ namespace Mas_Projekt_Koniec2.Migrations
                 name: "IX_Wizyta_DoktorId",
                 table: "Wizyta",
                 column: "DoktorId");
+
+            migrationBuilder.CreateIndex(
+                name: "IX_Wizyta_PacjentId",
+                table: "Wizyta",
+                column: "PacjentId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Wizyta_ProceduraId",

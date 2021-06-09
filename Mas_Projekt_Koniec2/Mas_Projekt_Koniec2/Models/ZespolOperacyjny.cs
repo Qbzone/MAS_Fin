@@ -10,9 +10,10 @@ namespace Mas_Projekt_Koniec2.Models
     {
         public long Id { get; set; }
 
-        public ICollection<Doktor> Doktorzy { get; set; }
-        public ICollection<Pielegniarz> Pielegniarze { get; set; }
-        public ICollection<Salowy> Salowi { get; set; }
+        //public ICollection<Doktor> Doktorzy { get; set; }
+        //public ICollection<Pielegniarz> Pielegniarze { get; set; }
+        //public ICollection<Salowy> Salowi { get; set; }
+        public ICollection<Pracownik> Pracownicy { get; set; }
         public ICollection<Hospitalizacja> Hospitalizacje { get; set; }
 
         public ZespolOperacyjny()
@@ -20,12 +21,17 @@ namespace Mas_Projekt_Koniec2.Models
 
         }
 
-        public ZespolOperacyjny(ICollection<Doktor> doktorzy, ICollection<Pielegniarz> pielegniarze, ICollection<Salowy> salowi)
+        public ZespolOperacyjny(ICollection<Pracownik> pracownicy)
+        {
+            this.Pracownicy = pracownicy;
+        }
+
+        /*public ZespolOperacyjny(ICollection<Doktor> doktorzy, ICollection<Pielegniarz> pielegniarze, ICollection<Salowy> salowi)
         {
             this.Doktorzy = doktorzy;
             this.Pielegniarze = pielegniarze;
             this.Salowi = salowi;
-        }
+        }*/
 
         /*public void AddLider(Doktor doktor)
         {

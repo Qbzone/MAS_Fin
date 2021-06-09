@@ -12,8 +12,8 @@ namespace Mas_Projekt_Koniec2.Models
         [Required]
         [MaxLength(25)]
         public string Specjalizacja { get; set; }
-        public ZespolOperacyjny Czlonek { get; set; }
-        public long ZespolOperacyjnyId { get; set; }
+        //public ZespolOperacyjny Czlonek { get; set; }
+        //public long ZespolOperacyjnyId { get; set; }
         public ICollection<Wizyta> Wizyty { get; set; }
 
         public Doktor()

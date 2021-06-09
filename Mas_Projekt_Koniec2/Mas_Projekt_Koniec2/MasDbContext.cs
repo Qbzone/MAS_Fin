@@ -22,15 +22,15 @@ namespace Mas_Projekt_Koniec2
                 entity.HasKey(e => new { e.PakietMedycznyId, e.ProceduraId })
                 .HasName("PakietMedycznyProcedura_pk");
             });
-            modelBuilder.Entity<Wizyta>(entity =>
+            /*modelBuilder.Entity<Wizyta>(entity =>
             {
                 entity.HasKey(e => new { e.PacjentId, e.DoktorId, e.PoczatekWizyty })
-                .HasName("PakietMedycznyProcedura_pk");
-            });
+                .HasName("Wizyta_pk");
+            });*/
             modelBuilder.Entity<HospitalizacjaProcedura>(entity =>
             {
                 entity.HasKey(e => new { e.ProceduraId, e.HospitalizacjaId, e.DataWykonania })
-                .HasName("PakietMedycznyProcedura_pk");
+                .HasName("HospitalizacjaProcedura_pk");
             });
         }
 
