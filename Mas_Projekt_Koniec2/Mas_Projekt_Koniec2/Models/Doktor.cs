@@ -11,7 +11,7 @@ namespace Mas_Projekt_Koniec2.Models
     {
         [Required]
         [MaxLength(25)]
-        public string Specjalizacja { get; set; }
+        public string SpecjalizacjaDoktor { get; set; }
         //public ZespolOperacyjny Czlonek { get; set; }
         //public long ZespolOperacyjnyId { get; set; }
         public ICollection<Wizyta> Wizyty { get; set; }
@@ -23,7 +23,7 @@ namespace Mas_Projekt_Koniec2.Models
 
         public Doktor(string specjalizacja)
         {
-            this.Specjalizacja = specjalizacja;
+            this.SpecjalizacjaDoktor = specjalizacja;
         }
 
         /*public void AddLider(ZespolOperacyjny zespol)

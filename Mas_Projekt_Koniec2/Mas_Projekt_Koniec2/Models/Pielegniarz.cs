@@ -11,7 +11,7 @@ namespace Mas_Projekt_Koniec2.Models
     {
         [Required]
         [MaxLength(25)]
-        public string Specjalizacja { get; set; }
+        public string SpecjalizacjaPielegniarz { get; set; }
 
         //public ZespolOperacyjny Czlonek { get; set; }
         //public long ZespolOperacyjnyId { get; set; }
@@ -23,7 +23,7 @@ namespace Mas_Projekt_Koniec2.Models
 
         public Pielegniarz(string specjalizacja)
         {
-            this.Specjalizacja = specjalizacja;
+            this.SpecjalizacjaPielegniarz = specjalizacja;
         }
 
         /*public void AddCzlonek(ZespolOperacyjny zespol)

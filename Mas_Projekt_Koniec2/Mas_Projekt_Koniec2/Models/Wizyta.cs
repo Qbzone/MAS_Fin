@@ -16,15 +16,16 @@ namespace Mas_Projekt_Koniec2.Models
         public DateTime PoczatekWizyty { get; set; }
         public DateTime KoniecWizyty { get; set; }
         [Required]
-        public StatusWizyty Status { get; set; }
+        public StatusWizyty StatusWizyta { get; set; }
         [Required]
         public Pacjent Pacjent { get; set; }
         public long PacjentId { get; set; }
         [ForeignKey("DoktorId")]
         public Doktor Doktor { get; set; }
         public long? DoktorId { get; set; }
+        [Required]
         public Procedura Procedura { get; set; }
-        public long? ProceduraId { get; set; }
+        public long ProceduraId { get; set; }
         public enum StatusWizyty
         {
             [Display(Name = "Zapisana")]
@@ -39,7 +40,7 @@ namespace Mas_Projekt_Koniec2.Models
         [NotMapped]
         public string StatusString
         {
-            get { return Status.GetOrderStateDisplayName(); }
+            get { return StatusWizyta.GetOrderStateDisplayName(); }
         }
 
         public Wizyta()
@@ -50,7 +51,7 @@ namespace Mas_Projekt_Koniec2.Models
         public Wizyta(DateTime poczatekWizyty, Pacjent pacjent, Doktor doktor, Procedura procedura)
         {
             this.PoczatekWizyty = poczatekWizyty;
-            this.Status = StatusWizyty.CREATED;
+            this.StatusWizyta = StatusWizyty.CREATED;
             this.Pacjent = pacjent;
             this.PacjentId = pacjent.Id;
             this.Doktor = doktor;

@@ -23,7 +23,7 @@ namespace Mas_Projekt_Koniec2.Models
         [RegularExpression("^[0-9]*$")]
         [MinLength(11)]
         [MaxLength(11)]
-        public string Pesel { get; set; }
+        public string NumerPesel { get; set; }
         [Required]
         [MaxLength(75)]
         public string AdresZamieszkania { get; set; }
@@ -53,7 +53,7 @@ namespace Mas_Projekt_Koniec2.Models
             this.Imie = imie;
             this.Nazwisko = nazwisko;
             this.DataUrodzenia = dataUrodzenia;
-            this.Pesel = pesel;
+            this.NumerPesel = pesel;
             this.AdresZamieszkania = adresZamieszkania;
             this.NumerTelefonu = numerTelefonu;
             this.AdresEmail = adresEmail;

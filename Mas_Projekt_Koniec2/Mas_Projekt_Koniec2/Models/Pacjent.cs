@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -16,7 +17,7 @@ namespace Mas_Projekt_Koniec2.Models
         public Osoba Osoba { get; set; }
         public long OsobaId { get; set; }
         public PakietMedyczny PakietMedyczny { get; set; }
-        public long PakietMedycznyId { get; set; }
+        public long? PakietMedycznyId { get; set; }
         public ICollection<Wizyta> Wizyty { get; set; }
         public ICollection<Hospitalizacja> Hospitalizacja { get; set; }
 
@@ -32,14 +33,14 @@ namespace Mas_Projekt_Koniec2.Models
             this.UbezpiecznieZdrowotne = ubezpieczenieZdrowotne;
         }
 
-        public Pacjent(Osoba osoba, bool ubezpieczenieZdrowotne, PakietMedyczny pakietMedyczny)
+        /*public Pacjent(Osoba osoba, bool ubezpieczenieZdrowotne, PakietMedyczny pakietMedyczny)
         {
             this.Osoba = osoba;
             this.OsobaId = osoba.Id;
             this.UbezpiecznieZdrowotne = ubezpieczenieZdrowotne;
             this.PakietMedyczny = pakietMedyczny;
             this.PakietMedycznyId = pakietMedyczny.Id;
-        }
+        }*/
 
         /*public void AddPakietMedyczny(PakietMedyczny pakietMedyczny)
         {

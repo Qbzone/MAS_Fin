@@ -16,7 +16,7 @@ namespace Mas_Projekt_Koniec2.Models
         public DateTime PoczatekHospitalizacji { get; set; }
         public DateTime KoniecHospitalizacji { get; set; }
         [Required]
-        public StatusHospitalizacji Status { get; set; }
+        public StatusHospitalizacji StatusHospitalizacja { get; set; }
 
         public Pacjent Pacjent { get; set; }
         public long PacjentId { get; set; }
@@ -39,7 +39,7 @@ namespace Mas_Projekt_Koniec2.Models
         [NotMapped]
         public string StatusString
         {
-            get { return Status.GetOrderStateDisplayName(); }
+            get { return StatusHospitalizacja.GetOrderStateDisplayName(); }
         }
 
         public Hospitalizacja()
@@ -50,7 +50,7 @@ namespace Mas_Projekt_Koniec2.Models
         public Hospitalizacja(DateTime poczatekHospitalizacji, Pacjent pacjent, ZespolOperacyjny zespol)
         {
             this.PoczatekHospitalizacji = poczatekHospitalizacji;
-            this.Status = StatusHospitalizacji.CREATED;
+            this.StatusHospitalizacja = StatusHospitalizacji.CREATED;
             this.Pacjent = pacjent;
             this.PacjentId = pacjent.OsobaId;
             this.ZespolOperacyjny = zespol;

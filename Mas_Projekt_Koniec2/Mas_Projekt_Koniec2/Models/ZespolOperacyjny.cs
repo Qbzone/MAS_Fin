@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -13,6 +14,7 @@ namespace Mas_Projekt_Koniec2.Models
         //public ICollection<Doktor> Doktorzy { get; set; }
         //public ICollection<Pielegniarz> Pielegniarze { get; set; }
         //public ICollection<Salowy> Salowi { get; set; }
+        [Required]
         public ICollection<Pracownik> Pracownicy { get; set; }
         public ICollection<Hospitalizacja> Hospitalizacje { get; set; }
 

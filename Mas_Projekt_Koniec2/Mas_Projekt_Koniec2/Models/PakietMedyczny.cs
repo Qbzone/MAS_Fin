@@ -12,7 +12,7 @@ namespace Mas_Projekt_Koniec2.Models
         public long Id { get; set; }
         [Required]
         [MaxLength(25)]
-        public string Nazwa { get; set; }
+        public string NazwaPakiet { get; set; }
         public ICollection<Pacjent> Pacjenci { get; set; }
         public ICollection<PakietMedycznyProcedura> Procedury { get; set; }
 
@@ -23,7 +23,7 @@ namespace Mas_Projekt_Koniec2.Models
 
         public PakietMedyczny(string nazwaPakietu)
         {
-            this.Nazwa = nazwaPakietu;
+            this.NazwaPakiet = nazwaPakietu;
         }
 
         /*public void AddPacjent(Pacjent pacjent)

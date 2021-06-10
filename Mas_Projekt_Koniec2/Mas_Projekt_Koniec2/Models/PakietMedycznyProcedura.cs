@@ -9,7 +9,7 @@ namespace Mas_Projekt_Koniec2.Models
 {
     public class PakietMedycznyProcedura
     {
-        public long Id { get; set; }
+        //public long Id { get; set; }
         [Required]
         public PakietMedyczny PakietMedyczny { get; set; }
         public long PakietMedycznyId { get; set; }

@@ -35,7 +35,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<DateTime>("PoczatekHospitalizacji")
                         .HasColumnType("datetime2");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("StatusHospitalizacja")
                         .HasColumnType("int");
 
                     b.Property<long>("ZespolOperacyjnyId")
@@ -102,19 +102,109 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
+                    b.Property<string>("NumerPesel")
+                        .IsRequired()
+                        .HasMaxLength(11)
+                        .HasColumnType("nvarchar(11)");
+
                     b.Property<string>("NumerTelefonu")
                         .IsRequired()
                         .HasMaxLength(9)
                         .HasColumnType("nvarchar(9)");
 
-                    b.Property<string>("Pesel")
-                        .IsRequired()
-                        .HasMaxLength(11)
-                        .HasColumnType("nvarchar(11)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Osoba");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            AdresEmail = "aPodlaski@gmail.com",
+                            AdresZamieszkania = "Warszawa",
+                            DataUrodzenia = new DateTime(1997, 8, 8, 20, 20, 20, 0, DateTimeKind.Unspecified),
+                            Imie = "Adam",
+                            Nazwisko = "Podlaski",
+                            NumerPesel = "97080812345",
+                            NumerTelefonu = "123456789"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            AdresEmail = "mPietras@gmail.com",
+                            AdresZamieszkania = "Kaski",
+                            DataUrodzenia = new DateTime(1997, 5, 18, 12, 20, 30, 0, DateTimeKind.Unspecified),
+                            Imie = "Mateusz",
+                            Nazwisko = "Pietras",
+                            NumerPesel = "97051812345",
+                            NumerTelefonu = "113456789"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            AdresEmail = "jachoStera@gmail.com",
+                            AdresZamieszkania = "Piastów",
+                            DataUrodzenia = new DateTime(1997, 8, 5, 10, 10, 10, 0, DateTimeKind.Unspecified),
+                            Imie = "Jan",
+                            Nazwisko = "Kostera",
+                            NumerPesel = "97080512345",
+                            NumerTelefonu = "123156789"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            AdresEmail = "kPlac@gmail.com",
+                            AdresZamieszkania = "Warszawa",
+                            DataUrodzenia = new DateTime(1997, 8, 8, 2, 2, 2, 0, DateTimeKind.Unspecified),
+                            Imie = "Karol",
+                            Nazwisko = "Plac",
+                            NumerPesel = "97080814345",
+                            NumerTelefonu = "123454789"
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            AdresEmail = "wWaldzki@gmail.com",
+                            AdresZamieszkania = "Warszawa",
+                            DataUrodzenia = new DateTime(1997, 8, 8, 3, 3, 3, 0, DateTimeKind.Unspecified),
+                            Imie = "Waldemar",
+                            Nazwisko = "Waldzki",
+                            NumerPesel = "97080818345",
+                            NumerTelefonu = "123458789"
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            AdresEmail = "BediMaciej@gmail.com",
+                            AdresZamieszkania = "Warszawa",
+                            DataUrodzenia = new DateTime(1997, 8, 8, 2, 3, 3, 0, DateTimeKind.Unspecified),
+                            Imie = "Maciej",
+                            Nazwisko = "Bedi",
+                            NumerPesel = "97080818645",
+                            NumerTelefonu = "123458769"
+                        },
+                        new
+                        {
+                            Id = 7L,
+                            AdresEmail = "RomaNKocz@gmail.com",
+                            AdresZamieszkania = "Grodzisk Mazowiecki",
+                            DataUrodzenia = new DateTime(1997, 8, 9, 3, 3, 3, 0, DateTimeKind.Unspecified),
+                            Imie = "Roman",
+                            Nazwisko = "Koczan",
+                            NumerPesel = "97080919345",
+                            NumerTelefonu = "123458999"
+                        },
+                        new
+                        {
+                            Id = 8L,
+                            AdresEmail = "TymnoGold@gmail.com",
+                            AdresZamieszkania = "Piastów",
+                            DataUrodzenia = new DateTime(1990, 8, 8, 3, 3, 3, 0, DateTimeKind.Unspecified),
+                            Imie = "Tymon",
+                            Nazwisko = "Gołda",
+                            NumerPesel = "90080818345",
+                            NumerTelefonu = "120058789"
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Pacjent", b =>
@@ -127,7 +217,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<long>("OsobaId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("PakietMedycznyId")
+                    b.Property<long?>("PakietMedycznyId")
                         .HasColumnType("bigint");
 
                     b.Property<bool>("UbezpiecznieZdrowotne")
@@ -140,6 +230,48 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.HasIndex("PakietMedycznyId");
 
                     b.ToTable("Pacjent");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            OsobaId = 1L,
+                            PakietMedycznyId = 1L,
+                            UbezpiecznieZdrowotne = false
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            OsobaId = 2L,
+                            PakietMedycznyId = 1L,
+                            UbezpiecznieZdrowotne = true
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            OsobaId = 3L,
+                            UbezpiecznieZdrowotne = true
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            OsobaId = 6L,
+                            UbezpiecznieZdrowotne = true
+                        },
+                        new
+                        {
+                            Id = 5L,
+                            OsobaId = 7L,
+                            PakietMedycznyId = 1L,
+                            UbezpiecznieZdrowotne = false
+                        },
+                        new
+                        {
+                            Id = 6L,
+                            OsobaId = 8L,
+                            PakietMedycznyId = 1L,
+                            UbezpiecznieZdrowotne = true
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.PakietMedyczny", b =>
@@ -149,7 +281,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .HasColumnType("bigint")
                         .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
 
-                    b.Property<string>("Nazwa")
+                    b.Property<string>("NazwaPakiet")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
@@ -157,6 +289,13 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("PakietMedyczny");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            NazwaPakiet = "MedPack"
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.PakietMedycznyProcedura", b =>
@@ -167,15 +306,24 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<long>("ProceduraId")
                         .HasColumnType("bigint");
 
-                    b.Property<long>("Id")
-                        .HasColumnType("bigint");
-
                     b.HasKey("PakietMedycznyId", "ProceduraId")
                         .HasName("PakietMedycznyProcedura_pk");
 
                     b.HasIndex("ProceduraId");
 
                     b.ToTable("PakietMedycznyProcedura");
+
+                    b.HasData(
+                        new
+                        {
+                            PakietMedycznyId = 1L,
+                            ProceduraId = 1L
+                        },
+                        new
+                        {
+                            PakietMedycznyId = 1L,
+                            ProceduraId = 2L
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Pracownik", b =>
@@ -223,10 +371,10 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<bool>("CzyProceduraInwazyjna")
                         .HasColumnType("bit");
 
-                    b.Property<int>("Koszt")
+                    b.Property<int>("KosztProcedura")
                         .HasColumnType("int");
 
-                    b.Property<string>("Nazwa")
+                    b.Property<string>("NazwaProcedura")
                         .IsRequired()
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
@@ -234,6 +382,32 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Procedura");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            CzyPotrzebnyZespolOperacyjny = false,
+                            CzyProceduraInwazyjna = false,
+                            KosztProcedura = 20,
+                            NazwaProcedura = "Badanie kontrolne"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            CzyPotrzebnyZespolOperacyjny = true,
+                            CzyProceduraInwazyjna = true,
+                            KosztProcedura = 10000,
+                            NazwaProcedura = "Operacja serca"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            CzyPotrzebnyZespolOperacyjny = false,
+                            CzyProceduraInwazyjna = true,
+                            KosztProcedura = 50,
+                            NazwaProcedura = "Badanie krwi"
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Wizyta", b =>
@@ -255,10 +429,10 @@ namespace Mas_Projekt_Koniec2.Migrations
                     b.Property<DateTime>("PoczatekWizyty")
                         .HasColumnType("datetime2");
 
-                    b.Property<long?>("ProceduraId")
+                    b.Property<long>("ProceduraId")
                         .HasColumnType("bigint");
 
-                    b.Property<int>("Status")
+                    b.Property<int>("StatusWizyta")
                         .HasColumnType("int");
 
                     b.HasKey("Id");
@@ -288,20 +462,35 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     b.HasBaseType("Mas_Projekt_Koniec2.Models.Pracownik");
 
-                    b.Property<string>("Specjalizacja")
+                    b.Property<string>("SpecjalizacjaDoktor")
                         .IsRequired()
                         .HasMaxLength(25)
-                        .HasColumnType("nvarchar(25)")
-                        .HasColumnName("Doktor_Specjalizacja");
+                        .HasColumnType("nvarchar(25)");
 
                     b.HasDiscriminator().HasValue("Doktor");
+
+                    b.HasData(
+                        new
+                        {
+                            Id = 1L,
+                            OsobaId = 4L,
+                            Pensja = 3400,
+                            SpecjalizacjaDoktor = "Kardiolog"
+                        },
+                        new
+                        {
+                            Id = 2L,
+                            OsobaId = 5L,
+                            Pensja = 3400,
+                            SpecjalizacjaDoktor = "Kardiolog"
+                        });
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Pielegniarz", b =>
                 {
                     b.HasBaseType("Mas_Projekt_Koniec2.Models.Pracownik");
 
-                    b.Property<string>("Specjalizacja")
+                    b.Property<string>("SpecjalizacjaPielegniarz")
                         .IsRequired()
                         .HasMaxLength(25)
                         .HasColumnType("nvarchar(25)");
@@ -371,9 +560,7 @@ namespace Mas_Projekt_Koniec2.Migrations
 
                     b.HasOne("Mas_Projekt_Koniec2.Models.PakietMedyczny", "PakietMedyczny")
                         .WithMany("Pacjenci")
-                        .HasForeignKey("PakietMedycznyId")
-                        .OnDelete(DeleteBehavior.Cascade)
-                        .IsRequired();
+                        .HasForeignKey("PakietMedycznyId");
 
                     b.Navigation("Osoba");
 
@@ -428,7 +615,9 @@ namespace Mas_Projekt_Koniec2.Migrations
 
                     b.HasOne("Mas_Projekt_Koniec2.Models.Procedura", "Procedura")
                         .WithMany("Wizyty")
-                        .HasForeignKey("ProceduraId");
+                        .HasForeignKey("ProceduraId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
 
                     b.Navigation("Doktor");
 
