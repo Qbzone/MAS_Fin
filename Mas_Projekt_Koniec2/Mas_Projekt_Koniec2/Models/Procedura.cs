@@ -16,6 +16,9 @@ namespace Mas_Projekt_Koniec2.Models
         [Required]
         public int KosztProcedura { get; set; }
         [Required]
+        [MaxLength(30)]
+        public string WymaganaSpecjalizacja { get; set; }
+        [Required]
         public bool CzyPotrzebnyZespolOperacyjny { get; set; }
         [Required]
         public bool CzyProceduraInwazyjna { get; set; }
@@ -29,10 +32,11 @@ namespace Mas_Projekt_Koniec2.Models
 
         }
 
-        public Procedura(string nazwaProcedury, int kosztWykonania, bool czyPotrzebnyZO, bool czyProceduraI)
+        public Procedura(string nazwaProcedury, int kosztWykonania, string wymaganaSpecjalizacja, bool czyPotrzebnyZO, bool czyProceduraI)
         {
             this.NazwaProcedura = nazwaProcedury;
             this.KosztProcedura = kosztWykonania;
+            this.WymaganaSpecjalizacja = wymaganaSpecjalizacja;
             this.CzyPotrzebnyZespolOperacyjny = czyPotrzebnyZO;
             this.CzyProceduraInwazyjna = czyProceduraI;
         }

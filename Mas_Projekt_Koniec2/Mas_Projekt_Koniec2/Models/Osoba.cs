@@ -40,7 +40,7 @@ namespace Mas_Projekt_Koniec2.Models
         {
             get { return DateTime.Now.Year - DataUrodzenia.Year; }
         }
-        //public Pacjent Pacjent { get; set; }
+        public Pacjent Pacjent { get; set; }
         public Pracownik Pracownik { get; set; }
 
         public Osoba()
@@ -59,10 +59,10 @@ namespace Mas_Projekt_Koniec2.Models
             this.AdresEmail = adresEmail;
         }
 
-        /*public void AddPacjent(Pacjent pacjent)
+        public void AddPacjent(Pacjent pacjent)
         {
             this.Pacjent = pacjent;
-        }*/
+        }
 
         public void AddPracownik(Pracownik pracownik)
         {

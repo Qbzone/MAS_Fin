@@ -4,14 +4,16 @@ using Mas_Projekt_Koniec2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mas_Projekt_Koniec2.Migrations
 {
     [DbContext(typeof(MasDBContext))]
-    partial class MasDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210611103217_SecondaryMigration")]
+    partial class SecondaryMigration
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -225,8 +227,7 @@ namespace Mas_Projekt_Koniec2.Migrations
 
                     b.HasKey("Id");
 
-                    b.HasIndex("OsobaId")
-                        .IsUnique();
+                    b.HasIndex("OsobaId");
 
                     b.HasIndex("PakietMedycznyId");
 
@@ -562,8 +563,8 @@ namespace Mas_Projekt_Koniec2.Migrations
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Pacjent", b =>
                 {
                     b.HasOne("Mas_Projekt_Koniec2.Models.Osoba", "Osoba")
-                        .WithOne("Pacjent")
-                        .HasForeignKey("Mas_Projekt_Koniec2.Models.Pacjent", "OsobaId")
+                        .WithMany()
+                        .HasForeignKey("OsobaId")
                         .OnDelete(DeleteBehavior.Cascade)
                         .IsRequired();
 
@@ -642,8 +643,6 @@ namespace Mas_Projekt_Koniec2.Migrations
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Osoba", b =>
                 {
-                    b.Navigation("Pacjent");
-
                     b.Navigation("Pracownik");
                 });
 

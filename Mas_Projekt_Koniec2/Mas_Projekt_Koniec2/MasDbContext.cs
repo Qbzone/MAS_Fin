@@ -129,6 +129,7 @@ namespace Mas_Projekt_Koniec2
                 Id = 1L,
                 NazwaProcedura = "Badanie kontrolne",
                 KosztProcedura = 20,
+                WymaganaSpecjalizacja = "Dowolna",
                 CzyPotrzebnyZespolOperacyjny = false,
                 CzyProceduraInwazyjna = false
             };
@@ -137,6 +138,7 @@ namespace Mas_Projekt_Koniec2
                 Id = 2L,
                 NazwaProcedura = "Operacja serca",
                 KosztProcedura = 10000,
+                WymaganaSpecjalizacja = "Kardiolog",
                 CzyPotrzebnyZespolOperacyjny = true,
                 CzyProceduraInwazyjna = true,
             };
@@ -145,6 +147,7 @@ namespace Mas_Projekt_Koniec2
                 Id = 3L,
                 NazwaProcedura = "Badanie krwi",
                 KosztProcedura = 50,
+                WymaganaSpecjalizacja = "Dowolna",
                 CzyPotrzebnyZespolOperacyjny = false,
                 CzyProceduraInwazyjna = true,
             };
