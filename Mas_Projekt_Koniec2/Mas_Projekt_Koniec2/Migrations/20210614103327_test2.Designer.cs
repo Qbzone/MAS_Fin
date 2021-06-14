@@ -4,14 +4,16 @@ using Mas_Projekt_Koniec2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mas_Projekt_Koniec2.Migrations
 {
     [DbContext(typeof(MasDBContext))]
-    partial class MasDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210614103327_test2")]
+    partial class test2
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -251,7 +253,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                         {
                             Id = 3L,
                             OsobaId = 3L,
-                            UbezpiecznieZdrowotne = false
+                            UbezpiecznieZdrowotne = true
                         },
                         new
                         {
@@ -420,7 +422,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                             CzyProceduraInwazyjna = true,
                             KosztProcedura = 50,
                             NazwaProcedura = "Badanie krwi",
-                            WymaganaSpecjalizacja = "Diagnosta"
+                            WymaganaSpecjalizacja = "Dowolna"
                         });
                 });
 

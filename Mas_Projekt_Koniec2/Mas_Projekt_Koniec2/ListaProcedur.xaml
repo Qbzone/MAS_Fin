@@ -1,0 +1,43 @@
+﻿<Window x:Class="Mas_Projekt_Koniec2.ListaProcedur"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mas_Projekt_Koniec2"
+        mc:Ignorable="d"
+        Title="ListaProcedur" Height="600" Width="1200">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Procedury</Label>
+        <TextBox x:Name="NazwaTextBox" TextChanged="NazwaTextBox_TextChanged" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20 20 1000 0" Padding="5"/>
+        <TextBlock IsHitTestVisible="False" Text="Filtruj po nazwie procedury..." Foreground="DarkGray" Grid.Row="1" Grid.Column="0" Margin="20 20 1000 0" Padding="5">
+            <TextBlock.Style>
+                <Style TargetType="{x:Type TextBlock}">
+                    <Setter Property="Visibility" Value="Collapsed" />
+                    <Style.Triggers>
+                        <DataTrigger Binding="{Binding Text, ElementName=NazwaTextBox}" Value="">
+                            <Setter Property="Visibility" Value="Visible" />
+                        </DataTrigger>
+                    </Style.Triggers>
+                </Style>
+            </TextBlock.Style>
+        </TextBlock>
+        <DataGrid Name="ProceduraDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Width="*" Binding="{Binding NazwaProcedura}"/>
+                <DataGridTextColumn Header="Koszt" Width="*" Binding="{Binding KosztProcedura}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>
+        <Button x:Name="ProceduraButton" Click="ProceduraButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">Wybierz Procedurę</Button>
+    </Grid>
+</Window>

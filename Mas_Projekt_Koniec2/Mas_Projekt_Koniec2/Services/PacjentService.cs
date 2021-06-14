@@ -27,11 +27,21 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
-        public Pacjent GetPacjentByID(long id)
+        public ObservableCollection<Pacjent> GetPacjentsByPesel(string Pesel)
+        {
+            return new ObservableCollection<Pacjent>(
+                _context.Pacjent
+                .Include(o => o.Osoba)
+                .Include(pm => pm.PakietMedyczny)
+                .Where(pesel => pesel.Osoba.NumerPesel.Contains(Pesel))
+                .ToList());
+        }
+
+        /*public Pacjent GetPacjentByID(long id)
         {
             return _context.Pacjent
                 .Include(o => o.Osoba)
                 .FirstOrDefault(o => o.Id == id);
-        }
+        }*/
     }
 }

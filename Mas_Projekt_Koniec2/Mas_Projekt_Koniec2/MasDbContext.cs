@@ -147,7 +147,7 @@ namespace Mas_Projekt_Koniec2
                 Id = 3L,
                 NazwaProcedura = "Badanie krwi",
                 KosztProcedura = 50,
-                WymaganaSpecjalizacja = "Dowolna",
+                WymaganaSpecjalizacja = "Diagnosta",
                 CzyPotrzebnyZespolOperacyjny = false,
                 CzyProceduraInwazyjna = true,
             };
@@ -165,12 +165,14 @@ namespace Mas_Projekt_Koniec2
             var pakietProcedura1 = new PakietMedycznyProcedura()
             {
                 PakietMedycznyId = pakietMedyczny1.Id,
-                ProceduraId = procedura1.Id
+                ProceduraId = procedura1.Id,
+                DataPrzypisania = new DateTime(2020, 08, 08, 03, 03, 03)
             };
             var pakietProcedura2 = new PakietMedycznyProcedura()
             {
                 PakietMedycznyId = pakietMedyczny1.Id,
-                ProceduraId = procedura2.Id
+                ProceduraId = procedura2.Id,
+                DataPrzypisania = new DateTime(2019, 08, 08, 03, 03, 03)
             };
 
             modelBuilder.Entity<PakietMedycznyProcedura>().HasData(pakietProcedura1, pakietProcedura2);
@@ -193,7 +195,7 @@ namespace Mas_Projekt_Koniec2
             {
                 Id = 3L,
                 OsobaId = 3L,
-                UbezpiecznieZdrowotne = true,
+                UbezpiecznieZdrowotne = false,
             };
             var pacjent4 = new Pacjent()
             {
