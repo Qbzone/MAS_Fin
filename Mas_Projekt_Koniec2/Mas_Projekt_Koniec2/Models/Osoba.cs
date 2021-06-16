@@ -69,5 +69,10 @@ namespace Mas_Projekt_Koniec2.Models
             this.Pracownik = pracownik;
         }
 
+        public string GetImieNazwisko()
+        {
+            return $"{Imie + " " + Nazwisko}";
+        }
+
     }
 }

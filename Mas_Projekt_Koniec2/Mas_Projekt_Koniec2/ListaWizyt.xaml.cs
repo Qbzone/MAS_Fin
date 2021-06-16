@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Mas_Projekt_Koniec2.Models;
+using Mas_Projekt_Koniec2.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +22,36 @@ namespace Mas_Projekt_Koniec2
     /// </summary>
     public partial class ListaWizyt : Window
     {
+        private readonly WizytaService _wizytaService;
+        private readonly ObservableCollection<Wizyta> allWizytas;
+        private ObservableCollection<Wizyta> filteredWizytas;
+
         public ListaWizyt()
         {
             InitializeComponent();
+            _wizytaService = new WizytaService();
+            allWizytas = _wizytaService.GetWizytas();
+            filteredWizytas = allWizytas;
+            WizytaDataGrid.ItemsSource = filteredWizytas;
+
+
+            /*_doktorService = new DoktorServices();
+              allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja);
+              filteredDoktors = allDoktors;
+              DoktorDataGrid.ItemsSource = filteredDoktors;*/
+        }
+
+        private void WizytaDataGrid_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            /*var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
+            new SzczegolyPacjent(selectedPacjent).Show();
+            this.Close();*/
+        }
+
+        private void WrocButton_Click(object sender, RoutedEventArgs e)
+        {
+            new StronaGlowna().Show();
+            this.Close();
         }
     }
 }

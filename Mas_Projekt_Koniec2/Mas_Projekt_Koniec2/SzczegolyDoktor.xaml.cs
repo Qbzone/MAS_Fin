@@ -1,5 +1,8 @@
-﻿using System;
+﻿using Mas_Projekt_Koniec2.Models;
+using Mas_Projekt_Koniec2.Services;
+using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -19,9 +22,26 @@ namespace Mas_Projekt_Koniec2
     /// </summary>
     public partial class SzczegolyDoktor : Window
     {
-        public SzczegolyDoktor()
+        private readonly DoktorServices _doktorService;
+        private readonly ObservableCollection<Doktor> allDoktors;
+        private readonly Pacjent selectedPacjent;
+        private readonly Procedura selectedProcedura;
+
+        public SzczegolyDoktor(Doktor doktor, Pacjent pacjent, Procedura procedura)
         {
             InitializeComponent();
+            selectedPacjent = pacjent;
+            selectedProcedura = procedura;
+            _doktorService = new DoktorServices();
+            allDoktors = new ObservableCollection<Doktor>();
+            allDoktors.Add(doktor);
+            DoktorDataGrid.ItemsSource = allDoktors;
+        }
+
+        private void WrocButton_Click(object sender, RoutedEventArgs e)
+        {
+            new ListaDoktorow(selectedPacjent, selectedProcedura).Show();
+            this.Close();
         }
     }
 }

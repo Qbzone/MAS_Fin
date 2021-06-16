@@ -41,36 +41,31 @@ namespace Mas_Projekt_Koniec2
 
         private void NazwiskoTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
-            /*var textBox = (TextBox)sender;
+            var textBox = (TextBox)sender;
             var text = textBox.Text.Trim();
 
-            filteredPacjents = _pacjentService.GetPacjentsByPesel(text);
+            filteredDoktors = _doktorService.GetDoktorsByNazwisko(text);
 
-            PacjentDataGrid.ItemsSource = null;
-            PacjentDataGrid.ItemsSource = filteredPacjents;*/
+            DoktorDataGrid.ItemsSource = null;
+            DoktorDataGrid.ItemsSource = filteredDoktors;
         }
 
         private void DoktorDataGrid_DoubleClick(object sender, RoutedEventArgs e)
         {
             var selectedDoktor = (Doktor)DoktorDataGrid.SelectedItem;
-            new SzczegolyDoktor(/*selectedDoktor*/).Show();
+            new SzczegolyDoktor(selectedDoktor, selectedPacjent, selectedProcedura).Show();
             this.Close();
         }
 
         private void DoktorButton_Click(object sender, RoutedEventArgs e)
         {
-            /*var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
-            if (PacjentDataGrid.SelectedItem == null)
+            var selectedDoktor = (Doktor)DoktorDataGrid.SelectedItem;
+            if (DoktorDataGrid.SelectedItem == null)
             {
-                MessageBox.Show("Proszę wybrać pacjenta!", Title = "Ostrzeżenie");
+                MessageBox.Show("Proszę wybrać doktora!", Title = "Ostrzeżenie");
                 return;
             }
-            else if (selectedPacjent.UbezpiecznieZdrowotne == false && selectedPacjent.PakietMedycznyId == null)
-            {
-                MessageBox.Show("Wybrany pacjent nie posiada ubezpieczenia zdrowotnego, ani pakietu medycznego! Nie może zostać zapisany na wizytę!", Title = "Ostrzeżenie");
-                return;
-            }*/
-            new ListaWizyt().Show();
+            new ListaTerminow(selectedPacjent, selectedProcedura, selectedDoktor).Show();
             this.Close();
         }
 

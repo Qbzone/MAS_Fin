@@ -36,6 +36,15 @@ namespace Mas_Projekt_Koniec2.Services
             }
         }
 
+        public ObservableCollection<Doktor> GetDoktorsByNazwisko(string Nazwisko)
+        {
+            return new ObservableCollection<Doktor>(
+                _context.Doktor
+                .Include(o => o.Osoba)
+                .Where(pesel => pesel.Osoba.Nazwisko.Contains(Nazwisko))
+                .ToList());
+        }
+
         public bool GetDoktorsSpecjalizacja(string Specjalizacja)
         {
             if(Specjalizacja == "Dowolna")
