@@ -18,19 +18,8 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Terminy</Label>
-        <TextBox x:Name="DataTextBox" TextChanged="DataTextBox_TextChanged" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20 20 1000 0" Padding="5"/>
-        <TextBlock IsHitTestVisible="False" Text="Filtruj po nazwie dacie..." Foreground="DarkGray" Grid.Row="1" Grid.Column="0" Margin="20 20 1000 0" Padding="5">
-            <TextBlock.Style>
-                <Style TargetType="{x:Type TextBlock}">
-                    <Setter Property="Visibility" Value="Collapsed" />
-                    <Style.Triggers>
-                        <DataTrigger Binding="{Binding Text, ElementName=DataTextBox}" Value="">
-                            <Setter Property="Visibility" Value="Visible" />
-                        </DataTrigger>
-                    </Style.Triggers>
-                </Style>
-            </TextBlock.Style>
-        </TextBlock>
+        <!-- <TextBox x:Name="DataTextBox" TextChanged="DataTextBox_TextChanged" Grid.Row="1" Grid.Column="0" TextWrapping="Wrap" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20 20 1000 0" Padding="5"/> -->
+        <DatePicker Name="DataDatePicker" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20 20 1000 0" Padding="5"/>
         <DataGrid Name="TerminDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Początek Wizyty" Width="*" Binding="{Binding PoczatekWizyty}"/>

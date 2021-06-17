@@ -17,19 +17,15 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
-        <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Pacjenci</Label>
-        <DataGrid Name="PacjentDataGrid" EnableColumnVirtualization="True" EnableRowVirtualization="True"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20" IsReadOnly="True" AutoGenerateColumns="False">
+        <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Wizyty</Label>
+        <DataGrid Name="WizytaDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Imie" Width="*" Binding="{Binding Osoba.Imie}"/>
-                <DataGridTextColumn Header="Nazwisko" Width="*" Binding="{Binding Osoba.Nazwisko}"/>
-                <DataGridTextColumn Header="E-mail" Width="2*" Binding="{Binding Osoba.AdresEmail}"/>
-                <DataGridTextColumn Header="Telefon" Width="*" Binding="{Binding Osoba.NumerTelefonu}"/>
-                <DataGridTextColumn Header="PESEL" Width="*" Binding="{Binding Osoba.NumerPesel}"/>
-                <DataGridTextColumn Header="Data Urodzenia" Width="*" Binding="{Binding Osoba.DataUrodzenia, StringFormat='{}{0:yyyy-MM-dd}'}"/>
-                <DataGridTextColumn Header="Wiek" Width="*" Binding="{Binding Osoba.Wiek}"/>
-                <DataGridTextColumn Header="Adres Zamieszkania" Width="*" Binding="{Binding Osoba.AdresZamieszkania}"/>
-                <DataGridTextColumn Header="Ubezpieczenie" Width="*" Binding="{Binding UbezpiecznieZdrowotne}"/>
-                <DataGridTextColumn Header="Pakiet Medyczny" Width="*" Binding="{Binding PakietMedyczny.NazwaPakiet}"/>
+                <DataGridTextColumn Header="Pacjent" Width="*" Binding="{Binding Pacjent.PacjentImieNazwisko}"/>
+                <DataGridTextColumn Header="Doktor" Width="*" Binding="{Binding Doktor.DoktorImieNazwisko}"/>
+                <DataGridTextColumn Header="Procedura" Width="*" Binding="{Binding Procedura.NazwaProcedura}"/>
+                <DataGridTextColumn Header="Procedura" Width="*" Binding="{Binding Procedura.KosztProcedura}"/>
+                <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding PoczatekWizyty}"/>
+                <DataGridTextColumn Header="Procedura" Width="*" Binding="{Binding StatusWizyta}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>

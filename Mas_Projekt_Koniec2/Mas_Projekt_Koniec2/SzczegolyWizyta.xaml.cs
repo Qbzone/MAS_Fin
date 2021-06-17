@@ -31,7 +31,7 @@ namespace Mas_Projekt_Koniec2
             _wizytaService = new WizytaService();
             allWizytas = new ObservableCollection<Wizyta>();
             allWizytas.Add(wizyta);
-            PacjentDataGrid.ItemsSource = allWizytas;
+            WizytaDataGrid.ItemsSource = allWizytas;
         }
 
         private void WrocButton_Click(object sender, RoutedEventArgs e)

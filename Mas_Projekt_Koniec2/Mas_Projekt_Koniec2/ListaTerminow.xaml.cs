@@ -24,6 +24,7 @@ namespace Mas_Projekt_Koniec2
     {
         private readonly WizytaService _wizytaService;
         private readonly ObservableCollection<Wizyta> tmpWizytas;
+        private ObservableCollection<Wizyta> filteredWizytas;
         private readonly Pacjent selectedPacjent;
         private readonly Procedura selectedProcedura;
         private readonly Doktor selectedDoktor;
@@ -31,36 +32,24 @@ namespace Mas_Projekt_Koniec2
         public ListaTerminow(Pacjent SelectedPacjent, Procedura SelectedProcedura, Doktor SelectedDoktor)
         {
             InitializeComponent();
+
             selectedPacjent = SelectedPacjent;
             selectedProcedura = SelectedProcedura;
             selectedDoktor = SelectedDoktor;
+
+            DataDatePicker.SelectedDate = DateTime.Today;
+            DataDatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021,01,01), DateTime.Now.AddDays(-1)));
+
             _wizytaService = new WizytaService();
             tmpWizytas = new ObservableCollection<Wizyta>();
-            DateTime Start = new DateTime(2021, 06, 16, 08, 00, 00);
-            for (int i = 0; i < 16; i++)
-            {
-                DateTime Koniec = Start.AddMinutes(29);
-                Wizyta tmpTermin = new Wizyta() { PoczatekWizyty = Start, KoniecWizyty = Koniec, StatusWizyta = Wizyta.StatusWizyty.CREATED, DoktorId = selectedDoktor.Id, PacjentId = selectedPacjent.Id, ProceduraId = selectedProcedura.Id };
-                tmpWizytas.Add(tmpTermin);
-                Start = Start.AddMinutes(30);
-            }
-            TerminDataGrid.ItemsSource = tmpWizytas;
+            _wizytaService.GetDayTermins(tmpWizytas, selectedDoktor, selectedPacjent, selectedProcedura, Convert.ToDateTime(DataDatePicker.ToString()));
+            filteredWizytas = tmpWizytas;
+            TerminDataGrid.ItemsSource = filteredWizytas;
 
             /*_doktorService = new DoktorServices();
               allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja);
               filteredDoktors = allDoktors;
               DoktorDataGrid.ItemsSource = filteredDoktors;*/
-        }
-
-        private void DataTextBox_TextChanged(object sender, TextChangedEventArgs e)
-        {
-            /*var textBox = (TextBox)sender;
-            var text = textBox.Text.Trim();
-
-            filteredDoktors = _doktorService.GetDoktorsByNazwisko(text);
-
-            DoktorDataGrid.ItemsSource = null;
-            DoktorDataGrid.ItemsSource = filteredDoktors;*/
         }
 
         private void ZapiszButton_Click(object sender, RoutedEventArgs e)
@@ -81,7 +70,7 @@ namespace Mas_Projekt_Koniec2
 
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
-            new ListaProcedur(selectedPacjent).Show();
+            new ListaDoktorow(selectedPacjent, selectedProcedura).Show();
             this.Close();
         }
     }

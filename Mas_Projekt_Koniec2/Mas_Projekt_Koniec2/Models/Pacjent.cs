@@ -33,6 +33,12 @@ namespace Mas_Projekt_Koniec2.Models
             this.UbezpiecznieZdrowotne = ubezpieczenieZdrowotne;
         }
 
+        [NotMapped]
+        public string PacjentImieNazwisko
+        {
+            get { return Osoba.GetImieNazwisko(); }
+        }
+
         /*public Pacjent(Osoba osoba, bool ubezpieczenieZdrowotne, PakietMedyczny pakietMedyczny)
         {
             this.Osoba = osoba;

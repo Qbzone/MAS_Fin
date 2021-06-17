@@ -43,9 +43,9 @@ namespace Mas_Projekt_Koniec2
 
         private void WizytaDataGrid_DoubleClick(object sender, RoutedEventArgs e)
         {
-            /*var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
-            new SzczegolyPacjent(selectedPacjent).Show();
-            this.Close();*/
+            var selectedWizyta = (Wizyta)WizytaDataGrid.SelectedItem;
+            new SzczegolyWizyta(selectedWizyta).Show();
+            this.Close();
         }
 
         private void WrocButton_Click(object sender, RoutedEventArgs e)

@@ -20,8 +20,8 @@
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Wizyty</Label>
         <DataGrid Name="WizytaDataGrid" MouseDoubleClick="WizytaDataGrid_DoubleClick" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
-                <DataGridTextColumn Header="Pacjent" Width="*" Binding="{Binding Pacjent.Osoba.GetImieNazwisko()}"/>
-                <DataGridTextColumn Header="Doktor" Width="*" Binding="{Binding KoniecWizyty}"/>
+                <DataGridTextColumn Header="Pacjent" Width="*" Binding="{Binding Pacjent.PacjentImieNazwisko}"/>
+                <DataGridTextColumn Header="Doktor" Width="*" Binding="{Binding Doktor.DoktorImieNazwisko}"/>
                 <DataGridTextColumn Header="Procedura" Width="*" Binding="{Binding Procedura.NazwaProcedura}"/>
                 <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding PoczatekWizyty}"/>
             </DataGrid.Columns>

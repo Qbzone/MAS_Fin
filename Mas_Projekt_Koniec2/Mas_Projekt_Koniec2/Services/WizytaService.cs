@@ -30,5 +30,30 @@ namespace Mas_Projekt_Koniec2.Services
             _context.Add(wizyta);
             _context.SaveChanges();
         }
+
+        public bool GetDoktorWizyta(DateTime poczatekWizyty, long Id)
+        {
+            return _context.Wizyta
+                .Where(wizyta => wizyta.PoczatekWizyty == poczatekWizyty && wizyta.DoktorId == Id)
+                .Count() > 0;
+        }
+
+        public ObservableCollection<Wizyta> GetDayTermins(ObservableCollection<Wizyta> tmpWizytas, Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate )
+        {
+            tmpWizytas.Clear();
+            DateTime Start = pickedDate.AddHours(8);
+            for (int i = 0; i < 16; i++)
+            {
+                if (!GetDoktorWizyta(Start, selectedDoktor.Id))
+                {
+                    DateTime Koniec = Start.AddMinutes(29);
+                    Wizyta tmpTermin = new Wizyta() { PoczatekWizyty = Start, KoniecWizyty = Koniec, StatusWizyta = Wizyta.StatusWizyty.CREATED, DoktorId = selectedDoktor.Id, PacjentId = selectedPacjent.Id, ProceduraId = selectedProcedura.Id };
+                    tmpWizytas.Add(tmpTermin);
+                }
+                Start = Start.AddMinutes(30);
+            }
+
+            return tmpWizytas;
+        }
     }
 }
