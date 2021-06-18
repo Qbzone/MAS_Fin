@@ -22,12 +22,12 @@ namespace Mas_Projekt_Koniec2
     /// </summary>
     public partial class ListaTerminow : Window
     {
-        private readonly WizytaService _wizytaService;
-        private readonly ObservableCollection<Wizyta> tmpWizytas;
-        private ObservableCollection<Wizyta> filteredWizytas;
         private readonly Pacjent selectedPacjent;
         private readonly Procedura selectedProcedura;
         private readonly Doktor selectedDoktor;
+        private readonly WizytaService _wizytaService;
+        private readonly ObservableCollection<Wizyta> tmpWizytas;
+        private ObservableCollection<Wizyta> filteredWizytas;
 
         public ListaTerminow(Pacjent SelectedPacjent, Procedura SelectedProcedura, Doktor SelectedDoktor)
         {
@@ -36,20 +36,33 @@ namespace Mas_Projekt_Koniec2
             selectedPacjent = SelectedPacjent;
             selectedProcedura = SelectedProcedura;
             selectedDoktor = SelectedDoktor;
+            _wizytaService = new WizytaService();
 
             DataDatePicker.SelectedDate = DateTime.Today;
-            DataDatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021,01,01), DateTime.Now.AddDays(-1)));
+            DataDatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021, 01, 01), DateTime.Now.AddDays(-1)));
 
-            _wizytaService = new WizytaService();
-            tmpWizytas = new ObservableCollection<Wizyta>();
-            _wizytaService.GetDayTermins(tmpWizytas, selectedDoktor, selectedPacjent, selectedProcedura, Convert.ToDateTime(DataDatePicker.ToString()));
+            for (var day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
+            {
+                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    DataDatePicker.BlackoutDates.Add(new CalendarDateRange(day));
+                }
+            }
+
+            tmpWizytas = _wizytaService.GetDayTermins(selectedDoktor, selectedPacjent, selectedProcedura, Convert.ToDateTime(DataDatePicker.ToString()));
+
             filteredWizytas = tmpWizytas;
             TerminDataGrid.ItemsSource = filteredWizytas;
+        }
 
-            /*_doktorService = new DoktorServices();
-              allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja);
-              filteredDoktors = allDoktors;
-              DoktorDataGrid.ItemsSource = filteredDoktors;*/
+        private void DataDatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            var textBox = (DatePicker)sender;
+
+            filteredWizytas = _wizytaService.GetDayTermins(selectedDoktor, selectedPacjent, selectedProcedura, Convert.ToDateTime(textBox.ToString()));
+
+            TerminDataGrid.ItemsSource = null;
+            TerminDataGrid.ItemsSource = filteredWizytas;
         }
 
         private void ZapiszButton_Click(object sender, RoutedEventArgs e)

@@ -36,7 +36,7 @@ namespace Mas_Projekt_Koniec2
 
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
-            new ListaPacjentow().Show();
+            new ListaWizyt().Show();
             this.Close();
         }
     }

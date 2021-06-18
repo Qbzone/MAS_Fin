@@ -22,6 +22,9 @@ namespace Mas_Projekt_Koniec2.Services
                 .Include(d => d.Doktor)
                     .ThenInclude(o => o.Osoba)
                 .Include(pr => pr.Procedura)
+                .Where(e => e.PoczatekWizyty.Date >= DateTime.Today)
+                .OrderBy(kw => kw.KoniecWizyty)
+                .ThenBy(d => d.Doktor.Osoba.Nazwisko).ThenBy(p => p.Pacjent.Osoba.Nazwisko)
                 .ToList());
         }
 
@@ -38,9 +41,9 @@ namespace Mas_Projekt_Koniec2.Services
                 .Count() > 0;
         }
 
-        public ObservableCollection<Wizyta> GetDayTermins(ObservableCollection<Wizyta> tmpWizytas, Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate )
+        public ObservableCollection<Wizyta> GetDayTermins(Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate )
         {
-            tmpWizytas.Clear();
+            ObservableCollection<Wizyta> tmpWizytas = new ObservableCollection<Wizyta>();
             DateTime Start = pickedDate.AddHours(8);
             for (int i = 0; i < 16; i++)
             {
