@@ -22,9 +22,14 @@ namespace Mas_Projekt_Koniec2
     /// </summary>
     public partial class StronaGlowna : Window
     {
+        private readonly PacjentService _pacjentService;
+        private readonly ObservableCollection<Pacjent> allPacjents;
+
         public StronaGlowna()
         {
             InitializeComponent();
+            _pacjentService = new PacjentService();
+            allPacjents = _pacjentService.GetPacjents();
         }
 
         private void ZapiszButton_Click(object sender, RoutedEventArgs e)

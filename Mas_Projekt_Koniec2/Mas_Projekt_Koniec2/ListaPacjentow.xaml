@@ -5,7 +5,9 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mas_Projekt_Koniec2"
         mc:Ignorable="d"
-        Title="ListaPacjentow" Height="600" Width="1200">
+        Title="ListaPacjentow" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200"
+        WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />

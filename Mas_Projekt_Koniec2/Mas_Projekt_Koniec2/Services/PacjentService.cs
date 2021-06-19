@@ -24,6 +24,8 @@ namespace Mas_Projekt_Koniec2.Services
                 _context.Pacjent
                 .Include(o => o.Osoba)
                 .Include(pm => pm.PakietMedyczny)
+                .OrderBy(n => n.Osoba.Nazwisko)
+                    .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
 
@@ -34,6 +36,8 @@ namespace Mas_Projekt_Koniec2.Services
                 .Include(o => o.Osoba)
                 .Include(pm => pm.PakietMedyczny)
                 .Where(pesel => pesel.Osoba.NumerPesel.Contains(Pesel))
+                .OrderBy(n => n.Osoba.Nazwisko)
+                    .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
 

@@ -22,6 +22,8 @@ namespace Mas_Projekt_Koniec2.Services
             return new ObservableCollection<Procedura>(
                 _context.Procedura
                 .Where(zespol => zespol.CzyPotrzebnyZespolOperacyjny == false)
+                .OrderBy(n => n.NazwaProcedura)
+                    .ThenBy(k => k.KosztProcedura)
                 .ToList());
         }
 
@@ -30,6 +32,8 @@ namespace Mas_Projekt_Koniec2.Services
             return new ObservableCollection<Procedura>(
                 _context.Procedura
                 .Where(nazwa => nazwa.NazwaProcedura.Contains(Nazwa) && nazwa.CzyPotrzebnyZespolOperacyjny == false)
+                .OrderBy(n => n.NazwaProcedura)
+                    .ThenBy(k => k.KosztProcedura)
                 .ToList());
         }
     }

@@ -38,17 +38,7 @@ namespace Mas_Projekt_Koniec2
             selectedDoktor = SelectedDoktor;
             _wizytaService = new WizytaService();
 
-            DataDatePicker.SelectedDate = DateTime.Today;
-            DataDatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021, 01, 01), DateTime.Now.AddDays(-1)));
-
-            for (var day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
-            {
-                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
-                {
-                    DataDatePicker.BlackoutDates.Add(new CalendarDateRange(day));
-                }
-            }
-
+            DateSetup();
             tmpWizytas = _wizytaService.GetDayTermins(selectedDoktor, selectedPacjent, selectedProcedura, Convert.ToDateTime(DataDatePicker.ToString()));
 
             filteredWizytas = tmpWizytas;
@@ -85,6 +75,32 @@ namespace Mas_Projekt_Koniec2
         {
             new ListaDoktorow(selectedPacjent, selectedProcedura).Show();
             this.Close();
+        }
+
+        private void DateSetup()
+        {
+            if (DateTime.Today.DayOfWeek == DayOfWeek.Saturday)
+            {
+                DataDatePicker.SelectedDate = DateTime.Today.AddDays(2);
+            }
+            else if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
+            {
+                DataDatePicker.SelectedDate = DateTime.Today.AddDays(1);
+            }
+            else
+            {
+                DataDatePicker.SelectedDate = DateTime.Today;
+            }
+
+            DataDatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021, 01, 01), DateTime.Now.AddDays(-1)));
+
+            for (var day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
+            {
+                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
+                {
+                    DataDatePicker.BlackoutDates.Add(new CalendarDateRange(day));
+                }
+            }
         }
     }
 }

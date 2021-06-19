@@ -5,10 +5,13 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:local="clr-namespace:Mas_Projekt_Koniec2"
         mc:Ignorable="d"
-        Title="StronaGlowna" Height="600" Width="1200">
+        Title="StronaGlowna" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200"
+        WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
+            <RowDefinition Height="75" />
             <RowDefinition Height="75" />
             <RowDefinition Height="75" />
         </Grid.RowDefinitions>
@@ -16,7 +19,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Strona Główna</Label>
-        <Button x:Name="ZapiszButton" Click="ZapiszButton_Click" FontSize="30" Grid.Row="1" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Zapisz na wizytę</Button>
-        <Button x:Name="WizytaButton" Click="WizytaButton_Click" FontSize="30" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Wyświetl wizyty</Button>
+        <Button x:Name="ZapiszButton" Click="ZapiszButton_Click" FontSize="30" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Zapisz na wizytę</Button>
+        <Button x:Name="WizytaButton" Click="WizytaButton_Click" FontSize="30" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Wyświetl wizyty</Button>
     </Grid>
 </Window>

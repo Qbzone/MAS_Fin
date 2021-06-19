@@ -25,6 +25,8 @@ namespace Mas_Projekt_Koniec2.Services
                 return new ObservableCollection<Doktor>(
                     _context.Doktor
                     .Include(p => p.Osoba)
+                    .OrderBy(n => n.Osoba.Nazwisko)
+                        .ThenBy(i => i.Osoba.Imie)
                     .ToList());
             }
             else
@@ -32,7 +34,10 @@ namespace Mas_Projekt_Koniec2.Services
                 return new ObservableCollection<Doktor>(
                     _context.Doktor
                     .Include(p => p.Osoba)
-                    .Where(e => e.SpecjalizacjaDoktor.Equals(Specjalizacja)));
+                    .Where(e => e.SpecjalizacjaDoktor.Equals(Specjalizacja))
+                    .OrderBy(n => n.Osoba.Nazwisko)
+                        .ThenBy(i => i.Osoba.Imie)
+                    .ToList());
             }
         }
 
@@ -42,12 +47,14 @@ namespace Mas_Projekt_Koniec2.Services
                 _context.Doktor
                 .Include(o => o.Osoba)
                 .Where(pesel => pesel.Osoba.Nazwisko.Contains(Nazwisko))
+                .OrderBy(i => i.Osoba.Nazwisko)
+                    .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
 
         public bool GetDoktorsSpecjalizacja(string Specjalizacja)
         {
-            if(Specjalizacja == "Dowolna")
+            if (Specjalizacja == "Dowolna")
             {
                 return true;
             }
