@@ -18,7 +18,7 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
-        public ObservableCollection<Doktor> GetDoktors(string Specjalizacja)
+        public ObservableCollection<Doktor> GetDoktors(string Specjalizacja, string Pesel)
         {
             if (Specjalizacja == "Dowolna")
             {
@@ -27,6 +27,7 @@ namespace Mas_Projekt_Koniec2.Services
                     .Include(p => p.Osoba)
                     .OrderBy(n => n.Osoba.Nazwisko)
                         .ThenBy(i => i.Osoba.Imie)
+                    .Where(pesel => !pesel.Osoba.NumerPesel.Equals(Pesel))
                     .ToList());
             }
             else
@@ -37,6 +38,7 @@ namespace Mas_Projekt_Koniec2.Services
                     .Where(e => e.SpecjalizacjaDoktor.Equals(Specjalizacja))
                     .OrderBy(n => n.Osoba.Nazwisko)
                         .ThenBy(i => i.Osoba.Imie)
+                    .Where(pesel => !pesel.Osoba.NumerPesel.Equals(Pesel))
                     .ToList());
             }
         }

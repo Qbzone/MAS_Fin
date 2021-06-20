@@ -28,6 +28,7 @@ namespace Mas_Projekt_Koniec2
         private readonly WizytaService _wizytaService;
         private readonly ObservableCollection<Wizyta> tmpWizytas;
         private ObservableCollection<Wizyta> filteredWizytas;
+        private ObservableCollection<Wizyta> doktorsAsPacjents;
 
         public ListaTerminow(Pacjent SelectedPacjent, Procedura SelectedProcedura, Doktor SelectedDoktor)
         {
@@ -100,6 +101,7 @@ namespace Mas_Projekt_Koniec2
                 {
                     DataDatePicker.BlackoutDates.Add(new CalendarDateRange(day));
                 }
+
             }
         }
     }

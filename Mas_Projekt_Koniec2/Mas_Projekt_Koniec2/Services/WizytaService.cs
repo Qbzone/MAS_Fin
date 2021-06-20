@@ -41,7 +41,7 @@ namespace Mas_Projekt_Koniec2.Services
                 .Count() > 0;
         }
 
-        public ObservableCollection<Wizyta> GetDayTermins(Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate )
+        public ObservableCollection<Wizyta> GetDayTermins(Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate)
         {
             ObservableCollection<Wizyta> tmpWizytas = new ObservableCollection<Wizyta>();
             DateTime Start = pickedDate.AddHours(8);

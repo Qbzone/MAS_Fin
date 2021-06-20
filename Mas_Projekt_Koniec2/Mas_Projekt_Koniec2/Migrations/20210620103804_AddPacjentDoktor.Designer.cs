@@ -4,14 +4,16 @@ using Mas_Projekt_Koniec2;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
 using Microsoft.EntityFrameworkCore.Metadata;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 
 namespace Mas_Projekt_Koniec2.Migrations
 {
     [DbContext(typeof(MasDBContext))]
-    partial class MasDBContextModelSnapshot : ModelSnapshot
+    [Migration("20210620103804_AddPacjentDoktor")]
+    partial class AddPacjentDoktor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -501,7 +503,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                         new
                         {
                             Id = 3L,
-                            OsobaId = 2L,
+                            OsobaId = 3L,
                             Pensja = 3300,
                             SpecjalizacjaDoktor = "Laryngolog"
                         });

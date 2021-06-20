@@ -28,7 +28,7 @@ namespace Mas_Projekt_Koniec2.Services
                     .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
-
+        
         public ObservableCollection<Pacjent> GetPacjentsByPesel(string Pesel)
         {
             return new ObservableCollection<Pacjent>(

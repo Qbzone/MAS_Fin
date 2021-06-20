@@ -27,7 +27,7 @@
                 <DataGridTextColumn Header="E-mail" Width="2*" Binding="{Binding Osoba.AdresEmail}"/>
                 <DataGridTextColumn Header="Telefon" Width="*" Binding="{Binding Osoba.NumerTelefonu}"/>
                 <DataGridTextColumn Header="PESEL" Width="*" Binding="{Binding Osoba.NumerPesel}"/>
-                <DataGridTextColumn Header="Data Urodzenia" Width="*" Binding="{Binding Osoba.DataUrodzenia, StringFormat='{}{0:yyyy-MM-dd}'}"/>
+                <DataGridTextColumn Header="Data Urodzenia" Width="*" Binding="{Binding Osoba.DataUrodzenia, StringFormat='{}{0:dd.MM.yyyy}'}"/>
                 <DataGridTextColumn Header="Wiek" Width="*" Binding="{Binding Osoba.Wiek}"/>
                 <DataGridTextColumn Header="Adres Zamieszkania" Width="*" Binding="{Binding Osoba.AdresZamieszkania}"/>
                 <DataGridTextColumn Header="Pensja" Width="*" Binding="{Binding Pensja}"/>

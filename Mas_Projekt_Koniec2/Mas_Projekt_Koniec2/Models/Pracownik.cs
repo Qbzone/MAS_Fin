@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace Mas_Projekt_Koniec2.Models
 {
-    public class Pracownik
+    public abstract class Pracownik
     {
         public long Id { get; set; }
         [Required]

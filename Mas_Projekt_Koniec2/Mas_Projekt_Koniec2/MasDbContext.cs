@@ -27,11 +27,6 @@ namespace Mas_Projekt_Koniec2
                 entity.HasKey(e => new { e.ProceduraId, e.HospitalizacjaId, e.DataWykonania })
                 .HasName("HospitalizacjaProcedura_pk");
             });
-            /*modelBuilder.Entity<Wizyta>(entity =>
-            {
-                entity.HasKey(e => new { e.PacjentId, e.DoktorId, e.PoczatekWizyty })
-                .HasName("Wizyta_pk");
-            });*/
 
             var osoba1 = new Osoba
             {
@@ -236,7 +231,15 @@ namespace Mas_Projekt_Koniec2
                 SpecjalizacjaDoktor = "Kardiolog",
             };
 
-            modelBuilder.Entity<Doktor>().HasData(pracownik1, pracownik2);
+            var pracownik3 = new Doktor()
+            {
+                Id = 3L,
+                OsobaId = 2L,
+                Pensja = 3300,
+                SpecjalizacjaDoktor = "Laryngolog",
+            };
+
+            modelBuilder.Entity<Doktor>().HasData(pracownik1, pracownik2, pracownik3);
 
         }
 

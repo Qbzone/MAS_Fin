@@ -15,6 +15,7 @@ namespace Mas_Projekt_Koniec2.Models
         public long ProceduraId { get; set; }
         public Hospitalizacja Hospitalizacja { get; set; }
         public long HospitalizacjaId { get; set; }
+        [Required]
         public DateTime DataWykonania { get; set; }
 
         public HospitalizacjaProcedura()

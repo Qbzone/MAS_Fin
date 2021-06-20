@@ -34,7 +34,7 @@ namespace Mas_Projekt_Koniec2
             selectedPacjent = SelectedPacjent;
             selectedProcedura = SelectedProcedura;
             _doktorService = new DoktorServices();
-            allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja);
+            allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja, SelectedPacjent.Osoba.NumerPesel);
             filteredDoktors = allDoktors;
             DoktorDataGrid.ItemsSource = filteredDoktors;
         }
