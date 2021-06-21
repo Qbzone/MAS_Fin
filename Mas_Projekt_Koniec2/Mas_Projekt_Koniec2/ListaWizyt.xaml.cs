@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ListaWizyt.xaml
-    /// </summary>
     public partial class ListaWizyt : Window
     {
         private readonly WizytaService _wizytaService;
@@ -33,14 +30,9 @@ namespace Mas_Projekt_Koniec2
             allWizytas = _wizytaService.GetWizytas();
             filteredWizytas = allWizytas;
             WizytaDataGrid.ItemsSource = filteredWizytas;
-
-
-            /*_doktorService = new DoktorServices();
-              allDoktors = _doktorService.GetDoktors(SelectedProcedura.WymaganaSpecjalizacja);
-              filteredDoktors = allDoktors;
-              DoktorDataGrid.ItemsSource = filteredDoktors;*/
         }
 
+        //Metoda aktywowana poprzez dwukrotne kliknięcię na danej wizyty, przenosi do widoku szczegółowego tej wizyty
         private void WizytaDataGrid_DoubleClick(object sender, RoutedEventArgs e)
         {
             var selectedWizyta = (Wizyta)WizytaDataGrid.SelectedItem;
@@ -48,6 +40,7 @@ namespace Mas_Projekt_Koniec2
             this.Close();
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new StronaGlowna().Show();

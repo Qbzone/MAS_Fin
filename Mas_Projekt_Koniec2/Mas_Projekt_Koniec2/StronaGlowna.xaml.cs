@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy StronaGlowna.xaml
-    /// </summary>
     public partial class StronaGlowna : Window
     {
         private readonly PacjentService _pacjentService;
@@ -32,12 +29,14 @@ namespace Mas_Projekt_Koniec2
             allPacjents = _pacjentService.GetPacjents();
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Zapisz na wizytę", przenosi uzytkownika do widoku wyboru pacjenta.
         private void ZapiszButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaPacjentow().Show();
             this.Close();
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Wyświetl wizyty", przenosi uzytkownika do widoku wizyt.
         private void WizytaButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaWizyt().Show();

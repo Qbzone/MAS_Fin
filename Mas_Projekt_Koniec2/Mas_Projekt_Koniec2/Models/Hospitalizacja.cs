@@ -56,42 +56,5 @@ namespace Mas_Projekt_Koniec2.Models
             this.ZespolOperacyjny = zespol;
             this.ZespolOperacyjnyId = zespol.Id;
         }
-
-        /*public void AddZespol(ZespolOperacyjny zespol)
-        {
-            if (this.ZespolOperacyjny == null)
-            {
-                this.ZespolOperacyjny = zespol;
-                zespol.AddHospitalizacja(this);
-            }
-        }
-
-        public void AddPacjent(Pacjent pacjent)
-        {
-            if (this.Pacjent == null)
-            {
-                this.Pacjent = pacjent;
-                pacjent.AddHospitalizacja(this);
-            }
-        }
-
-        public void AddProcedura(Procedura procedura)
-        {
-            this.Procedury.Add(procedura);
-            procedura.AddHospitalizacja(this);
-
-        }
-
-        public IEnumerable<ValidationResult> Validate(ValidationContext validationContext)
-        {
-            List<ValidationResult> errors = new List<ValidationResult>();
-
-            if (PoczatekHospitalizacji > KoniecHospitalizacji)
-            {
-                errors.Add(new ValidationResult($"Data początku hospitalizacji musi być mniejsza niż data zakończenia hospitalizacji.", new List<string> { nameof(PoczatekHospitalizacji) }));
-            }
-
-            return errors;
-        }*/
     }
 }

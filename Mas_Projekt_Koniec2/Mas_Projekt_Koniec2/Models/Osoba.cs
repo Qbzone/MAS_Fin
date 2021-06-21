@@ -73,6 +73,5 @@ namespace Mas_Projekt_Koniec2.Models
         {
             return $"{Imie + " " + Nazwisko}";
         }
-
     }
 }

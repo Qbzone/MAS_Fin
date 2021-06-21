@@ -146,8 +146,17 @@ namespace Mas_Projekt_Koniec2
                 CzyPotrzebnyZespolOperacyjny = false,
                 CzyProceduraInwazyjna = true,
             };
+            var procedura4 = new Procedura()
+            {
+                Id = 4L,
+                NazwaProcedura = "Usg Serca",
+                KosztProcedura = 140,
+                WymaganaSpecjalizacja = "Kardiolog",
+                CzyPotrzebnyZespolOperacyjny = false,
+                CzyProceduraInwazyjna = false,
+            };
 
-            modelBuilder.Entity<Procedura>().HasData(procedura1, procedura2, procedura3);
+            modelBuilder.Entity<Procedura>().HasData(procedura1, procedura2, procedura3, procedura4);
 
             var pakietMedyczny1 = new PakietMedyczny()
             {

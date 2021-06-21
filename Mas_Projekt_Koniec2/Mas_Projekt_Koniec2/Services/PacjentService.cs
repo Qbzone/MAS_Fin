@@ -18,6 +18,7 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
+        //Metoda GetPacjents zwraca ObservableCollection wszystkich pacjentów w systemie
         public ObservableCollection<Pacjent> GetPacjents()
         {
             return new ObservableCollection<Pacjent>(
@@ -28,7 +29,9 @@ namespace Mas_Projekt_Koniec2.Services
                     .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
-        
+
+        //Metoda GetPacjentByNazwisko służy do przefiltrowania pacjentów względem ich numeru pesel. Metoda ta przyjmuje jeden atrybut typu string
+        //Pesel, na podstawie podanego atrybutu zwróceni zostaną tylko pacjenci, których numer pesel odpowiada temu przekazanemu.
         public ObservableCollection<Pacjent> GetPacjentsByPesel(string Pesel)
         {
             return new ObservableCollection<Pacjent>(
@@ -40,12 +43,5 @@ namespace Mas_Projekt_Koniec2.Services
                     .ThenBy(i => i.Osoba.Imie)
                 .ToList());
         }
-
-        /*public Pacjent GetPacjentByID(long id)
-        {
-            return _context.Pacjent
-                .Include(o => o.Osoba)
-                .FirstOrDefault(o => o.Id == id);
-        }*/
     }
 }

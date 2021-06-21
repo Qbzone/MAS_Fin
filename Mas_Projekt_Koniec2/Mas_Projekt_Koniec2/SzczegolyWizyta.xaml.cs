@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy SzczegolyWizyta.xaml
-    /// </summary>
     public partial class SzczegolyWizyta : Window
     {
         private readonly WizytaService _wizytaService;
@@ -34,6 +31,7 @@ namespace Mas_Projekt_Koniec2
             WizytaDataGrid.ItemsSource = allWizytas;
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wizyt.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaWizyt().Show();

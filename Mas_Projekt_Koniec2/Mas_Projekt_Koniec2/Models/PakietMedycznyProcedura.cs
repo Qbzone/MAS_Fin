@@ -9,7 +9,6 @@ namespace Mas_Projekt_Koniec2.Models
 {
     public class PakietMedycznyProcedura
     {
-        //public long Id { get; set; }
         [Required]
         public DateTime DataPrzypisania { get; set; }
         [Required]

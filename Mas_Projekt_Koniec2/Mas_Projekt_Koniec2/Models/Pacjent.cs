@@ -38,39 +38,5 @@ namespace Mas_Projekt_Koniec2.Models
         {
             get { return Osoba.GetImieNazwisko(); }
         }
-
-        /*public Pacjent(Osoba osoba, bool ubezpieczenieZdrowotne, PakietMedyczny pakietMedyczny)
-        {
-            this.Osoba = osoba;
-            this.OsobaId = osoba.Id;
-            this.UbezpiecznieZdrowotne = ubezpieczenieZdrowotne;
-            this.PakietMedyczny = pakietMedyczny;
-            this.PakietMedycznyId = pakietMedyczny.Id;
-        }*/
-
-        /*public void AddPakietMedyczny(PakietMedyczny pakietMedyczny)
-        {
-            if (this.PakietMedyczny == null)
-            {
-                this.PakietMedyczny = pakietMedyczny;
-                pakietMedyczny.AddPacjent(this);
-            }
-        }
-
-        public void AddWizyty(Wizyta wizyta)
-        {
-            if (!this.Wizyty.Contains(wizyta))
-            {
-                this.Wizyty.Add(wizyta);
-            }
-        }
-
-        public void AddHospitalizacja(Hospitalizacja hospitalizacja)
-        {
-            if (!this.Hospitalizacja.Contains(hospitalizacja))
-            {
-                this.Hospitalizacja.Add(hospitalizacja);
-            }
-        }*/
     }
 }

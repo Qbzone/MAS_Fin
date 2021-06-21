@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy SzczegolyDoktor.xaml
-    /// </summary>
     public partial class SzczegolyDoktor : Window
     {
         private readonly DoktorServices _doktorService;
@@ -38,6 +35,7 @@ namespace Mas_Projekt_Koniec2
             DoktorDataGrid.ItemsSource = allDoktors;
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru doktora.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaDoktorow(selectedPacjent, selectedProcedura).Show();

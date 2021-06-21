@@ -40,32 +40,5 @@ namespace Mas_Projekt_Koniec2.Models
             this.CzyPotrzebnyZespolOperacyjny = czyPotrzebnyZO;
             this.CzyProceduraInwazyjna = czyProceduraI;
         }
-
-        /*public void AddPakietMedyczny(PakietMedyczny pakietMedyczny)
-        {
-            if (!PakietyMedyczne.Contains(pakietMedyczny))
-            {
-                this.PakietyMedyczne.Add(pakietMedyczny);
-                pakietMedyczny.AddProcedura(this);
-            }
-        }
-
-        public void AddWizyta(Wizyta wizyta)
-        {
-            if (!Wizyty.Contains(wizyta))
-            {
-                this.Wizyty.Add(wizyta);
-                wizyta.AddProcedura(this);
-            }
-        }
-
-        public void AddHospitalizacja(Hospitalizacja hospitalizacja)
-        {
-            if (!Hospitalizacje.Contains(hospitalizacja))
-            {
-                this.Hospitalizacje.Add(hospitalizacja);
-                hospitalizacja.AddProcedura(this);
-            }
-        }*/
     }
 }

@@ -25,23 +25,5 @@ namespace Mas_Projekt_Koniec2.Models
         {
             this.NazwaPakiet = nazwaPakietu;
         }
-
-        /*public void AddPacjent(Pacjent pacjent)
-        {
-            if (!this.Pacjenci.Contains(pacjent))
-            {
-                this.Pacjenci.Add(pacjent);
-                pacjent.AddPakietMedyczny(this);
-            }
-        }
-
-        public void AddProcedura(Procedura procedura)
-        {
-            if (!this.Procedury.Contains(procedura))
-            {
-                this.Procedury.Add(procedura);
-                procedura.AddPakietMedyczny(this);
-            }
-        }*/
     }
 }

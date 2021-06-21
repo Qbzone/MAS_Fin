@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy SzczegolyPacjent.xaml
-    /// </summary>
     public partial class SzczegolyPacjent : Window
     {
         private readonly PacjentService _pacjentService;
@@ -34,6 +31,7 @@ namespace Mas_Projekt_Koniec2
             PacjentDataGrid.ItemsSource = allPacjents;
         }
 
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjenta.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaPacjentow().Show();

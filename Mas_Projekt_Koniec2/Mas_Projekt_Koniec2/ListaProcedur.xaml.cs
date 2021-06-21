@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ListaProcedur.xaml
-    /// </summary>
     public partial class ListaProcedur : Window
     {
         private readonly ProceduraService _proceduraService;
@@ -38,6 +35,7 @@ namespace Mas_Projekt_Koniec2
             ProceduraDataGrid.ItemsSource = filteredProceduras;
         }
 
+        //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja procedur po ich nazwie
         private void NazwaTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = (TextBox)sender;
@@ -49,6 +47,9 @@ namespace Mas_Projekt_Koniec2
             ProceduraDataGrid.ItemsSource = filteredProceduras;
         }
 
+        //Metoda aktywowana po kliknięciu przycisku "Wybierz procedurę", przenosi do widoku wyboru doktora, który może przeprowadzić tą procedurę.
+        //Jeśli procedura nie została wybrana, użytkownik nie może przejść dalej.
+        //Jeśli w systemie nie ma doktora, który może wykonać danę procedurę, użytkownik nie może przejść dalej.
         private void ProceduraButton_Click(object sender, RoutedEventArgs e)
         {
             _doktorService = new DoktorServices();
@@ -70,6 +71,7 @@ namespace Mas_Projekt_Koniec2
 
         }
 
+        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjenta.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaPacjentow().Show();

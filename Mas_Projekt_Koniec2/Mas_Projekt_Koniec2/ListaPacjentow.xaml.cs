@@ -17,9 +17,6 @@ using System.Windows.Shapes;
 
 namespace Mas_Projekt_Koniec2
 {
-    /// <summary>
-    /// Logika interakcji dla klasy ListaPacjentow.xaml
-    /// </summary>
     public partial class ListaPacjentow : Window
     {
         private readonly PacjentService _pacjentService;
@@ -35,6 +32,7 @@ namespace Mas_Projekt_Koniec2
             PacjentDataGrid.ItemsSource = filteredPacjents;
         }
 
+        //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja pacjentów po numerze pesel
         private void PeselTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             var textBox = (TextBox)sender;
@@ -46,6 +44,7 @@ namespace Mas_Projekt_Koniec2
             PacjentDataGrid.ItemsSource = filteredPacjents;
         }
 
+        //Metoda aktywowana poprzez dwukrotne kliknięcię na danego pacjenta, przenosi do widoku szczegółowego tej osoby
         private void PacjentDataGrid_DoubleClick(object sender, RoutedEventArgs e)
         {
             var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
@@ -53,6 +52,9 @@ namespace Mas_Projekt_Koniec2
             this.Close();
         }
 
+        //Metoda aktywowana po kliknięciu przycisku "Wybierz pacjenta", przenosi do widoku wyboru procedury dla wybranego pacjenta.
+        //Jeśli pacjent nie zostal wybrany, użytkownik nie może przejść dalej.
+        //Jeśli pacjent nie posiada ubezpieczenia zdrowotnego lub pakietu medycznego, użytkownik nie może przejść dalej
         private void PacjentButton_Click(object sender, RoutedEventArgs e)
         {
             var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
@@ -60,7 +62,8 @@ namespace Mas_Projekt_Koniec2
             {
                 MessageBox.Show("Proszę wybrać pacjenta!", Title = "Ostrzeżenie");
                 return;
-            }else if (selectedPacjent.UbezpiecznieZdrowotne == false && selectedPacjent.PakietMedycznyId == null)
+            }
+            else if (selectedPacjent.UbezpiecznieZdrowotne == false && selectedPacjent.PakietMedycznyId == null)
             {
                 MessageBox.Show("Wybrany pacjent nie posiada ubezpieczenia zdrowotnego, ani pakietu medycznego! Nie może zostać zapisany na wizytę!", Title = "Ostrzeżenie");
                 return;
@@ -69,6 +72,7 @@ namespace Mas_Projekt_Koniec2
             this.Close();
         }
 
+        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new StronaGlowna().Show();

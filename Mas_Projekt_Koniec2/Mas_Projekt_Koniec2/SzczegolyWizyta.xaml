@@ -26,7 +26,7 @@
                 <DataGridTextColumn Header="Procedura" Width="*" Binding="{Binding Procedura.NazwaProcedura}"/>
                 <DataGridTextColumn Header="Koszt" Width="*" Binding="{Binding Procedura.KosztProcedura}"/>
                 <DataGridTextColumn Header="Termin" Width="*" Binding="{Binding PoczatekWizyty, StringFormat='{}{0:dd.MM.yyyy   H:mm}'}"/>
-                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding StatusWizyta}"/>
+                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding StatusString}"/>
             </DataGrid.Columns>
         </DataGrid>
         <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>

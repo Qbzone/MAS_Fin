@@ -10,7 +10,7 @@ using static Mas_Projekt_Koniec2.Models.Wizyta;
 
 namespace Mas_Projekt_Koniec2.Models.Functional
 {
-    public static class OrderStateExtensions
+    public static class StateExtensions
     {
         public static string GetOrderStateDisplayName(this StatusWizyty statusWizyty)
         {

@@ -18,6 +18,9 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
+        //Metoda GetDoktors zwraca ObservableCollection doktorów. Metoda przyjmuje dwa atrybuty typu string Specjalizacja i Pesel. Jeśli Specjalizacja
+        //ma wartość "Dowolna" zwróceni będą wszyscy lekarze, jeśli tylko ci z dobrą specjalizacją. Pesel służy do sprawdzenia, czy pacjent sam nie jest
+        //doktorem w systemie, jeśli jest nie można go zapisać do niego samego
         public ObservableCollection<Doktor> GetDoktors(string Specjalizacja, string Pesel)
         {
             if (Specjalizacja == "Dowolna")
@@ -43,6 +46,8 @@ namespace Mas_Projekt_Koniec2.Services
             }
         }
 
+        //Metoda GetDoktorsByNazwisko służy do przefiltrowania doktorów względem ich nazwiska. Metoda ta przyjmuje jeden atrybut typu string
+        //Nazwisko, na podstawie podanego atrybutu zwróceni zostaną tylko doktorzy, których nazwisko odpowiada temu przekazanemu.
         public ObservableCollection<Doktor> GetDoktorsByNazwisko(string Nazwisko)
         {
             return new ObservableCollection<Doktor>(
@@ -54,6 +59,9 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        //Metoda GetDoktorsSpecjalizacja służy do sprawdzenia czy w systemie istnieją doktorzy, którzy mogą wykonać daną procedurę.
+        //Metoda przyjmuje jeden atrybut typu string Specjalizacja, jeśli specjalizacja ma wartość "Dowolna" to każdy doktor może ją wykonać,
+        //jeśli wartość jest inna musi istnieć conajmniej jeden doktor o danej specjalizacji, żeby móc przejść do wybory doktora.
         public bool GetDoktorsSpecjalizacja(string Specjalizacja)
         {
             if (Specjalizacja == "Dowolna")

@@ -13,8 +13,6 @@ namespace Mas_Projekt_Koniec2.Models
         [Required]
         [MaxLength(25)]
         public string SpecjalizacjaDoktor { get; set; }
-        //public ZespolOperacyjny Czlonek { get; set; }
-        //public long ZespolOperacyjnyId { get; set; }
         public ICollection<Wizyta> Wizyty { get; set; }
 
         public Doktor()
@@ -32,35 +30,5 @@ namespace Mas_Projekt_Koniec2.Models
         {
             get { return Osoba.GetImieNazwisko(); }
         }
-
-        /*public void AddLider(ZespolOperacyjny zespol)
-        {
-            if (zespol.Doktorzy.Contains(this) && this.Lider != null && zespol.GetLider() == null)
-            {
-                this.Lider = zespol;
-            }
-        }
-
-        public ZespolOperacyjny GetLider()
-        {
-            return this.Lider;
-        }
-
-        public void AddCzlonek(ZespolOperacyjny zespol)
-        {
-            if (!this.Czlonek.Contains(zespol))
-            {
-                this.Czlonek.Add(zespol);
-                zespol.AddDoktorzy(this);
-            }
-        }
-
-        public void AddWizyty(Wizyta wizyta)
-        {
-            if (!this.Wizyty.Contains(wizyta))
-            {
-                this.Wizyty.Add(wizyta);
-            }
-        }*/
     }
 }
