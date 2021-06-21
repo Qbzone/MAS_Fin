@@ -13,6 +13,11 @@ namespace Mas_Projekt_Koniec2.Services
     {
         private readonly MasDBContext _context = new MasDBContext();
 
+        public void UpdateDbContext()
+        {
+            _context.SaveChanges();
+        }
+
         //Metoda GetProceduras zwraca ObservableCollection wszystkich procedur w systemie, które nie wymagają zespołu operacyjnego
         //do ich przeprowadzenia.
         public ObservableCollection<Procedura> GetProceduras()
