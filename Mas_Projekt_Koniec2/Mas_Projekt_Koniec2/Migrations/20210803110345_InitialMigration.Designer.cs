@@ -10,8 +10,8 @@ using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 namespace Mas_Projekt_Koniec2.Migrations
 {
     [DbContext(typeof(MasDBContext))]
-    [Migration("20210614111135_pacjentUpdate")]
-    partial class pacjentUpdate
+    [Migration("20210803110345_InitialMigration")]
+    partial class InitialMigration
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,6 +20,58 @@ namespace Mas_Projekt_Koniec2.Migrations
                 .HasAnnotation("Relational:MaxIdentifierLength", 128)
                 .HasAnnotation("ProductVersion", "5.0.7")
                 .HasAnnotation("SqlServer:ValueGenerationStrategy", SqlServerValueGenerationStrategy.IdentityColumn);
+
+            modelBuilder.Entity("DoktorProcedura", b =>
+                {
+                    b.Property<long>("DoktorzyId")
+                        .HasColumnType("bigint");
+
+                    b.Property<long>("UprawnieniaId")
+                        .HasColumnType("bigint");
+
+                    b.HasKey("DoktorzyId", "UprawnieniaId");
+
+                    b.HasIndex("UprawnieniaId");
+
+                    b.ToTable("DoktorProcedura");
+
+                    b.HasData(
+                        new
+                        {
+                            DoktorzyId = 1L,
+                            UprawnieniaId = 1L
+                        },
+                        new
+                        {
+                            DoktorzyId = 1L,
+                            UprawnieniaId = 2L
+                        },
+                        new
+                        {
+                            DoktorzyId = 1L,
+                            UprawnieniaId = 4L
+                        },
+                        new
+                        {
+                            DoktorzyId = 2L,
+                            UprawnieniaId = 1L
+                        },
+                        new
+                        {
+                            DoktorzyId = 2L,
+                            UprawnieniaId = 2L
+                        },
+                        new
+                        {
+                            DoktorzyId = 2L,
+                            UprawnieniaId = 4L
+                        },
+                        new
+                        {
+                            DoktorzyId = 3L,
+                            UprawnieniaId = 1L
+                        });
+                });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Hospitalizacja", b =>
                 {
@@ -387,11 +439,6 @@ namespace Mas_Projekt_Koniec2.Migrations
                         .HasMaxLength(50)
                         .HasColumnType("nvarchar(50)");
 
-                    b.Property<string>("WymaganaSpecjalizacja")
-                        .IsRequired()
-                        .HasMaxLength(30)
-                        .HasColumnType("nvarchar(30)");
-
                     b.HasKey("Id");
 
                     b.ToTable("Procedura");
@@ -403,8 +450,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                             CzyPotrzebnyZespolOperacyjny = false,
                             CzyProceduraInwazyjna = false,
                             KosztProcedura = 20,
-                            NazwaProcedura = "Badanie kontrolne",
-                            WymaganaSpecjalizacja = "Dowolna"
+                            NazwaProcedura = "Badanie kontrolne"
                         },
                         new
                         {
@@ -412,8 +458,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                             CzyPotrzebnyZespolOperacyjny = true,
                             CzyProceduraInwazyjna = true,
                             KosztProcedura = 10000,
-                            NazwaProcedura = "Operacja serca",
-                            WymaganaSpecjalizacja = "Kardiolog"
+                            NazwaProcedura = "Operacja serca"
                         },
                         new
                         {
@@ -421,8 +466,15 @@ namespace Mas_Projekt_Koniec2.Migrations
                             CzyPotrzebnyZespolOperacyjny = false,
                             CzyProceduraInwazyjna = true,
                             KosztProcedura = 50,
-                            NazwaProcedura = "Badanie krwi",
-                            WymaganaSpecjalizacja = "Dowolna"
+                            NazwaProcedura = "Badanie krwi"
+                        },
+                        new
+                        {
+                            Id = 4L,
+                            CzyPotrzebnyZespolOperacyjny = false,
+                            CzyProceduraInwazyjna = false,
+                            KosztProcedura = 140,
+                            NazwaProcedura = "Usg Serca"
                         });
                 });
 
@@ -499,6 +551,13 @@ namespace Mas_Projekt_Koniec2.Migrations
                             OsobaId = 5L,
                             Pensja = 3400,
                             SpecjalizacjaDoktor = "Kardiolog"
+                        },
+                        new
+                        {
+                            Id = 3L,
+                            OsobaId = 2L,
+                            Pensja = 3300,
+                            SpecjalizacjaDoktor = "Laryngolog"
                         });
                 });
 
@@ -518,6 +577,11 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     b.HasBaseType("Mas_Projekt_Koniec2.Models.Pracownik");
 
+                    b.Property<string>("JezykDodatkowy")
+                        .IsRequired()
+                        .HasMaxLength(25)
+                        .HasColumnType("nvarchar(25)");
+
                     b.HasDiscriminator().HasValue("Recepcjonista");
                 });
 
@@ -525,7 +589,25 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     b.HasBaseType("Mas_Projekt_Koniec2.Models.Pracownik");
 
+                    b.Property<bool>("CzyPelniFunkcjePomocnicza")
+                        .HasColumnType("bit");
+
                     b.HasDiscriminator().HasValue("Salowy");
+                });
+
+            modelBuilder.Entity("DoktorProcedura", b =>
+                {
+                    b.HasOne("Mas_Projekt_Koniec2.Models.Doktor", null)
+                        .WithMany()
+                        .HasForeignKey("DoktorzyId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
+
+                    b.HasOne("Mas_Projekt_Koniec2.Models.Procedura", null)
+                        .WithMany()
+                        .HasForeignKey("UprawnieniaId")
+                        .OnDelete(DeleteBehavior.Cascade)
+                        .IsRequired();
                 });
 
             modelBuilder.Entity("Mas_Projekt_Koniec2.Models.Hospitalizacja", b =>

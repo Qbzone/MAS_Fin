@@ -60,7 +60,7 @@ namespace Mas_Projekt_Koniec2
                 MessageBox.Show("Proszę wybrać procedurę!", Title = "Ostrzeżenie");
                 return;
             }
-            else if (!_doktorService.GetDoktorsSpecjalizacja(selectedProcedura.WymaganaSpecjalizacja))
+            else if (!_doktorService.GetDoktorsSpecjalizacja(selectedProcedura.Id))
             {
                 MessageBox.Show("Brak doktora mogącego przeprowadzić daną procedurę!", Title = "Ostrzeżenie");
                 return;

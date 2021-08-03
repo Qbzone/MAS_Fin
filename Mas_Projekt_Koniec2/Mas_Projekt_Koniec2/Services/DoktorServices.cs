@@ -18,32 +18,20 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
-        //Metoda GetDoktors zwraca ObservableCollection doktorów. Metoda przyjmuje dwa atrybuty typu string Specjalizacja i Pesel. Jeśli Specjalizacja
-        //ma wartość "Dowolna" zwróceni będą wszyscy lekarze, jeśli tylko ci z dobrą specjalizacją. Pesel służy do sprawdzenia, czy pacjent sam nie jest
+        //Metoda GetDoktors zwraca ObservableCollection doktorów. Metoda przyjmuje dwa atrybuty long ProceduraId i string Pesel. Zwróceni
+        //zostaną wszyscy dkotorzy, którzy mają uprawnienia do wykonywania danego badania. Pesel służy do sprawdzenia, czy pacjent sam nie jest
         //doktorem w systemie, jeśli jest nie można go zapisać do niego samego
-        public ObservableCollection<Doktor> GetDoktors(string Specjalizacja, string Pesel)
+        public ObservableCollection<Doktor> GetDoktors(long ProceduraId, string Pesel)
         {
-            if (Specjalizacja == "Dowolna")
-            {
-                return new ObservableCollection<Doktor>(
-                    _context.Doktor
-                    .Include(p => p.Osoba)
-                    .OrderBy(n => n.Osoba.Nazwisko)
-                        .ThenBy(i => i.Osoba.Imie)
-                    .Where(pesel => !pesel.Osoba.NumerPesel.Equals(Pesel))
-                    .ToList());
-            }
-            else
-            {
-                return new ObservableCollection<Doktor>(
-                    _context.Doktor
-                    .Include(p => p.Osoba)
-                    .Where(e => e.SpecjalizacjaDoktor.Equals(Specjalizacja))
-                    .OrderBy(n => n.Osoba.Nazwisko)
-                        .ThenBy(i => i.Osoba.Imie)
-                    .Where(pesel => !pesel.Osoba.NumerPesel.Equals(Pesel))
-                    .ToList());
-            }
+            return new ObservableCollection<Doktor>(
+                _context.Doktor
+                .Include(p => p.Osoba)
+                    .ThenInclude(e => e.Pracownik)
+                .Include(dp => dp.Uprawnienia)
+                .Where(e => !e.Osoba.NumerPesel.Equals(Pesel) && e.Uprawnienia.Any(ee => ee.Id == ProceduraId))
+                .OrderBy(n => n.Osoba.Nazwisko)
+                    .ThenBy(i => i.Osoba.Imie)
+                .ToList());
         }
 
         //Metoda GetDoktorsByNazwisko służy do przefiltrowania doktorów względem ich nazwiska. Metoda ta przyjmuje jeden atrybut typu string
@@ -62,15 +50,10 @@ namespace Mas_Projekt_Koniec2.Services
         //Metoda GetDoktorsSpecjalizacja służy do sprawdzenia czy w systemie istnieją doktorzy, którzy mogą wykonać daną procedurę.
         //Metoda przyjmuje jeden atrybut typu string Specjalizacja, jeśli specjalizacja ma wartość "Dowolna" to każdy doktor może ją wykonać,
         //jeśli wartość jest inna musi istnieć conajmniej jeden doktor o danej specjalizacji, żeby móc przejść do wybory doktora.
-        public bool GetDoktorsSpecjalizacja(string Specjalizacja)
+        public bool GetDoktorsSpecjalizacja(long ProceduraId)
         {
-            if (Specjalizacja == "Dowolna")
-            {
-                return true;
-            }
-
             return _context.Doktor
-                .Where(specjalizacja => specjalizacja.SpecjalizacjaDoktor.Equals(Specjalizacja))
+                .Where(e => e.Uprawnienia.Any(ee => ee.Id == ProceduraId))
                 .Count() > 0;
         }
     }

@@ -99,7 +99,8 @@ namespace Mas_Projekt_Koniec2.Migrations
                 columns: table => new
                 {
                     PakietMedycznyId = table.Column<long>(type: "bigint", nullable: false),
-                    ProceduraId = table.Column<long>(type: "bigint", nullable: false)
+                    ProceduraId = table.Column<long>(type: "bigint", nullable: false),
+                    DataPrzypisania = table.Column<DateTime>(type: "datetime2", nullable: false)
                 },
                 constraints: table =>
                 {
@@ -129,7 +130,9 @@ namespace Mas_Projekt_Koniec2.Migrations
                     Discriminator = table.Column<string>(type: "nvarchar(max)", nullable: false),
                     ZespolOperacyjnyId = table.Column<long>(type: "bigint", nullable: true),
                     SpecjalizacjaDoktor = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
-                    SpecjalizacjaPielegniarz = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true)
+                    SpecjalizacjaPielegniarz = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    JezykDodatkowy = table.Column<string>(type: "nvarchar(25)", maxLength: 25, nullable: true),
+                    CzyPelniFunkcjePomocnicza = table.Column<bool>(type: "bit", nullable: true)
                 },
                 constraints: table =>
                 {
@@ -173,6 +176,30 @@ namespace Mas_Projekt_Koniec2.Migrations
                         name: "FK_Hospitalizacja_ZespolOperacyjny_ZespolOperacyjnyId",
                         column: x => x.ZespolOperacyjnyId,
                         principalTable: "ZespolOperacyjny",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                });
+
+            migrationBuilder.CreateTable(
+                name: "DoktorProcedura",
+                columns: table => new
+                {
+                    DoktorzyId = table.Column<long>(type: "bigint", nullable: false),
+                    UprawnieniaId = table.Column<long>(type: "bigint", nullable: false)
+                },
+                constraints: table =>
+                {
+                    table.PrimaryKey("PK_DoktorProcedura", x => new { x.DoktorzyId, x.UprawnieniaId });
+                    table.ForeignKey(
+                        name: "FK_DoktorProcedura_Pracownik_DoktorzyId",
+                        column: x => x.DoktorzyId,
+                        principalTable: "Pracownik",
+                        principalColumn: "Id",
+                        onDelete: ReferentialAction.Cascade);
+                    table.ForeignKey(
+                        name: "FK_DoktorProcedura_Procedura_UprawnieniaId",
+                        column: x => x.UprawnieniaId,
+                        principalTable: "Procedura",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Cascade);
                 });
@@ -266,7 +293,8 @@ namespace Mas_Projekt_Koniec2.Migrations
                 {
                     { 1L, false, false, 20, "Badanie kontrolne" },
                     { 2L, true, true, 10000, "Operacja serca" },
-                    { 3L, false, true, 50, "Badanie krwi" }
+                    { 3L, false, true, 50, "Badanie krwi" },
+                    { 4L, false, false, 140, "Usg Serca" }
                 });
 
             migrationBuilder.InsertData(
@@ -274,7 +302,7 @@ namespace Mas_Projekt_Koniec2.Migrations
                 columns: new[] { "Id", "OsobaId", "PakietMedycznyId", "UbezpiecznieZdrowotne" },
                 values: new object[,]
                 {
-                    { 3L, 3L, null, true },
+                    { 3L, 3L, null, false },
                     { 4L, 6L, null, true },
                     { 1L, 1L, 1L, false },
                     { 2L, 2L, 1L, true },
@@ -284,11 +312,11 @@ namespace Mas_Projekt_Koniec2.Migrations
 
             migrationBuilder.InsertData(
                 table: "PakietMedycznyProcedura",
-                columns: new[] { "PakietMedycznyId", "ProceduraId" },
+                columns: new[] { "PakietMedycznyId", "ProceduraId", "DataPrzypisania" },
                 values: new object[,]
                 {
-                    { 1L, 1L },
-                    { 1L, 2L }
+                    { 1L, 1L, new DateTime(2020, 8, 8, 3, 3, 3, 0, DateTimeKind.Unspecified) },
+                    { 1L, 2L, new DateTime(2019, 8, 8, 3, 3, 3, 0, DateTimeKind.Unspecified) }
                 });
 
             migrationBuilder.InsertData(
@@ -296,9 +324,29 @@ namespace Mas_Projekt_Koniec2.Migrations
                 columns: new[] { "Id", "Discriminator", "OsobaId", "Pensja", "SpecjalizacjaDoktor", "ZespolOperacyjnyId" },
                 values: new object[,]
                 {
+                    { 3L, "Doktor", 2L, 3300, "Laryngolog", null },
                     { 1L, "Doktor", 4L, 3400, "Kardiolog", null },
                     { 2L, "Doktor", 5L, 3400, "Kardiolog", null }
                 });
+
+            migrationBuilder.InsertData(
+                table: "DoktorProcedura",
+                columns: new[] { "DoktorzyId", "UprawnieniaId" },
+                values: new object[,]
+                {
+                    { 3L, 1L },
+                    { 1L, 1L },
+                    { 1L, 2L },
+                    { 1L, 4L },
+                    { 2L, 1L },
+                    { 2L, 2L },
+                    { 2L, 4L }
+                });
+
+            migrationBuilder.CreateIndex(
+                name: "IX_DoktorProcedura_UprawnieniaId",
+                table: "DoktorProcedura",
+                column: "UprawnieniaId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Hospitalizacja_PacjentId",
@@ -318,7 +366,8 @@ namespace Mas_Projekt_Koniec2.Migrations
             migrationBuilder.CreateIndex(
                 name: "IX_Pacjent_OsobaId",
                 table: "Pacjent",
-                column: "OsobaId");
+                column: "OsobaId",
+                unique: true);
 
             migrationBuilder.CreateIndex(
                 name: "IX_Pacjent_PakietMedycznyId",
@@ -359,6 +408,9 @@ namespace Mas_Projekt_Koniec2.Migrations
 
         protected override void Down(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.DropTable(
+                name: "DoktorProcedura");
+
             migrationBuilder.DropTable(
                 name: "HospitalizacjaProcedura");
 

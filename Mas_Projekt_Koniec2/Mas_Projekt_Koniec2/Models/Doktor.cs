@@ -13,7 +13,10 @@ namespace Mas_Projekt_Koniec2.Models
         [Required]
         [MaxLength(25)]
         public string SpecjalizacjaDoktor { get; set; }
+
         public ICollection<Wizyta> Wizyty { get; set; }
+        [Required]
+        public ICollection<Procedura> Uprawnienia { get; set; }
 
         public Doktor()
         {
@@ -23,6 +26,7 @@ namespace Mas_Projekt_Koniec2.Models
         public Doktor(string specjalizacja)
         {
             this.SpecjalizacjaDoktor = specjalizacja;
+            this.Uprawnienia = new List<Procedura>();
         }
 
         [NotMapped]
