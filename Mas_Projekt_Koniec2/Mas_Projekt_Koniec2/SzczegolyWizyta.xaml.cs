@@ -21,6 +21,8 @@ namespace Mas_Projekt_Koniec2
     {
         private readonly WizytaService _wizytaService;
         private readonly ObservableCollection<Wizyta> allWizytas;
+        private readonly Pacjent selectedPacjent;
+        private readonly Doktor selectedDoktor;
 
         public SzczegolyWizyta(Wizyta wizyta)
         {
@@ -31,11 +33,44 @@ namespace Mas_Projekt_Koniec2
             WizytaDataGrid.ItemsSource = allWizytas;
         }
 
+        public SzczegolyWizyta(Wizyta wizyta, Pacjent SelectedPacjent)
+        {
+            InitializeComponent();
+            selectedPacjent = SelectedPacjent;
+            _wizytaService = new WizytaService();
+            allWizytas = new ObservableCollection<Wizyta>();
+            allWizytas.Add(wizyta);
+            WizytaDataGrid.ItemsSource = allWizytas;
+        }
+
+        public SzczegolyWizyta(Wizyta wizyta, Doktor SelectedDoktor)
+        {
+            InitializeComponent();
+            selectedDoktor = SelectedDoktor;
+            _wizytaService = new WizytaService();
+            allWizytas = new ObservableCollection<Wizyta>();
+            allWizytas.Add(wizyta);
+            WizytaDataGrid.ItemsSource = allWizytas;
+        }
+
         //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wizyt.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
-            new ListaWizyt().Show();
-            this.Close();
+            if (selectedPacjent != null)
+            {
+                new ListaWizyt(selectedPacjent).Show();
+                this.Close();
+            }
+            else if (selectedDoktor != null)
+            {
+                new ListaWizyt(selectedDoktor).Show();
+                this.Close();
+            }
+            else
+            {
+                new ListaWizyt().Show();
+                this.Close();
+            }
         }
     }
 }

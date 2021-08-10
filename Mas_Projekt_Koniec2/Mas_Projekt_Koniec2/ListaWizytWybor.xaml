@@ -1,0 +1,40 @@
+﻿<Window x:Class="Mas_Projekt_Koniec2.ListaWizytWybor"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mas_Projekt_Koniec2"
+        mc:Ignorable="d"
+        Title="ListaWizytWybor" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200"
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Wizyty</Label>
+        <DataGrid Name="OsobaDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Imie" Width="*" Binding="{Binding Osoba.Imie}"/>
+                <DataGridTextColumn Header="Nazwisko" Width="*" Binding="{Binding Osoba.Nazwisko}"/>
+                <DataGridTextColumn Header="Adres E-mail" Width="*" Binding="{Binding Osoba.AdresEmail}"/>
+                <DataGridTextColumn Header="Numer Telefonu" Width="*" Binding="{Binding Osoba.NumerTelefonu}"/>
+                <DataGridTextColumn Header="Numer PESEL" Width="*" Binding="{Binding Osoba.NumerPesel}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>
+        <StackPanel Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="150 0 0 20">
+            <RadioButton Name="PacjentRadio" Checked="PacjentRadio_Check" IsChecked="True">Pacjenci</RadioButton>
+            <RadioButton Name="DoktorRadio" Checked="DoktorRadio_Check">Doktorzy</RadioButton>
+        </StackPanel>
+        <Button x:Name="WizytaWszystkieButton" Click="WizytaWszystkieButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 310 20" Padding="10 0 10 0">Wyświetl Wszystkie</Button>
+        <Button x:Name="WizytaWyborButton" Click="WizytaWyborButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">Wyświetl Wybrane</Button>
+    </Grid>
+</Window>

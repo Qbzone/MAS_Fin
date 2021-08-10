@@ -20,7 +20,7 @@ namespace Mas_Projekt_Koniec2
     public partial class ListaProcedur : Window
     {
         private readonly ProceduraService _proceduraService;
-        private DoktorServices _doktorService;
+        private DoktorService _doktorService;
         private readonly ObservableCollection<Procedura> allProceduras;
         private ObservableCollection<Procedura> filteredProceduras;
         private readonly Pacjent selectedPacjent;
@@ -52,7 +52,7 @@ namespace Mas_Projekt_Koniec2
         //Jeśli w systemie nie ma doktora, który może wykonać danę procedurę, użytkownik nie może przejść dalej.
         private void ProceduraButton_Click(object sender, RoutedEventArgs e)
         {
-            _doktorService = new DoktorServices();
+            _doktorService = new DoktorService();
             var selectedProcedura = (Procedura)ProceduraDataGrid.SelectedItem;
 
             if (ProceduraDataGrid.SelectedItem == null)

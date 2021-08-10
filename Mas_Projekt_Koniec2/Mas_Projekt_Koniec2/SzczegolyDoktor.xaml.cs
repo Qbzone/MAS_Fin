@@ -19,7 +19,7 @@ namespace Mas_Projekt_Koniec2
 {
     public partial class SzczegolyDoktor : Window
     {
-        private readonly DoktorServices _doktorService;
+        private readonly DoktorService _doktorService;
         private readonly ObservableCollection<Doktor> allDoktors;
         private readonly Pacjent selectedPacjent;
         private readonly Procedura selectedProcedura;
@@ -29,7 +29,7 @@ namespace Mas_Projekt_Koniec2
             InitializeComponent();
             selectedPacjent = pacjent;
             selectedProcedura = procedura;
-            _doktorService = new DoktorServices();
+            _doktorService = new DoktorService();
             allDoktors = new ObservableCollection<Doktor>();
             allDoktors.Add(doktor);
             DoktorDataGrid.ItemsSource = allDoktors;

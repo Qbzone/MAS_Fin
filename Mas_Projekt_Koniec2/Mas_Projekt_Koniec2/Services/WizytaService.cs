@@ -38,6 +38,52 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        public ObservableCollection<Wizyta> GetWizytas(Pacjent selectedPacjent)
+        {
+            return new ObservableCollection<Wizyta>(
+                _context.Wizyta
+                .Include(p => p.Pacjent)
+                    .ThenInclude(o => o.Osoba)
+                .Include(d => d.Doktor)
+                    .ThenInclude(o => o.Osoba)
+                .Include(pr => pr.Procedura)
+                .Where(e => e.PoczatekWizyty.Date >= DateTime.Today && e.PacjentId == selectedPacjent.Id)
+                .OrderBy(pw => pw.PoczatekWizyty)
+                    .ThenBy(d => d.Doktor.Osoba.Nazwisko)
+                        .ThenBy(p => p.Pacjent.Osoba.Nazwisko)
+                .ToList());
+        }
+
+        public ObservableCollection<Wizyta> GetWizytas(Doktor selectedDoktor)
+        {
+            return new ObservableCollection<Wizyta>(
+                _context.Wizyta
+                .Include(p => p.Pacjent)
+                    .ThenInclude(o => o.Osoba)
+                .Include(d => d.Doktor)
+                    .ThenInclude(o => o.Osoba)
+                .Include(pr => pr.Procedura)
+                .Where(e => e.PoczatekWizyty.Date >= DateTime.Today && e.DoktorId == selectedDoktor.Id)
+                .OrderBy(pw => pw.PoczatekWizyty)
+                    .ThenBy(d => d.Doktor.Osoba.Nazwisko)
+                        .ThenBy(p => p.Pacjent.Osoba.Nazwisko)
+                .ToList());
+        }
+
+        public bool GetWizytasView(Pacjent selectedPacjent)
+        {
+            return _context.Wizyta
+                .Where(e => e.PacjentId == selectedPacjent.Id)
+                .Count() > 0;
+        }
+
+        public bool GetWizytasView(Doktor selectedDoktor)
+        {
+            return _context.Wizyta
+                .Where(e => e.DoktorId == selectedDoktor.Id)
+                .Count() > 0;
+        }
+
         //Metoda GetDayTermins zwraca ObservableCollection tymczasowych obiektów klasy wizyta, ktore są tworzone na podstawie wybranych obiektów
         //i daty, na którą pacjent chce się zapisać, terminu, które wybrany doktor ma zajętę nie zostaną utworzone.
         public ObservableCollection<Wizyta> GetDayTermins(Doktor selectedDoktor, Pacjent selectedPacjent, Procedura selectedProcedura, DateTime pickedDate)

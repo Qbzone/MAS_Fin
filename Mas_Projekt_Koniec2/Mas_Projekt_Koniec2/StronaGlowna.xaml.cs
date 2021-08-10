@@ -39,7 +39,7 @@ namespace Mas_Projekt_Koniec2
         //Metoda aktywawowana po kliknięciu przycisku "Wyświetl wizyty", przenosi uzytkownika do widoku wizyt.
         private void WizytaButton_Click(object sender, RoutedEventArgs e)
         {
-            new ListaWizyt().Show();
+            new ListaWizytWybor().Show();
             this.Close();
         }
     }

@@ -9,13 +9,25 @@ using System.Threading.Tasks;
 
 namespace Mas_Projekt_Koniec2.Services
 {
-    class DoktorServices
+    class DoktorService
     {
         private readonly MasDBContext _context = new MasDBContext();
 
         public void UpdateDbContext()
         {
             _context.SaveChanges();
+        }
+
+        public ObservableCollection<Doktor> GetDoktors()
+        {
+            return new ObservableCollection<Doktor>(
+                _context.Doktor
+                .Include(p => p.Osoba)
+                    .ThenInclude(e => e.Pracownik)
+                .Include(dp => dp.Uprawnienia)
+                .OrderBy(n => n.Osoba.Nazwisko)
+                    .ThenBy(i => i.Osoba.Imie)
+                .ToList());
         }
 
         //Metoda GetDoktors zwraca ObservableCollection doktorów. Metoda przyjmuje dwa atrybuty long ProceduraId i string Pesel. Zwróceni

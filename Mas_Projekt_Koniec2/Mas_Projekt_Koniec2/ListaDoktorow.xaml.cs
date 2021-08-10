@@ -19,7 +19,7 @@ namespace Mas_Projekt_Koniec2
 {
     public partial class ListaDoktorow : Window
     {
-        private readonly DoktorServices _doktorService;
+        private readonly DoktorService _doktorService;
         private readonly ObservableCollection<Doktor> allDoktors;
         private ObservableCollection<Doktor> filteredDoktors;
         private readonly Pacjent selectedPacjent;
@@ -30,7 +30,7 @@ namespace Mas_Projekt_Koniec2
             InitializeComponent();
             selectedPacjent = SelectedPacjent;
             selectedProcedura = SelectedProcedura;
-            _doktorService = new DoktorServices();
+            _doktorService = new DoktorService();
             allDoktors = _doktorService.GetDoktors(SelectedProcedura.Id, SelectedPacjent.Osoba.NumerPesel);
             filteredDoktors = allDoktors;
             DoktorDataGrid.ItemsSource = filteredDoktors;
