@@ -18,6 +18,7 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
+        //Metoda GetDoktors zwraca ObservableCollection wszystkich doktorów w systemie.
         public ObservableCollection<Doktor> GetDoktors()
         {
             return new ObservableCollection<Doktor>(

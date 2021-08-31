@@ -77,7 +77,7 @@ namespace Mas_Projekt_Koniec2
             }
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru wizyt.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaWizytWybor().Show();

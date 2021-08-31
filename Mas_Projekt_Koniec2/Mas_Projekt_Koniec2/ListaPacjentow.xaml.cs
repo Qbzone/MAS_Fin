@@ -48,7 +48,7 @@ namespace Mas_Projekt_Koniec2
         private void PacjentDataGrid_DoubleClick(object sender, RoutedEventArgs e)
         {
             var selectedPacjent = (Pacjent)PacjentDataGrid.SelectedItem;
-            new SzczegolyPacjent(selectedPacjent).Show();
+            new SzczegolyPacjent(selectedPacjent, 1).Show();
             this.Close();
         }
 

@@ -20,7 +20,7 @@ namespace Mas_Projekt_Koniec2.Services
             _context.SaveChanges();
         }
 
-        //Metoda GetWizytas zwraca ObservableCollection wszystkich wizyt w systemie, których date terminu przeprowadzenia
+        //Metoda GetWizytas zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
         //jest większa lub równa tej z dnia dzisiejszego.
         public ObservableCollection<Wizyta> GetWizytas()
         {
@@ -38,6 +38,8 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        //Metoda GetWizyta zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
+        //jest większa lub równa tej z dnia dzisiejszego, oraz Id pacjenta odpowiada przekazanemu Id
         public ObservableCollection<Wizyta> GetWizytas(Pacjent selectedPacjent)
         {
             return new ObservableCollection<Wizyta>(
@@ -54,6 +56,8 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        //Metoda GetWizyta zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
+        //jest większa lub równa tej z dnia dzisiejszego, oraz Id doktora odpowiada przekazanemu Id
         public ObservableCollection<Wizyta> GetWizytas(Doktor selectedDoktor)
         {
             return new ObservableCollection<Wizyta>(
@@ -70,17 +74,21 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        //Metoda GetWizytasView służy do sprawdzenia, czy dany pacjent ma zarejestrowane jakieś wizyty
+        //przed wyświetleniem jego harmonogramu wizyt
         public bool GetWizytasView(Pacjent selectedPacjent)
         {
             return _context.Wizyta
-                .Where(e => e.PacjentId == selectedPacjent.Id)
+                .Where(e => e.PoczatekWizyty.Date >= DateTime.Today && e.PacjentId == selectedPacjent.Id)
                 .Count() > 0;
         }
 
+        //Metoda GetWizytasView służy do sprawdzenia, czy dany doktor ma zarejestrowane jakieś wiyty 
+        //przed wyświetleniem jego harmonogramu wizyt
         public bool GetWizytasView(Doktor selectedDoktor)
         {
             return _context.Wizyta
-                .Where(e => e.DoktorId == selectedDoktor.Id)
+                .Where(e => e.PoczatekWizyty.Date >= DateTime.Today && e.DoktorId == selectedDoktor.Id)
                 .Count() > 0;
         }
 

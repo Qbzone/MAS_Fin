@@ -13,6 +13,8 @@
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
             <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*"/>
             <RowDefinition Height="2*"/>
             <RowDefinition Height="Auto"/>
         </Grid.RowDefinitions>
@@ -20,7 +22,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Doktorzy</Label>
-        <DataGrid Name="DoktorDataGrid" EnableColumnVirtualization="True" EnableRowVirtualization="True"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="DoktorDataGrid" EnableColumnVirtualization="True" EnableRowVirtualization="True"  Grid.Row="2" Grid.Column="0" Margin="20" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Imie" Width="*" Binding="{Binding Osoba.Imie}"/>
                 <DataGridTextColumn Header="Nazwisko" Width="*" Binding="{Binding Osoba.Nazwisko}"/>
@@ -34,6 +36,12 @@
                 <DataGridTextColumn Header="Specjalizacja" Width="*" Binding="{Binding SpecjalizacjaDoktor}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>
+        <Label FontSize="40" Grid.Row ="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0">Uprawnienia</Label>
+        <DataGrid Name="ProceduraDataGrid" Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="Nazwa" Width="*" Binding="{Binding NazwaProcedura}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="WrocButton" Click="WrocButton_Click" FontSize="30" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Wróć</Button>
     </Grid>
 </Window>

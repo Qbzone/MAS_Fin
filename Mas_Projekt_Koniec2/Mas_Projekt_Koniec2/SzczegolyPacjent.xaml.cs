@@ -21,21 +21,32 @@ namespace Mas_Projekt_Koniec2
     {
         private readonly PacjentService _pacjentService;
         private readonly ObservableCollection<Pacjent> allPacjents;
+        private int Checker;
 
-        public SzczegolyPacjent(Pacjent pacjent)
+        public SzczegolyPacjent(Pacjent pacjent, int checker)
         {
             InitializeComponent();
             _pacjentService = new PacjentService();
             allPacjents = new ObservableCollection<Pacjent>();
             allPacjents.Add(pacjent);
             PacjentDataGrid.ItemsSource = allPacjents;
+            Checker = checker;
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjenta.
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjentalub wyboru wizyt
+        //w zależności od tego skąd użytkownik trafił do tego widoku.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
-            new ListaPacjentow().Show();
-            this.Close();
+            if(Checker == 1)
+            {
+                new ListaPacjentow().Show();
+                this.Close();
+            }
+            else if(Checker == 2)
+            {
+                new ListaWizytWybor().Show();
+                this.Close();
+            }
         }
     }
 }

@@ -30,6 +30,18 @@ namespace Mas_Projekt_Koniec2.Services
                 .ToList());
         }
 
+        //Metoda GetProceduras zwraca ObservableCollection wszystkich procedur w systemie, do których ma uprawnienia doktor
+        //o przekazanym Id.
+        public ObservableCollection<Procedura> GetProceduras(long DoktorId)
+        {
+            return new ObservableCollection<Procedura>(
+                _context.Procedura
+                .Include(dp => dp.Doktorzy)
+                .Where(e => e.Doktorzy.Any(ee => ee.Id == DoktorId))
+                .OrderBy(n => n.NazwaProcedura)
+                .ToList());
+        }
+
         //Metoda GetProcedurasByNazwa służy do przefiltrowania procedur względem ich nazwy. Metoda ta przyjmuje jeden atrybut typu string
         //Nazwa, na podstawie podanego atrybutu zwrócone zostaną tylko procedury, których nazwa odpowiada tej przekazanej i nie wymagają
         //zespołu operacyjnego do ich przeprowadzenia.

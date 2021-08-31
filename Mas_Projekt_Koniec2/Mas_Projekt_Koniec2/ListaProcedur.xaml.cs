@@ -68,7 +68,6 @@ namespace Mas_Projekt_Koniec2
 
             new ListaDoktorow(selectedPacjent, selectedProcedura).Show();
             this.Close();
-
         }
 
         //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjenta.

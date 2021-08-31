@@ -38,24 +38,49 @@ namespace Mas_Projekt_Koniec2
             OsobaDataGrid.ItemsSource = filteredPacjents;
         }
 
+        //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a pacjentów
         void PacjentRadio_Check(object sender, RoutedEventArgs e)
         {
             filteredPacjents = allPacjents;
             OsobaDataGrid.ItemsSource = filteredPacjents;
         }
 
+        //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a doktorów
         void DoktorRadio_Check(object sender, RoutedEventArgs e)
         {
             filteredDoktors = allDoktors;
             OsobaDataGrid.ItemsSource = filteredDoktors;
         }
 
+        //Metoda przenosząca do widoku wszystkich wizyt zarejestrowanych w systemie
         private void WizytaWszystkieButton_Click(object sender, RoutedEventArgs e)
         {
             new ListaWizyt().Show();
             this.Close();
         }
 
+        //Metoda przenosząca po podwójnym kliknięciu do widoku szczegółowego pacjenta, bądź lekarza
+        //w zależności od zaznaczonego radio button'a
+        private void OsobaDataGrid_DoubleClick(object sender, RoutedEventArgs e)
+        {
+            if (PacjentRadio.IsChecked == true)
+            {
+                var selectedPacjent = (Pacjent)OsobaDataGrid.SelectedItem;
+                new SzczegolyPacjent(selectedPacjent, 2).Show();
+                this.Close();
+            }
+            else if (DoktorRadio.IsChecked == true)
+            {
+                var selectedDoktor = (Doktor)OsobaDataGrid.SelectedItem;
+                new SzczegolyDoktor(selectedDoktor).Show();
+                this.Close();
+            }
+        }
+
+        //Metoda po zaznaczeniu wybranej osoby i kliknięciu przycisku "Wyświetl wybrane" przenosi do widoku
+        //wizyt wybranego pacjenta, bądź doktora w zależności od zaznaczonego radio button'a.
+        //Gdyby nie wybrano żadnej osoby, bądź w razie braku zarejestrowanych terminów nie możemy wyświetlić
+        //widoku wizyt konkretnej osoby.
         private void WizytaWyborButton_Click(object sender, RoutedEventArgs e)
         {
             if (PacjentRadio.IsChecked == true)
@@ -96,7 +121,7 @@ namespace Mas_Projekt_Koniec2
             }
         }
 
-        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
+        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
         private void WrocButton_Click(object sender, RoutedEventArgs e)
         {
             new StronaGlowna().Show();
