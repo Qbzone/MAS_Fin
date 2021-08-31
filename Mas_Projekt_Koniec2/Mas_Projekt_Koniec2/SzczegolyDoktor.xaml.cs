@@ -39,8 +39,8 @@ namespace Mas_Projekt_Koniec2
             allDoktors = new ObservableCollection<Doktor>();
             allDoktors.Add(doktor);
             DoktorDataGrid.ItemsSource = allDoktors;
-            
-            allProceduras = _proceduraService.GetProceduras(doktor.Id);
+
+            allProceduras = new ObservableCollection<Procedura>(doktor.Uprawnienia);
             filteredProceduras = allProceduras;
             ProceduraDataGrid.ItemsSource = filteredProceduras;
         }
@@ -56,7 +56,7 @@ namespace Mas_Projekt_Koniec2
             allDoktors.Add(doktor);
             DoktorDataGrid.ItemsSource = allDoktors;
 
-            allProceduras = _proceduraService.GetProceduras(doktor.Id);
+            allProceduras = new ObservableCollection<Procedura>(doktor.Uprawnienia);
             filteredProceduras = allProceduras;
             ProceduraDataGrid.ItemsSource = filteredProceduras;
         }

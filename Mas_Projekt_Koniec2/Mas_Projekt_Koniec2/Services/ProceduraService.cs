@@ -32,12 +32,12 @@ namespace Mas_Projekt_Koniec2.Services
 
         //Metoda GetProceduras zwraca ObservableCollection wszystkich procedur w systemie, do których ma uprawnienia doktor
         //o przekazanym Id.
-        public ObservableCollection<Procedura> GetProceduras(long DoktorId)
+        public ObservableCollection<Procedura> GetProceduras(Doktor DoktorId)
         {
             return new ObservableCollection<Procedura>(
                 _context.Procedura
                 .Include(dp => dp.Doktorzy)
-                .Where(e => e.Doktorzy.Any(ee => ee.Id == DoktorId))
+                .Where(e => e.Doktorzy.Any(ee => ee == DoktorId))
                 .OrderBy(n => n.NazwaProcedura)
                 .ToList());
         }
