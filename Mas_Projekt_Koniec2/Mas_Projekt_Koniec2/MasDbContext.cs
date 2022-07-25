@@ -1,4 +1,4 @@
-﻿using Mas_Projekt_Koniec2.Models;
+﻿using Mas_Final_Project.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
 using System.Collections.Generic;
@@ -6,316 +6,318 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace Mas_Projekt_Koniec2
+namespace Mas_Final_Project
 {
-    class MasDBContext : DbContext
+    internal class MasDBContext : DbContext
     {
         protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
         {
-            optionsBuilder.UseSqlServer(@"Data Source=db-mssql;Initial Catalog=s16693;Integrated Security=True");
+            optionsBuilder.UseSqlServer(Properties.Settings.Default.connectionString);
         }
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder
-                .Entity<PakietMedycznyProcedura>(entity =>
+                .Entity<MedicalPackageProcedure>(entity =>
                 {
-                    entity.HasKey(e => new { e.PakietMedycznyId, e.ProceduraId })
-                    .HasName("PakietMedycznyProcedura_pk");
+                    entity
+                        .HasKey(e => new { e.MedicalPackageId, e.ProcedureId })
+                        .HasName("MedicalPackageProcedure_pk");
                 });
 
             modelBuilder
-                .Entity<HospitalizacjaProcedura>(entity =>
+                .Entity<HospitalizationProcedure>(entity =>
                 {
-                    entity.HasKey(e => new { e.ProceduraId, e.HospitalizacjaId, e.DataWykonania })
-                    .HasName("HospitalizacjaProcedura_pk");
+                    entity
+                        .HasKey(e => new { e.ProcedureId, e.HospitalizationId, e.ExecutionDate })
+                        .HasName("HospitalizationProcedure_pk");
                 });
 
             modelBuilder
-                .Entity<Osoba>(o =>
+                .Entity<Person>(o =>
                 {
                     o.HasData(new
                     {
                         Id = 1L,
-                        Imie = "Adam",
-                        Nazwisko = "Podlaski",
-                        DataUrodzenia = new DateTime(1997, 08, 08, 20, 20, 20),
-                        NumerPesel = "97080812345",
-                        NumerTelefonu = "123456789",
-                        AdresEmail = "aPodlaski@gmail.com",
-                        AdresZamieszkania = "Warszawa"
+                        FirstName = "Adam",
+                        LastName = "Podlaski",
+                        BirthDate = new DateTime(1997, 08, 08, 20, 20, 20),
+                        PeselNumber = "97080812345",
+                        PhoneNumber = "123456789",
+                        EmailAddress = "aPodlaski@gmail.com",
+                        HomeAddress = "Warszawa"
                     });
                     o.HasData(new
                     {
                         Id = 2L,
-                        Imie = "Mateusz",
-                        Nazwisko = "Pietras",
-                        DataUrodzenia = new DateTime(1997, 05, 18, 12, 20, 30),
-                        NumerPesel = "97051812345",
-                        NumerTelefonu = "113456789",
-                        AdresEmail = "mPietras@gmail.com",
-                        AdresZamieszkania = "Kaski"
+                        FirstName = "Mateusz",
+                        LastName = "Pietras",
+                        BirthDate = new DateTime(1997, 05, 18, 12, 20, 30),
+                        PeselNumber = "97051812345",
+                        PhoneNumber = "113456789",
+                        EmailAddress = "mPietras@gmail.com",
+                        HomeAddress = "Kaski"
                     });
                     o.HasData(new
                     {
                         Id = 3L,
-                        Imie = "Jan",
-                        Nazwisko = "Kostera",
-                        DataUrodzenia = new DateTime(1997, 08, 05, 10, 10, 10),
-                        NumerPesel = "97080512345",
-                        NumerTelefonu = "123156789",
-                        AdresEmail = "jachoStera@gmail.com",
-                        AdresZamieszkania = "Piastów"
+                        FirstName = "Jan",
+                        LastName = "Kostera",
+                        BirthDate = new DateTime(1997, 08, 05, 10, 10, 10),
+                        PeselNumber = "97080512345",
+                        PhoneNumber = "123156789",
+                        EmailAddress = "jachoStera@gmail.com",
+                        HomeAddress = "Piastów"
                     });
                     o.HasData(new
                     {
                         Id = 4L,
-                        Imie = "Karol",
-                        Nazwisko = "Plac",
-                        DataUrodzenia = new DateTime(1997, 08, 08, 02, 02, 02),
-                        NumerPesel = "97080814345",
-                        NumerTelefonu = "123454789",
-                        AdresEmail = "kPlac@gmail.com",
-                        AdresZamieszkania = "Warszawa"
+                        FirstName = "Karol",
+                        LastName = "Plac",
+                        BirthDate = new DateTime(1997, 08, 08, 02, 02, 02),
+                        PeselNumber = "97080814345",
+                        PhoneNumber = "123454789",
+                        EmailAddress = "kPlac@gmail.com",
+                        HomeAddress = "Warszawa"
                     });
                     o.HasData(new
                     {
                         Id = 5L,
-                        Imie = "Waldemar",
-                        Nazwisko = "Waldzki",
-                        DataUrodzenia = new DateTime(1997, 08, 08, 03, 03, 03),
-                        NumerPesel = "97080818345",
-                        NumerTelefonu = "123458789",
-                        AdresEmail = "wWaldzki@gmail.com",
-                        AdresZamieszkania = "Warszawa"
+                        FirstName = "Waldemar",
+                        LastName = "Waldzki",
+                        BirthDate = new DateTime(1997, 08, 08, 03, 03, 03),
+                        PeselNumber = "97080818345",
+                        PhoneNumber = "123458789",
+                        EmailAddress = "wWaldzki@gmail.com",
+                        HomeAddress = "Warszawa"
                     });
                     o.HasData(new
                     {
                         Id = 6L,
-                        Imie = "Maciej",
-                        Nazwisko = "Bedi",
-                        DataUrodzenia = new DateTime(1997, 08, 08, 02, 03, 03),
-                        NumerPesel = "97080818645",
-                        NumerTelefonu = "123458769",
-                        AdresEmail = "BediMaciej@gmail.com",
-                        AdresZamieszkania = "Warszawa"
+                        FirstName = "Maciej",
+                        LastName = "Bedi",
+                        BirthDate = new DateTime(1997, 08, 08, 02, 03, 03),
+                        PeselNumber = "97080818645",
+                        PhoneNumber = "123458769",
+                        EmailAddress = "BediMaciej@gmail.com",
+                        HomeAddress = "Warszawa"
                     });
                     o.HasData(new
                     {
                         Id = 7L,
-                        Imie = "Roman",
-                        Nazwisko = "Koczan",
-                        DataUrodzenia = new DateTime(1997, 08, 09, 03, 03, 03),
-                        NumerPesel = "97080919345",
-                        NumerTelefonu = "123458999",
-                        AdresEmail = "RomaNKocz@gmail.com",
-                        AdresZamieszkania = "Grodzisk Mazowiecki"
+                        FirstName = "Roman",
+                        LastName = "Koczan",
+                        BirthDate = new DateTime(1997, 08, 09, 03, 03, 03),
+                        PeselNumber = "97080919345",
+                        PhoneNumber = "123458999",
+                        EmailAddress = "RomaNKocz@gmail.com",
+                        HomeAddress = "Grodzisk Mazowiecki"
                     });
                     o.HasData(new
                     {
                         Id = 8L,
-                        Imie = "Tymon",
-                        Nazwisko = "Gołda",
-                        DataUrodzenia = new DateTime(1990, 08, 08, 03, 03, 03),
-                        NumerPesel = "90080818345",
-                        NumerTelefonu = "120058789",
-                        AdresEmail = "TymnoGold@gmail.com",
-                        AdresZamieszkania = "Piastów"
+                        FirstName = "Tymon",
+                        LastName = "Gołda",
+                        BirthDate = new DateTime(1990, 08, 08, 03, 03, 03),
+                        PeselNumber = "90080818345",
+                        PhoneNumber = "120058789",
+                        EmailAddress = "TymnoGold@gmail.com",
+                        HomeAddress = "Piastów"
                     });
                 });
 
             modelBuilder
-                .Entity<Procedura>(p =>
+                .Entity<Procedure>(p =>
                 {
                     p.HasData(new
                     {
                         Id = 1L,
-                        NazwaProcedura = "Badanie kontrolne",
-                        KosztProcedura = 20,
-                        CzyPotrzebnyZespolOperacyjny = false,
-                        CzyProceduraInwazyjna = false
+                        ProcedureName = "Badanie kontrolne",
+                        ProcedureCost = 20,
+                        IsOperationalTeamNeeded = false,
+                        IsProcedureInvasive = false
                     });
                     p.HasData(new
                     {
                         Id = 2L,
-                        NazwaProcedura = "Operacja serca",
-                        KosztProcedura = 10000,
-                        CzyPotrzebnyZespolOperacyjny = true,
-                        CzyProceduraInwazyjna = true
+                        ProcedureName = "Operacja serca",
+                        ProcedureCost = 10000,
+                        IsOperationalTeamNeeded = true,
+                        IsProcedureInvasive = true
                     });
                     p.HasData(new
                     {
                         Id = 3L,
-                        NazwaProcedura = "Badanie krwi",
-                        KosztProcedura = 50,
-                        CzyPotrzebnyZespolOperacyjny = false,
-                        CzyProceduraInwazyjna = true
+                        ProcedureName = "Badanie krwi",
+                        ProcedureCost = 50,
+                        IsOperationalTeamNeeded = false,
+                        IsProcedureInvasive = true
                     });
                     p.HasData(new
                     {
                         Id = 4L,
-                        NazwaProcedura = "Usg Serca",
-                        KosztProcedura = 140,
-                        CzyPotrzebnyZespolOperacyjny = false,
-                        CzyProceduraInwazyjna = false
+                        ProcedureName = "Usg Serca",
+                        ProcedureCost = 140,
+                        IsOperationalTeamNeeded = false,
+                        IsProcedureInvasive = false
                     });
                 });
 
             modelBuilder
-                .Entity<PakietMedyczny>(pm =>
+                .Entity<MedicalPackage>(pm =>
                 {
                     pm.HasData(new
                     {
                         Id = 1L,
-                        NazwaPakiet = "MedPack"
+                        PackageName = "MedPack"
                     });
                 });
 
             modelBuilder
-                .Entity<PakietMedycznyProcedura>(pmp =>
+                .Entity<MedicalPackageProcedure>(pmp =>
                 {
                     pmp.HasData(new
                     {
-                        PakietMedycznyId = 1L,
-                        ProceduraId = 1L,
-                        DataPrzypisania = new DateTime(2020, 08, 08, 03, 03, 03)
+                        MedicalPackageId = 1L,
+                        ProcedureId = 1L,
+                        AssignmentDate = new DateTime(2020, 08, 08, 03, 03, 03)
                     });
                     pmp.HasData(new
                     {
-                        PakietMedycznyId = 1L,
-                        ProceduraId = 2L,
-                        DataPrzypisania = new DateTime(2019, 08, 08, 03, 03, 03)
+                        MedicalPackageId = 1L,
+                        ProcedureId = 2L,
+                        AssignmentDate = new DateTime(2019, 08, 08, 03, 03, 03)
                     });
                 });
 
             modelBuilder
-                .Entity<Pacjent>(p =>
+                .Entity<Patient>(p =>
                 {
                     p.HasData(new
                     {
                         Id = 1L,
-                        OsobaId = 1L,
-                        UbezpiecznieZdrowotne = false,
-                        PakietMedycznyId = 1L
+                        PersonId = 1L,
+                        HealthInsurance = false,
+                        MedicalPackageId = 1L
                     });
                     p.HasData(new
                     {
                         Id = 2L,
-                        OsobaId = 2L,
-                        UbezpiecznieZdrowotne = true,
-                        PakietMedycznyId = 1L
+                        PersonId = 2L,
+                        HealthInsurance = true,
+                        MedicalPackageId = 1L
                     });
                     p.HasData(new
                     {
                         Id = 3L,
-                        OsobaId = 3L,
-                        UbezpiecznieZdrowotne = false
+                        PersonId = 3L,
+                        HealthInsurance = false
                     });
                     p.HasData(new
                     {
                         Id = 4L,
-                        OsobaId = 6L,
-                        UbezpiecznieZdrowotne = true
+                        PersonId = 6L,
+                        HealthInsurance = true
                     });
                     p.HasData(new
                     {
                         Id = 5L,
-                        OsobaId = 7L,
-                        UbezpiecznieZdrowotne = false,
-                        PakietMedycznyId = 1L
+                        PersonId = 7L,
+                        HealthInsurance = false,
+                        MedicalPackageId = 1L
                     });
                     p.HasData(new
                     {
                         Id = 6L,
-                        OsobaId = 8L,
-                        UbezpiecznieZdrowotne = true,
-                        PakietMedycznyId = 1L
+                        PersonId = 8L,
+                        HealthInsurance = true,
+                        MedicalPackageId = 1L
                     });
                 });
 
             modelBuilder
-                .Entity<Doktor>(d =>
+                .Entity<Doctor>(d =>
                 {
                     d.HasData(new
                     {
                         Id = 1L,
-                        OsobaId = 4L,
-                        Pensja = 3400,
-                        SpecjalizacjaDoktor = "Kardiolog"
+                        PersonId = 4L,
+                        Salary = 3400,
+                        DoctorSpecialization = "Cardiologist"
                     });
                     d.HasData(new
                     {
                         Id = 2L,
-                        OsobaId = 5L,
-                        Pensja = 3400,
-                        SpecjalizacjaDoktor = "Kardiolog"
+                        PersonId = 5L,
+                        Salary = 3400,
+                        DoctorSpecialization = "Cardiologist"
                     });
                     d.HasData(new
                     {
                         Id = 3L,
-                        OsobaId = 2L,
-                        Pensja = 3300,
-                        SpecjalizacjaDoktor = "Laryngolog"
+                        PersonId = 2L,
+                        Salary = 3300,
+                        DoctorSpecialization = "Laryngologist"
                     });
                 });
 
             modelBuilder
-                .Entity<Doktor>()
-                .HasMany(p => p.Uprawnienia)
-                .WithMany(p => p.Doktorzy)
+                .Entity<Doctor>()
+                .HasMany(p => p.Entitlements)
+                .WithMany(p => p.Doctors)
                 .UsingEntity(j =>
                 {
                     j.HasData(new
                     {
-                        UprawnieniaId = 1L,
-                        DoktorzyId = 1L
+                        EntitlementsId = 1L,
+                        DoctorsId = 1L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 2L,
-                        DoktorzyId = 1L
+                        EntitlementsId = 2L,
+                        DoctorsId = 1L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 4L,
-                        DoktorzyId = 1L
+                        EntitlementsId = 4L,
+                        DoctorsId = 1L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 1L,
-                        DoktorzyId = 2L
+                        EntitlementsId = 1L,
+                        DoctorsId = 2L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 2L,
-                        DoktorzyId = 2L
+                        EntitlementsId = 2L,
+                        DoctorsId = 2L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 4L,
-                        DoktorzyId = 2L
+                        EntitlementsId = 4L,
+                        DoctorsId = 2L
                     });
                     j.HasData(new
                     {
-                        UprawnieniaId = 1L,
-                        DoktorzyId = 3L
+                        EntitlementsId = 1L,
+                        DoctorsId = 3L
                     });
                 });
         }
 
-        public virtual DbSet<Osoba> Osoba { get; set; }
-        public virtual DbSet<Pracownik> Pracownik { get; set; }
-        public virtual DbSet<Doktor> Doktor { get; set; }
-        public virtual DbSet<Pielegniarz> Pielegniarz { get; set; }
-        public virtual DbSet<Salowy> Salowy { get; set; }
-        public virtual DbSet<Recepcjonista> Recepcjonista { get; set; }
-        public virtual DbSet<Pacjent> Pacjent { get; set; }
-        public virtual DbSet<PakietMedyczny> PakietMedyczny { get; set; }
-        public virtual DbSet<Procedura> Procedura { get; set; }
-        public virtual DbSet<PakietMedycznyProcedura> PakietMedycznyProcedura { get; set; }
-        public virtual DbSet<ZespolOperacyjny> ZespolOperacyjny { get; set; }
-        public virtual DbSet<Wizyta> Wizyta { get; set; }
-        public virtual DbSet<Hospitalizacja> Hospitalizacja { get; set; }
-        public virtual DbSet<HospitalizacjaProcedura> HospitalizacjaProcedura { get; set; }
+        public virtual DbSet<Person> Person { get; set; }
+        public virtual DbSet<Employee> Employee { get; set; }
+        public virtual DbSet<Doctor> Doctor { get; set; }
+        public virtual DbSet<Nurse> Nurse { get; set; }
+        public virtual DbSet<Orderly> Orderly { get; set; }
+        public virtual DbSet<Receptionist> Receptionist { get; set; }
+        public virtual DbSet<Patient> Patient { get; set; }
+        public virtual DbSet<MedicalPackage> MedicalPackage { get; set; }
+        public virtual DbSet<Procedure> Procedure { get; set; }
+        public virtual DbSet<MedicalPackageProcedure> MedicalPackageProcedure { get; set; }
+        public virtual DbSet<OperationalTeam> OperationalTeam { get; set; }
+        public virtual DbSet<Visit> Visit { get; set; }
+        public virtual DbSet<Hospitalization> Hospitalization { get; set; }
+        public virtual DbSet<HospitalizationProcedure> HospitalizationProcedure { get; set; }
     }
 }

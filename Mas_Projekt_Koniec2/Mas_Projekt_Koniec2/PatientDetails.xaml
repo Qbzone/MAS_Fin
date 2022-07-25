@@ -1,0 +1,39 @@
+﻿<Window x:Class="Mas_Final_Project.PatientDetails"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Mas_Final_Project"
+        mc:Ignorable="d"
+        Title="PatientDetails" Height="600" Width="1200"
+        MinHeight="600" MinWidth="1200"
+        WindowStartupLocation="CenterScreen" >
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="Auto" />
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="2*"/>
+            <RowDefinition Height="Auto"/>
+        </Grid.RowDefinitions>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition/>
+        </Grid.ColumnDefinitions>
+        <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Patients</Label>
+        <DataGrid Name="PatientDataGrid" EnableColumnVirtualization="True" EnableRowVirtualization="True"  Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20" IsReadOnly="True" AutoGenerateColumns="False">
+            <DataGrid.Columns>
+                <DataGridTextColumn Header="First Name" Width="*" Binding="{Binding Person.FirstName}"/>
+                <DataGridTextColumn Header="Last Name" Width="*" Binding="{Binding Person.LastName}"/>
+                <DataGridTextColumn Header="E-mail Address" Width="2*" Binding="{Binding Person.EmailAddress}"/>
+                <DataGridTextColumn Header="Phone Number" Width="*" Binding="{Binding Person.PhoneNumber}"/>
+                <DataGridTextColumn Header="Pesel number" Width="*" Binding="{Binding Person.PeselNumber}"/>
+                <DataGridTextColumn Header="Birth Date" Width="*" Binding="{Binding Person.BirthDate, StringFormat='{}{0:dd.MM.yyyy}'}"/>
+                <DataGridTextColumn Header="Age" Width="*" Binding="{Binding Person.Age}"/>
+                <DataGridTextColumn Header="Home Address" Width="*" Binding="{Binding Person.HomeAddress}"/>
+                <DataGridTextColumn Header="Health Insurance" Width="*" Binding="{Binding HealthInsurance}"/>
+                <DataGridTextColumn Header="Medical Package" Width="*" Binding="{Binding MedicalPackage.PackageName}"/>
+            </DataGrid.Columns>
+        </DataGrid>
+        <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Return</Button>
+    </Grid>
+</Window>

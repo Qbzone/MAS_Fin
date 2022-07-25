@@ -5,14 +5,14 @@ using System.Linq;
 using System.Reflection;
 using System.Text;
 using System.Threading.Tasks;
-using static Mas_Projekt_Koniec2.Models.Hospitalizacja;
-using static Mas_Projekt_Koniec2.Models.Wizyta;
+using static Mas_Final_Project.Models.Hospitalization;
+using static Mas_Final_Project.Models.Visit;
 
-namespace Mas_Projekt_Koniec2.Models.Functional
+namespace Mas_Final_Project.Models.Functional
 {
     public static class StateExtensions
     {
-        public static string GetOrderStateDisplayName(this StatusWizyty statusWizyty)
+        public static string GetOrderStateDisplayName(this VisitStatus statusWizyty)
         {
             return statusWizyty.GetType().GetMember(statusWizyty.ToString())
                 .First()
@@ -20,9 +20,9 @@ namespace Mas_Projekt_Koniec2.Models.Functional
                 .Name;
         }
 
-        public static string GetOrderStateDisplayName(this StatusHospitalizacji statusHospitalizacji)
+        public static string GetOrderStateDisplayName(this HospitalizationStatus hospitalizationStatus)
         {
-            return statusHospitalizacji.GetType().GetMember(statusHospitalizacji.ToString())
+            return hospitalizationStatus.GetType().GetMember(hospitalizationStatus.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
