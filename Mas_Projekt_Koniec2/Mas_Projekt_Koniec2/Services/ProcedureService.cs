@@ -1,25 +1,21 @@
 ﻿using Mas_Final_Project.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mas_Final_Project.Services
 {
-    class ProcedureService
+    internal class ProcedureService
     {
-        private readonly MasDBContext _context = new MasDBContext();
+        private readonly MasDBContext _context = new();
 
         public void UpdateDbContext()
         {
             _context.SaveChanges();
         }
 
-        //Metoda GetProceduras zwraca ObservableCollection wszystkich procedur w systemie, które nie wymagają zespołu operacyjnego
-        //do ich przeprowadzenia.
+        /* The GetProcedures method returns an ObservableCollection of all procedures in the system 
+         * that do not require an operational team to perform them. */
         public ObservableCollection<Procedure> GetProcedures()
         {
             return new ObservableCollection<Procedure>(
@@ -30,8 +26,8 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetProceduras zwraca ObservableCollection wszystkich procedur w systemie, do których ma uprawnienia doktor
-        //o przekazanym Id.
+        /* The GetProcedures method returns an ObservableCollection of all procedures in the system 
+         * to which the doctor with the passed Id has rights. */
         public ObservableCollection<Procedure> GetProcedures(Doctor doctorId)
         {
             return new ObservableCollection<Procedure>(
@@ -42,9 +38,9 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetProcedurasByNazwa służy do przefiltrowania procedur względem ich nazwy. Metoda ta przyjmuje jeden atrybut typu string
-        //Nazwa, na podstawie podanego atrybutu zwrócone zostaną tylko procedury, których nazwa odpowiada tej przekazanej i nie wymagają
-        //zespołu operacyjnego do ich przeprowadzenia.
+        /* The GetProceduresByName method is used to filter procedures by their name. 
+         * This method takes a single attribute of the string type procedureName, based on the given attribute 
+         * only procedures whose name corresponds to the one passed in and do not require an operational team to carry them out will be returned. */
         public ObservableCollection<Procedure> GetProceduresByName(string procedureName)
         {
             return new ObservableCollection<Procedure>(

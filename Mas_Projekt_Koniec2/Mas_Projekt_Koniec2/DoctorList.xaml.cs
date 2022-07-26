@@ -1,19 +1,8 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -28,8 +17,10 @@ namespace Mas_Final_Project
         public DoctorList(Patient selectedPatient, Procedure selectedProcedure)
         {
             InitializeComponent();
+
             this.selectedPatient = selectedPatient;
             this.selectedProcedure = selectedProcedure;
+
             _doctorService = new DoctorService();
             allDoctors = _doctorService.GetDoctors(selectedProcedure.Id, selectedPatient.Person.PeselNumber);
             filteredDoctors = allDoctors;
@@ -39,11 +30,10 @@ namespace Mas_Final_Project
         //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja doktorów po nazwisku
         private void LastNameTextBox_TextChanged(object sender, TextChangedEventArgs tCEA)
         {
-            var textBox = (TextBox)sender;
-            var text = textBox.Text.Trim();
+            TextBox textBox = (TextBox)sender;
+            string text = textBox.Text.Trim();
 
-            filteredDoctors = _doctorService.GetDoctorsBySecondName(text);
-
+            filteredDoctors = _doctorService.GetDoctorsByLastName(text);
             DoctorDataGrid.ItemsSource = null;
             DoctorDataGrid.ItemsSource = filteredDoctors;
         }
@@ -51,7 +41,7 @@ namespace Mas_Final_Project
         //Metoda aktywowana poprzez dwukrotne kliknięcię na danego doktora, przenosi do widoku szczegółowego tej osoby
         private void DoctorDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
         {
-            var selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
+            Doctor selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
             new DoctorDetails(selectedDoctor, selectedPatient, selectedProcedure).Show();
 
             Close();
@@ -61,7 +51,7 @@ namespace Mas_Final_Project
         //Jeśli doktor nie zostal wybrany, użytkownik nie może przejść dalej.
         private void DoctorButton_Click(object sender, RoutedEventArgs rEA)
         {
-            var selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
+            Doctor selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
 
             if (DoctorDataGrid.SelectedItem == null)
             {

@@ -1,19 +1,7 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -25,6 +13,7 @@ namespace Mas_Final_Project
         public MainPage()
         {
             InitializeComponent();
+
             _patientService = new PatientService();
             allPatients = _patientService.GetPatients();
         }

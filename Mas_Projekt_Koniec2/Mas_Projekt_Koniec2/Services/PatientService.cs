@@ -1,24 +1,20 @@
 ﻿using Mas_Final_Project.Models;
 using Microsoft.EntityFrameworkCore;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mas_Final_Project.Services
 {
-    class PatientService
+    internal class PatientService
     {
-        private readonly MasDBContext _context = new MasDBContext();
+        private readonly MasDBContext _context = new();
 
         public void UpdateDbContext()
         {
             _context.SaveChanges();
         }
 
-        //Metoda GetPacjents zwraca ObservableCollection wszystkich pacjentów w systemie
+        /* The GetPatients method returns an ObservableCollection of all patients in the system. */
         public ObservableCollection<Patient> GetPatients()
         {
             return new ObservableCollection<Patient>(
@@ -30,8 +26,9 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetPacjentByNazwisko służy do przefiltrowania pacjentów względem ich numeru pesel. Metoda ta przyjmuje jeden atrybut typu string
-        //Pesel, na podstawie podanego atrybutu zwróceni zostaną tylko pacjenci, których numer pesel odpowiada temu przekazanemu.
+        /* The GetPatientsByPeselNumber method is used to filter patients by their pesel number. 
+         * This method takes one attribute of the string type peselNumber, based on the given attribute only patients whose 
+         * pesel number corresponds to the one passed in will be returned. */
         public ObservableCollection<Patient> GetPatientsByPeselNumber(string peselNumber)
         {
             return new ObservableCollection<Patient>(

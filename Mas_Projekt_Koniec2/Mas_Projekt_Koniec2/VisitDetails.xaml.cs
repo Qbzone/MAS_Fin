@@ -1,19 +1,7 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -27,6 +15,7 @@ namespace Mas_Final_Project
         public VisitDetails(Visit visit)
         {
             InitializeComponent();
+
             _visitService = new VisitService();
             allVisits = new ObservableCollection<Visit>();
             allVisits.Add(visit);
@@ -36,6 +25,7 @@ namespace Mas_Final_Project
         public VisitDetails(Visit visit, Patient selectedPat)
         {
             InitializeComponent();
+
             selectedPatients = selectedPat;
             _visitService = new VisitService();
             allVisits = new ObservableCollection<Visit>();
@@ -46,6 +36,7 @@ namespace Mas_Final_Project
         public VisitDetails(Visit visit, Doctor selectedDoc)
         {
             InitializeComponent();
+
             selectedDoctors = selectedDoc;
             _visitService = new VisitService();
             allVisits = new ObservableCollection<Visit>();
@@ -59,17 +50,20 @@ namespace Mas_Final_Project
             if (selectedPatients != null)
             {
                 new VisitList(selectedPatients).Show();
-                this.Close();
+
+                Close();
             }
             else if (selectedDoctors != null)
             {
                 new VisitList(selectedDoctors).Show();
-                this.Close();
+
+                Close();
             }
             else
             {
                 new VisitList().Show();
-                this.Close();
+
+                Close();
             }
         }
     }

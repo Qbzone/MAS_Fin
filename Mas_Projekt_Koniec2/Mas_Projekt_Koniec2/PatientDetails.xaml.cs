@@ -1,19 +1,7 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -21,11 +9,12 @@ namespace Mas_Final_Project
     {
         private readonly PatientService _patientService;
         private readonly ObservableCollection<Patient> allPatients;
-        private int Checker;
+        private readonly int Checker;
 
         public PatientDetails(Patient patient, int checker)
         {
             InitializeComponent();
+
             _patientService = new PatientService();
             allPatients = new ObservableCollection<Patient>();
             allPatients.Add(patient);
@@ -37,15 +26,17 @@ namespace Mas_Final_Project
         //w zależności od tego skąd użytkownik trafił do tego widoku.
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
-            if(Checker == 1)
+            if (Checker == 1)
             {
                 new PatientList().Show();
-                this.Close();
+
+                Close();
             }
-            else if(Checker == 2)
+            else if (Checker == 2)
             {
                 new ChooseVisitList().Show();
-                this.Close();
+
+                Close();
             }
         }
     }

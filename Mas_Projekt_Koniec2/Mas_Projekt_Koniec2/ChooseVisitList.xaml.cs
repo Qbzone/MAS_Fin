@@ -1,19 +1,7 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -30,6 +18,7 @@ namespace Mas_Final_Project
         public ChooseVisitList()
         {
             InitializeComponent();
+
             _patientService = new PatientService();
             _doctorService = new DoctorService();
             allPatients = _patientService.GetPatients();
@@ -39,14 +28,14 @@ namespace Mas_Final_Project
         }
 
         //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a pacjentów
-        void PatientRadio_Check(object sender, RoutedEventArgs rEA)
+        private void PatientRadio_Check(object sender, RoutedEventArgs rEA)
         {
             filteredPatients = allPatients;
             PersonDataGrid.ItemsSource = filteredPatients;
         }
 
         //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a doktorów
-        void DoctorRadio_Check(object sender, RoutedEventArgs rEA)
+        private void DoctorRadio_Check(object sender, RoutedEventArgs rEA)
         {
             filteredDoctors = allDoctors;
             PersonDataGrid.ItemsSource = filteredDoctors;
@@ -57,7 +46,7 @@ namespace Mas_Final_Project
         {
             new VisitList().Show();
 
-            this.Close();
+            Close();
         }
 
         //Metoda przenosząca po podwójnym kliknięciu do widoku szczegółowego pacjenta, bądź lekarza
@@ -66,17 +55,17 @@ namespace Mas_Final_Project
         {
             if (PatientRadio.IsChecked == true)
             {
-                var selectedPatient = (Patient)PersonDataGrid.SelectedItem;
+                Patient selectedPatient = (Patient)PersonDataGrid.SelectedItem;
                 new PatientDetails(selectedPatient, 2).Show();
 
-                this.Close();
+                Close();
             }
             else if (DoctorRadio.IsChecked == true)
             {
-                var selectedDoktor = (Doctor)PersonDataGrid.SelectedItem;
+                Doctor selectedDoktor = (Doctor)PersonDataGrid.SelectedItem;
                 new DoctorDetails(selectedDoktor).Show();
 
-                this.Close();
+                Close();
             }
         }
 
@@ -89,38 +78,48 @@ namespace Mas_Final_Project
             if (PatientRadio.IsChecked == true)
             {
                 _visitService = new VisitService();
-                var selectedPerson = (Patient)PersonDataGrid.SelectedItem;
+
+                Patient selectedPerson = (Patient)PersonDataGrid.SelectedItem;
 
                 if (PersonDataGrid.SelectedItem == null)
                 {
                     MessageBox.Show("Please choose a person!", Title = "Warning");
+
                     return;
                 }
                 else if (!_visitService.GetVisitsView(selectedPerson))
                 {
                     MessageBox.Show("The selected patient has no recorded appointments!", Title = "Warning");
+
                     return;
                 }
+
                 new VisitList(selectedPerson).Show();
-                this.Close();
+
+                Close();
             }
             else if (DoctorRadio.IsChecked == true)
             {
                 _visitService = new VisitService();
-                var selectedPerson = (Doctor)PersonDataGrid.SelectedItem;
+
+                Doctor selectedPerson = (Doctor)PersonDataGrid.SelectedItem;
 
                 if (PersonDataGrid.SelectedItem == null)
                 {
                     MessageBox.Show("Please choose a person!", Title = "Warning");
+
                     return;
                 }
                 else if (!_visitService.GetVisitsView(selectedPerson))
                 {
                     MessageBox.Show("The selected doctor has no recorded appointments!", Title = "Warning");
+
                     return;
                 }
+
                 new VisitList(selectedPerson).Show();
-                this.Close();
+
+                Close();
             }
         }
 
@@ -129,7 +128,7 @@ namespace Mas_Final_Project
         {
             new MainPage().Show();
 
-            this.Close();
+            Close();
         }
     }
 }

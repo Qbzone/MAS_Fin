@@ -1,19 +1,7 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
-using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
-using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -28,6 +16,7 @@ namespace Mas_Final_Project
         public VisitList()
         {
             InitializeComponent();
+
             _visitService = new VisitService();
             allVisits = _visitService.GetVisits();
             filteredVisits = allVisits;
@@ -37,6 +26,7 @@ namespace Mas_Final_Project
         public VisitList(Patient selectedPat)
         {
             InitializeComponent();
+
             selectedPatient = selectedPat;
             _visitService = new VisitService();
             allVisits = _visitService.GetVisits(selectedPatient);
@@ -47,6 +37,7 @@ namespace Mas_Final_Project
         public VisitList(Doctor selectedDoc)
         {
             InitializeComponent();
+
             selectedDoctor = selectedDoc;
             _visitService = new VisitService();
             allVisits = _visitService.GetVisits(selectedDoctor);
@@ -59,21 +50,27 @@ namespace Mas_Final_Project
         {
             if (selectedPatient != null)
             {
-                var selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+
                 new VisitDetails(selectedWizyta, selectedPatient).Show();
-                this.Close();
+
+                Close();
             }
             else if (selectedDoctor != null)
             {
-                var selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+
                 new VisitDetails(selectedWizyta, selectedDoctor).Show();
-                this.Close();
+
+                Close();
             }
             else
             {
-                var selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
+
                 new VisitDetails(selectedWizyta).Show();
-                this.Close();
+
+                Close();
             }
         }
 
@@ -81,7 +78,8 @@ namespace Mas_Final_Project
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new ChooseVisitList().Show();
-            this.Close();
+
+            Close();
         }
     }
 }

@@ -1,27 +1,25 @@
 ﻿using Mas_Final_Project.Models;
 using Microsoft.EntityFrameworkCore;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Mas_Final_Project.Services
 {
-    class VisitService
+    internal class VisitService
     {
-        private readonly MasDBContext _context = new MasDBContext();
+        private readonly MasDBContext _context = new();
 
-        //Metoda AddWizyta przyjmuje utworzony obiekt klasy Wizyta. Służy ona do dodania wizyty do bazy danych.
+        /* The AddVisit method accepts the created object of the Visit class. 
+         * It is used to add a visit to the database. */
         public void AddVisit(Visit visit)
         {
             _context.Add(visit);
             _context.SaveChanges();
         }
 
-        //Metoda GetWizytas zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
-        //jest większa lub równa tej z dnia dzisiejszego.
+        /* The GetVisits method returns an ObservableCollection of all visits in the system 
+         * whose due date is greater than or equal to that of today. */
         public ObservableCollection<Visit> GetVisits()
         {
             return new ObservableCollection<Visit>(
@@ -38,8 +36,8 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetWizyta zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
-        //jest większa lub równa tej z dnia dzisiejszego, oraz Id pacjenta odpowiada przekazanemu Id
+        /* The GetVisit method returns an ObservableCollection of all visits in the system 
+         * whose appointment date is greater than or equal to today's date, and the patient Id corresponds to the passed Id. */
         public ObservableCollection<Visit> GetVisits(Patient selectedPatient)
         {
             return new ObservableCollection<Visit>(
@@ -56,8 +54,8 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetWizyta zwraca ObservableCollection wszystkich wizyt w systemie, których data terminu przeprowadzenia
-        //jest większa lub równa tej z dnia dzisiejszego, oraz Id doktora odpowiada przekazanemu Id
+        /* The GetVisit method returns an ObservableCollection of all visits in the system 
+         * whose date of appointment is greater than or equal to that of today, and the Doctor's Id corresponds to the passed Id. */
         public ObservableCollection<Visit> GetVisits(Doctor selectedDoctor)
         {
             return new ObservableCollection<Visit>(
@@ -74,29 +72,28 @@ namespace Mas_Final_Project.Services
                 .ToList());
         }
 
-        //Metoda GetWizytasView służy do sprawdzenia, czy dany pacjent ma zarejestrowane jakieś wizyty
-        //przed wyświetleniem jego harmonogramu wizyt
+        /* The GetVisitsView method is used to check whether a patient has any appointments registered before displaying their appointment schedule. */
         public bool GetVisitsView(Patient selectedPatient)
         {
             return _context.Visit
                 .Where(e => e.VisitStart.Date >= DateTime.Today && e.PatientId == selectedPatient.Id)
-                .Count() > 0;
+                .Any();
         }
 
-        //Metoda GetWizytasView służy do sprawdzenia, czy dany doktor ma zarejestrowane jakieś wiyty 
-        //przed wyświetleniem jego harmonogramu wizyt
+        /* The GetVisitsView method is used to check whether a doctor has any visits registered before displaying his/her appointment book. */
         public bool GetVisitsView(Doctor selectedDoctor)
         {
             return _context.Visit
                 .Where(e => e.VisitStart.Date >= DateTime.Today && e.DoctorId == selectedDoctor.Id)
-                .Count() > 0;
+                .Any();
         }
 
-        //Metoda GetDayTermins zwraca ObservableCollection tymczasowych obiektów klasy wizyta, ktore są tworzone na podstawie wybranych obiektów
-        //i daty, na którą pacjent chce się zapisać, terminu, które wybrany doktor ma zajętę nie zostaną utworzone.
+        /* The GetDayTerms method returns an ObservableCollection of temporary objects of the appointment class, 
+         * which are created based on the selected objects and the date for which the patient wants to enrol, 
+         * appointments that the selected doctor has busy will not be created. */
         public ObservableCollection<Visit> GetDayTerms(Doctor selectedDoctor, Patient selectedPatient, Procedure selectedProcedure, DateTime pickedDate)
         {
-            ObservableCollection<Visit> tmpVisits = new ObservableCollection<Visit>();
+            ObservableCollection<Visit> tmpVisits = new();
             DateTime start = pickedDate.AddHours(8);
 
             for (int i = 0; i < 16; i++)
@@ -104,7 +101,7 @@ namespace Mas_Final_Project.Services
                 if (!GetDoctorVisit(start, selectedDoctor.Id))
                 {
                     DateTime end = start.AddMinutes(29);
-                    Visit tmpTerm = new Visit()
+                    Visit tmpTerm = new()
                     {
                         VisitStart = start,
                         VisitEnd = end,
@@ -123,13 +120,13 @@ namespace Mas_Final_Project.Services
             return tmpVisits;
         }
 
-        //Metoda GetDoktorWizyta służy do znalezienia czy dany doktor ma już zaplanowaną wizytę na dany termin, jeśli count > 0
-        //dany termin nie zostanie wyświetlony.
+        /* The GetDoctorVisit method is used to find out whether a doctor already has an appointment scheduled for a given date, 
+         * if yes the appointment will not be displayed. */
         public bool GetDoctorVisit(DateTime visitStart, long id)
         {
             return _context.Visit
                 .Where(visit => visit.VisitStart == visitStart && visit.DoctorId == id)
-                .Count() > 0;
+                .Any();
         }
     }
 }

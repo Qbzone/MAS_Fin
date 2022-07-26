@@ -1,19 +1,9 @@
 ﻿using Mas_Final_Project.Models;
 using Mas_Final_Project.Services;
 using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Shapes;
 
 namespace Mas_Final_Project
 {
@@ -37,8 +27,8 @@ namespace Mas_Final_Project
             _visitService = new VisitService();
 
             DateSetup();
-            tmpVisits = _visitService.GetDayTerms(selectedDoctor, selectedPatient, selectedProcedure, Convert.ToDateTime(DatePicker.ToString()));
 
+            tmpVisits = _visitService.GetDayTerms(selectedDoctor, selectedPatient, selectedProcedure, Convert.ToDateTime(DatePicker.ToString()));
             filteredVisits = tmpVisits;
             TermDataGrid.ItemsSource = filteredVisits;
         }
@@ -46,10 +36,9 @@ namespace Mas_Final_Project
         //Metoda aktywowana poprzez daty w datepicker'rze, na podstawie zmian następuje filtracja terminów w oparciu o wybraną dateę
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs sCEA)
         {
-            var datePicker = (DatePicker)sender;
+            DatePicker datePicker = (DatePicker)sender;
 
             filteredVisits = _visitService.GetDayTerms(selectedDoctor, selectedPatient, selectedProcedure, Convert.ToDateTime(datePicker.ToString()));
-
             TermDataGrid.ItemsSource = null;
             TermDataGrid.ItemsSource = filteredVisits;
         }
@@ -59,25 +48,30 @@ namespace Mas_Final_Project
         //Jeśli termin nie został wybrany, użytkownik nie może dodać wizyty.
         private void RegisterButton_Click(object sender, RoutedEventArgs rEA)
         {
-            var selectedTermin = (Visit)TermDataGrid.SelectedItem;
+            Visit selectedTermin = (Visit)TermDataGrid.SelectedItem;
+
             if (TermDataGrid.SelectedItem == null)
             {
                 MessageBox.Show("Please select your appointment!", Title = "Warning");
+
                 return;
             }
+
             _visitService.AddVisit(selectedTermin);
 
             MessageBox.Show("The patient has been registered for an appointment", Title = "Success");
 
             new MainPage().Show();
-            this.Close();
+
+            Close();
         }
 
         //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru doktora.
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new DoctorList(selectedPatient, selectedProcedure).Show();
-            this.Close();
+
+            Close();
         }
 
         //Metoda służąca do blokowania nie chcianych dat w datepicker'rze
@@ -85,22 +79,13 @@ namespace Mas_Final_Project
         //Dodatkowo jeśli zapis jest przeprowadzany w dzień weekendowy domyślna data zapisu jest przesuwana na następny poniedziałek.
         private void DateSetup()
         {
-            if (DateTime.Today.DayOfWeek == DayOfWeek.Saturday)
-            {
-                DatePicker.SelectedDate = DateTime.Today.AddDays(2);
-            }
-            else if (DateTime.Today.DayOfWeek == DayOfWeek.Sunday)
-            {
-                DatePicker.SelectedDate = DateTime.Today.AddDays(1);
-            }
-            else
-            {
-                DatePicker.SelectedDate = DateTime.Today;
-            }
+            DatePicker.SelectedDate = DateTime.Today.DayOfWeek == DayOfWeek.Saturday
+                ? DateTime.Today.AddDays(2)
+                : DateTime.Today.DayOfWeek == DayOfWeek.Sunday ? DateTime.Today.AddDays(1) : DateTime.Today;
 
             DatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021, 01, 01), DateTime.Now.AddDays(-1)));
 
-            for (var day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
+            for (DateTime day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
             {
                 if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
                 {

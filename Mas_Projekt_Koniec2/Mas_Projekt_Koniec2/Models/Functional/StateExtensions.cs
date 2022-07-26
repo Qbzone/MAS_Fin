@@ -1,10 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel.DataAnnotations;
+﻿using System.ComponentModel.DataAnnotations;
 using System.Linq;
 using System.Reflection;
-using System.Text;
-using System.Threading.Tasks;
 using static Mas_Final_Project.Models.Hospitalization;
 using static Mas_Final_Project.Models.Visit;
 
@@ -14,7 +10,9 @@ namespace Mas_Final_Project.Models.Functional
     {
         public static string GetOrderStateDisplayName(this VisitStatus statusWizyty)
         {
-            return statusWizyty.GetType().GetMember(statusWizyty.ToString())
+            return statusWizyty
+                .GetType()
+                .GetMember(statusWizyty.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
@@ -22,7 +20,9 @@ namespace Mas_Final_Project.Models.Functional
 
         public static string GetOrderStateDisplayName(this HospitalizationStatus hospitalizationStatus)
         {
-            return hospitalizationStatus.GetType().GetMember(hospitalizationStatus.ToString())
+            return hospitalizationStatus
+                .GetType()
+                .GetMember(hospitalizationStatus.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
