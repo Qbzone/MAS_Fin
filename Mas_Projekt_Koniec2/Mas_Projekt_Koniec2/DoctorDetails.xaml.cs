@@ -45,8 +45,8 @@ namespace Mas_Final_Project
             ProcedureDataGrid.ItemsSource = filteredProcedures;
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru doktora lub wyboru wizyt
-        //w zależności od tego skąd użytkownik trafił do tego widoku.
+        /* The method, which is activated when the " Return" button is clicked, 
+         * takes the user back to the doctor selection view or the appointment selection view, depending on where the user came from. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             if (selectedPatient != null && selectedProcedure != null)

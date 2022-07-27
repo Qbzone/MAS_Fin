@@ -17,8 +17,10 @@ namespace Mas_Final_Project
             InitializeComponent();
 
             _visitService = new VisitService();
-            allVisits = new ObservableCollection<Visit>();
-            allVisits.Add(visit);
+            allVisits = new ObservableCollection<Visit>
+            {
+                visit
+            };
             VisitDataGrid.ItemsSource = allVisits;
         }
 
@@ -28,8 +30,10 @@ namespace Mas_Final_Project
 
             selectedPatients = selectedPat;
             _visitService = new VisitService();
-            allVisits = new ObservableCollection<Visit>();
-            allVisits.Add(visit);
+            allVisits = new ObservableCollection<Visit>
+            {
+                visit
+            };
             VisitDataGrid.ItemsSource = allVisits;
         }
 
@@ -39,12 +43,14 @@ namespace Mas_Final_Project
 
             selectedDoctors = selectedDoc;
             _visitService = new VisitService();
-            allVisits = new ObservableCollection<Visit>();
-            allVisits.Add(visit);
+            allVisits = new ObservableCollection<Visit>
+            {
+                visit
+            };
             VisitDataGrid.ItemsSource = allVisits;
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wizyt.
+        /* The method, which is activated when the " Return" button is clicked, takes the user back to the visit view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             if (selectedPatients != null)

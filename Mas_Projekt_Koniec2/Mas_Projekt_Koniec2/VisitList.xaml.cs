@@ -45,7 +45,7 @@ namespace Mas_Final_Project
             VisitsDataGrid.ItemsSource = filteredVisits;
         }
 
-        //Metoda aktywowana poprzez dwukrotne kliknięcię na danej wizyty, przenosi do widoku szczegółowego tej wizyty
+        /* Activated by double-clicking on a visit, the method takes you to a detailed view of that visit. */
         private void VisitsDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
         {
             if (selectedPatient != null)
@@ -74,7 +74,7 @@ namespace Mas_Final_Project
             }
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru wizyt.
+        /* The method, which is activated when the " Return" button is clicked, takes the user back to the visit selection view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new ChooseVisitList().Show();

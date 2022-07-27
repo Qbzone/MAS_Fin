@@ -25,7 +25,8 @@ namespace Mas_Final_Project
             ProcedureDataGrid.ItemsSource = filteredProcedures;
         }
 
-        //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja procedur po ich nazwie
+        /* Method activated by entering/changing text in the textbox, 
+         * based on the changes the procedures are filtered by their names */
         private void ProcedureNameTextBox_TextChanged(object sender, TextChangedEventArgs tCEA)
         {
             TextBox textBox = (TextBox)sender;
@@ -36,9 +37,10 @@ namespace Mas_Final_Project
             ProcedureDataGrid.ItemsSource = filteredProcedures;
         }
 
-        //Metoda aktywowana po kliknięciu przycisku "Wybierz procedurę", przenosi do widoku wyboru doktora, który może przeprowadzić tą procedurę.
-        //Jeśli procedura nie została wybrana, użytkownik nie może przejść dalej.
-        //Jeśli w systemie nie ma doktora, który może wykonać danę procedurę, użytkownik nie może przejść dalej.
+        /* The method activated when the 'Select procedure' button is clicked, 
+         * takes you to the selection view of the doctor who can carry out this procedure. 
+         * If the procedure has not been selected, the user cannot proceed further. 
+         * If there is no doctor in the system who can perform a given procedure, the user cannot proceed further. */
         private void ProcedureButton_Click(object sender, RoutedEventArgs rEA)
         {
             _doctorService = new DoctorService();
@@ -63,7 +65,7 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjenta.
+        /* Activated by clicking on the " Return" button, the method takes the user back to the patient selection view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new PatientList().Show();

@@ -15,7 +15,6 @@ namespace Mas_Final_Project
         private readonly VisitService _visitService;
         private readonly ObservableCollection<Visit> tmpVisits;
         private ObservableCollection<Visit> filteredVisits;
-        private ObservableCollection<Visit> doctorsAsPatients;
 
         public TermList(Patient selectedPat, Procedure selectedPro, Doctor selectedDoc)
         {
@@ -33,7 +32,7 @@ namespace Mas_Final_Project
             TermDataGrid.ItemsSource = filteredVisits;
         }
 
-        //Metoda aktywowana poprzez daty w datepicker'rze, na podstawie zmian następuje filtracja terminów w oparciu o wybraną dateę
+        /* Method activated via dates in the datepicker, based on the changes, the dates are filtered based on the selected date. */
         private void DatePicker_SelectedDateChanged(object sender, SelectionChangedEventArgs sCEA)
         {
             DatePicker datePicker = (DatePicker)sender;
@@ -43,9 +42,8 @@ namespace Mas_Final_Project
             TermDataGrid.ItemsSource = filteredVisits;
         }
 
-        //Metoda aktywowana poprzez naciśnięcie przycisku "Wybierz termin", po jej aktywacji do bazy danych zostaje wprowadzona wizyta,
-        //a użytkownik zostaje przeniesiony do strony głównej
-        //Jeśli termin nie został wybrany, użytkownik nie może dodać wizyty.
+        /* Activated by pressing the "Select appointment" button, once activated, the appointment is entered into the database and the user is taken to the home page. 
+         * If an appointment has not been selected, the user cannot add a visit. */
         private void RegisterButton_Click(object sender, RoutedEventArgs rEA)
         {
             Visit selectedTermin = (Visit)TermDataGrid.SelectedItem;
@@ -66,7 +64,7 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru doktora.
+        /* The method, which is activated when the " Return" button is clicked, takes the user back to the doctor selection view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new DoctorList(selectedPatient, selectedProcedure).Show();
@@ -74,9 +72,9 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda służąca do blokowania nie chcianych dat w datepicker'rze
-        //Blokowane do wyboru są date ubiegłe oraz dni weekendowe
-        //Dodatkowo jeśli zapis jest przeprowadzany w dzień weekendowy domyślna data zapisu jest przesuwana na następny poniedziałek.
+        /* Method for blocking unwanted dates in the datepicker. 
+         * Previous dates and weekend days are blocked. 
+         * In addition, if a save is made on a weekend day, the default save date is moved to the following Monday. */
         private void DateSetup()
         {
             DatePicker.SelectedDate = DateTime.Today.DayOfWeek == DayOfWeek.Saturday
@@ -87,7 +85,7 @@ namespace Mas_Final_Project
 
             for (DateTime day = DateTime.Today; day <= new DateTime(2021, 12, 31); day = day.AddDays(1))
             {
-                if (day.DayOfWeek == DayOfWeek.Saturday || day.DayOfWeek == DayOfWeek.Sunday)
+                if (day.DayOfWeek is DayOfWeek.Saturday or DayOfWeek.Sunday)
                 {
                     DatePicker.BlackoutDates.Add(new CalendarDateRange(day));
                 }

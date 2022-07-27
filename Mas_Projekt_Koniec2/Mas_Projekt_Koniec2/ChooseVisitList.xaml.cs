@@ -27,21 +27,21 @@ namespace Mas_Final_Project
             PersonDataGrid.ItemsSource = filteredPatients;
         }
 
-        //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a pacjentów
+        /* The method enters patients into the data grid after selecting the radio button. */
         private void PatientRadio_Check(object sender, RoutedEventArgs rEA)
         {
             filteredPatients = allPatients;
             PersonDataGrid.ItemsSource = filteredPatients;
         }
 
-        //Metoda po zaznaczeniu radio button'a wprowadza do data grid'a doktorów
+        /* The method enters doctors into the data grid after selecting the radio button. */
         private void DoctorRadio_Check(object sender, RoutedEventArgs rEA)
         {
             filteredDoctors = allDoctors;
             PersonDataGrid.ItemsSource = filteredDoctors;
         }
 
-        //Metoda przenosząca do widoku wszystkich wizyt zarejestrowanych w systemie
+        /* Method that takes you to a view of all visits registered in the system. */
         private void AllVisitsButton_Click(object sender, RoutedEventArgs rEA)
         {
             new VisitList().Show();
@@ -49,8 +49,8 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda przenosząca po podwójnym kliknięciu do widoku szczegółowego pacjenta, bądź lekarza
-        //w zależności od zaznaczonego radio button'a
+        /* A method that takes you, after a double click, to the patient's or doctor's detailed view, 
+         * depending on the selected radio button. */
         private void PersonDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
         {
             if (PatientRadio.IsChecked == true)
@@ -69,10 +69,9 @@ namespace Mas_Final_Project
             }
         }
 
-        //Metoda po zaznaczeniu wybranej osoby i kliknięciu przycisku "Wyświetl wybrane" przenosi do widoku
-        //wizyt wybranego pacjenta, bądź doktora w zależności od zaznaczonego radio button'a.
-        //Gdyby nie wybrano żadnej osoby, bądź w razie braku zarejestrowanych terminów nie możemy wyświetlić
-        //widoku wizyt konkretnej osoby.
+        /* The method, once the selected person is selected and the 'View selected' button is clicked, 
+         * takes you to the view of the appointments of the selected patient or doctor depending on the radio button selected. 
+         * If no person is selected, or if there are no registered appointments, we cannot display the view of a particular person's visits. */
         private void ChooseVisitButton_Click(object sender, RoutedEventArgs rEA)
         {
             if (PatientRadio.IsChecked == true)
@@ -123,7 +122,7 @@ namespace Mas_Final_Project
             }
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
+        /* The method, activated when the "Back" button is clicked, takes the user back to the home page view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new MainPage().Show();

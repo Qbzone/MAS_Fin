@@ -22,7 +22,7 @@ namespace Mas_Final_Project
             PatienttDataGrid.ItemsSource = filteredPatients;
         }
 
-        //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja pacjentów po numerze pesel
+        /* Method activated by entering/changing text in the textbox, based on the changes the patients are filtered by pesel number. */
         private void PeselTextBox_TextChanged(object sender, TextChangedEventArgs tCEA)
         {
             TextBox textBox = (TextBox)sender;
@@ -33,7 +33,7 @@ namespace Mas_Final_Project
             PatienttDataGrid.ItemsSource = filteredPatients;
         }
 
-        //Metoda aktywowana poprzez dwukrotne kliknięcię na danego pacjenta, przenosi do widoku szczegółowego tej osoby
+        /* Activated by double-clicking on a patient, the method takes you to a detailed view of that person. */
         private void PatientDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
         {
             Patient selectedPacjent = (Patient)PatienttDataGrid.SelectedItem;
@@ -43,9 +43,9 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywowana po kliknięciu przycisku "Wybierz pacjenta", przenosi do widoku wyboru procedury dla wybranego pacjenta.
-        //Jeśli pacjent nie zostal wybrany, użytkownik nie może przejść dalej.
-        //Jeśli pacjent nie posiada ubezpieczenia zdrowotnego lub pakietu medycznego, użytkownik nie może przejść dalej
+        /* When activated by clicking the "Select patient" button, the method takes you to the procedure selection view for the selected patient. 
+         * If the patient has not been selected, the user cannot proceed further. 
+         * If the patient does not have health insurance or a medical package, the user cannot proceed further. */
         private void PatientButton_Click(object sender, RoutedEventArgs rEA)
         {
             Patient selectedPacjent = (Patient)PatienttDataGrid.SelectedItem;
@@ -68,7 +68,7 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku strony głównej.
+        /* The method, activated when the " Return" button is clicked, takes the user back to the home page view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             new MainPage().Show();

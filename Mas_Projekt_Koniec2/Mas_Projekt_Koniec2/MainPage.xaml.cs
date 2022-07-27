@@ -18,7 +18,7 @@ namespace Mas_Final_Project
             allPatients = _patientService.GetPatients();
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Zapisz na wizytę", przenosi uzytkownika do widoku wyboru pacjenta.
+        /* The method, which is activated by clicking on the "Save for appointment" button, takes the user to the patient selection view. */
         private void RegisterButton_Click(object sender, RoutedEventArgs e)
         {
             new PatientList().Show();
@@ -26,7 +26,7 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wyświetl wizyty", przenosi uzytkownika do widoku wyboru wizyt.
+        /* The method activated by clicking on the "View visits" button takes the user to the visit selection view. */
         private void VisitButton_Click(object sender, RoutedEventArgs e)
         {
             new ChooseVisitList().Show();

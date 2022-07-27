@@ -27,7 +27,7 @@ namespace Mas_Final_Project
             DoctorDataGrid.ItemsSource = filteredDoctors;
         }
 
-        //Metoda aktywowana poprzez wprowadzenie/zmianę tekstu w textboxie, na podstawie zmian następuje filtracja doktorów po nazwisku
+        /* Method activated by entering/changing text in the textbox, based on the changes, the doctors are filtered by name. */
         private void LastNameTextBox_TextChanged(object sender, TextChangedEventArgs tCEA)
         {
             TextBox textBox = (TextBox)sender;
@@ -38,7 +38,7 @@ namespace Mas_Final_Project
             DoctorDataGrid.ItemsSource = filteredDoctors;
         }
 
-        //Metoda aktywowana poprzez dwukrotne kliknięcię na danego doktora, przenosi do widoku szczegółowego tej osoby
+        /* Activated by double-clicking on the doctor in question, the method takes you to a detailed view of that person. */
         private void DoctorDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
         {
             Doctor selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
@@ -47,8 +47,8 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywowana po kliknięciu przycisku "Wybierz doktora", przenosi do widoku terminów wybranego doktora.
-        //Jeśli doktor nie zostal wybrany, użytkownik nie może przejść dalej.
+        /* The method, which is activated by clicking on the "Select doctor" button, takes you to a view of the appointments of the selected doctor. 
+         * If the doctor has not been selected, the user cannot proceed further. */
         private void DoctorButton_Click(object sender, RoutedEventArgs rEA)
         {
             Doctor selectedDoctor = (Doctor)DoctorDataGrid.SelectedItem;
@@ -65,7 +65,7 @@ namespace Mas_Final_Project
             Close();
         }
 
-        //Metoda aktywawowane po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru procedur.
+        /* The method, activated when the " Return" button is clicked, takes the user back to the procedure selection view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs e)
         {
             new ProcedureList(selectedPatient).Show();
