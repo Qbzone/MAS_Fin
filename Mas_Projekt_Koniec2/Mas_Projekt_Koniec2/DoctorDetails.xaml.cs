@@ -23,8 +23,10 @@ namespace Mas_Final_Project
             selectedProcedure = procedure;
             _doctorService = new DoctorService();
             _procedureService = new ProcedureService();
-            allDoctors = new ObservableCollection<Doctor>();
-            allDoctors.Add(doctor);
+            allDoctors = new ObservableCollection<Doctor>
+            {
+                doctor
+            };
             DoctorDataGrid.ItemsSource = allDoctors;
             allProcedures = new ObservableCollection<Procedure>(doctor.Entitlements);
             filteredProcedures = allProcedures;
@@ -37,8 +39,10 @@ namespace Mas_Final_Project
 
             _doctorService = new DoctorService();
             _procedureService = new ProcedureService();
-            allDoctors = new ObservableCollection<Doctor>();
-            allDoctors.Add(doctor);
+            allDoctors = new ObservableCollection<Doctor>
+            {
+                doctor
+            };
             DoctorDataGrid.ItemsSource = allDoctors;
             allProcedures = new ObservableCollection<Procedure>(doctor.Entitlements);
             filteredProcedures = allProcedures;

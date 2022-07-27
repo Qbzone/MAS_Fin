@@ -13,6 +13,7 @@
             <RowDefinition Height="75" />
             <RowDefinition Height="75" />
             <RowDefinition Height="75" />
+            <RowDefinition Height="75" />
         </Grid.RowDefinitions>
         <Grid.ColumnDefinitions>
             <ColumnDefinition/>
@@ -20,5 +21,6 @@
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Main Page</Label>
         <Button x:Name="RegisterButton" Click="RegisterButton_Click" FontSize="30" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Make an appointment</Button>
         <Button x:Name="VisitButton" Click="VisitButton_Click" FontSize="30" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">View visits</Button>
+        <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Exit</Button>
     </Grid>
 </Window>

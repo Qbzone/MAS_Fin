@@ -16,14 +16,17 @@ namespace Mas_Final_Project
             InitializeComponent();
 
             _patientService = new PatientService();
-            allPatients = new ObservableCollection<Patient>();
-            allPatients.Add(patient);
+            allPatients = new ObservableCollection<Patient>
+            {
+                patient
+            };
             PatientDataGrid.ItemsSource = allPatients;
             Checker = checker;
         }
 
-        //Metoda aktywawowana po kliknięciu przycisku "Wróć", cofa uzytkownika do widoku wyboru pacjentalub wyboru wizyt
-        //w zależności od tego skąd użytkownik trafił do tego widoku.
+        /* The method, which is activated when the "Return" button is clicked, 
+         * takes the user back to the patient selection view or the appointment selection view, 
+         * depending on where the user got to this view from. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {
             if (Checker == 1)

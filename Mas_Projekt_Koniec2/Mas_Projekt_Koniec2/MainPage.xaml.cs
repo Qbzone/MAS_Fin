@@ -19,7 +19,7 @@ namespace Mas_Final_Project
         }
 
         /* The method, which is activated by clicking on the "Save for appointment" button, takes the user to the patient selection view. */
-        private void RegisterButton_Click(object sender, RoutedEventArgs e)
+        private void RegisterButton_Click(object sender, RoutedEventArgs rEA)
         {
             new PatientList().Show();
 
@@ -27,10 +27,15 @@ namespace Mas_Final_Project
         }
 
         /* The method activated by clicking on the "View visits" button takes the user to the visit selection view. */
-        private void VisitButton_Click(object sender, RoutedEventArgs e)
+        private void VisitButton_Click(object sender, RoutedEventArgs rEA)
         {
             new ChooseVisitList().Show();
 
+            Close();
+        }
+
+        private void ExitButton_Click(object sender, RoutedEventArgs rEA)
+        {
             Close();
         }
     }
