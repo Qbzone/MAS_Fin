@@ -8,6 +8,9 @@
         MinHeight="600" MinWidth="1200"
         WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="..\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>
             <RowDefinition Height="75" />
@@ -19,8 +22,29 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Main Page</Label>
-        <Button x:Name="RegisterButton" Click="RegisterButton_Click" FontSize="30" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Make an appointment</Button>
-        <Button x:Name="VisitButton" Click="VisitButton_Click" FontSize="30" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">View visits</Button>
-        <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center" Padding="10 0 10 0">Exit</Button>
+        <Button x:Name="RegisterButton" Click="RegisterButton_Click" FontSize="30" Grid.Row="2" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 10 0" Margin="20 0 0 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10 20 20 10"/>
+                </Style>                
+            </Button.Resources>
+            Make an appointment
+        </Button>
+        <Button x:Name="VisitButton" Click="VisitButton_Click" FontSize="30" Grid.Row="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 10 0" Margin="20 0 0 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10 20 20 10"/>
+                </Style>
+            </Button.Resources>
+            View visits
+        </Button>
+        <Button x:Name="ExitButton" Click="ExitButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Padding="10 0 10 0" Margin="20 0 0 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10 20 20 10"/>
+                </Style>
+            </Button.Resources>
+            Exit
+        </Button>
     </Grid>
 </Window>

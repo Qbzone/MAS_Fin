@@ -7,6 +7,9 @@
         Title="VisitDetails" Height="600" Width="1200"
         WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="..\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -18,7 +21,7 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Visits</Label>
-        <DataGrid Name="VisitDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="VisitDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient" Width="*" Binding="{Binding Patient.PatientFirstAndLastName}"/>
                 <DataGridTextColumn Header="Doctor" Width="*" Binding="{Binding Doctor.DoctorFirstAndLastName}"/>

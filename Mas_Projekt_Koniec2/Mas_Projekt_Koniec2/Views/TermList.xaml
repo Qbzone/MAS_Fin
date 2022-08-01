@@ -8,6 +8,9 @@
         MinHeight="600" MinWidth="1200"
         WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="..\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -20,13 +23,27 @@
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Terms</Label>
         <DatePicker Name="DatePicker" SelectedDateChanged="DatePicker_SelectedDateChanged" Grid.Row="1" Grid.Column="0" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" Margin="20 20 1000 0" Padding="5"/>
-        <DataGrid Name="TermDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="TermDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Visit Start" Width="*" Binding="{Binding VisitStart, StringFormat='{}{0:dd.MM.yyyy   H:mm}'}"/>
                 <DataGridTextColumn Header="Visit End" Width="*" Binding="{Binding VisitEnd, StringFormat='{}{0:dd.MM.yyyy   H:mm}'}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Return</Button>
-        <Button x:Name="RegisterButton" Click="RegisterButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">Select Term</Button>
+        <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10 20 20 10"/>
+                </Style>
+            </Button.Resources>
+            Return
+        </Button>
+        <Button x:Name="RegisterButton" Click="RegisterButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20 10 10 20"/>
+                </Style>
+            </Button.Resources>
+            Select Term
+        </Button>
     </Grid>
 </Window>

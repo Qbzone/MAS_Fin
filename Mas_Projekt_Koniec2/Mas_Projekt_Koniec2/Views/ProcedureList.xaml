@@ -8,6 +8,9 @@
         MinHeight="600" MinWidth="1200"
         WindowStartupLocation="CenterScreen" >
     <Grid>
+        <Grid.Background>
+            <ImageBrush Stretch="Fill" ImageSource="..\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+        </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto" />
             <RowDefinition Height="Auto" />
@@ -32,13 +35,27 @@
                 </Style>
             </TextBlock.Style>
         </TextBlock>
-        <DataGrid Name="ProcedureDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="ProcedureDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Procedure Name" Width="*" Binding="{Binding ProcedureName}"/>
                 <DataGridTextColumn Header="Procedure Cost" Width="*" Binding="{Binding ProcedureCost}"/>
             </DataGrid.Columns>
         </DataGrid>
-        <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">Return</Button>
-        <Button x:Name="ProcedureButton" Click="ProcedureButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">Select Procedure</Button>
+        <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="10 20 20 10"/>
+                </Style>
+            </Button.Resources>
+            Return
+        </Button>
+        <Button x:Name="ProcedureButton" Click="ProcedureButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Right" Margin="0 0 20 20" Padding="10 0 10 0">
+            <Button.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="20 10 10 20"/>
+                </Style>
+            </Button.Resources>
+            Select Procedure
+        </Button>
     </Grid>
 </Window>
