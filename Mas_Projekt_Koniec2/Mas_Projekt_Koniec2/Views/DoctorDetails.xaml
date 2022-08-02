@@ -37,12 +37,22 @@
                 <DataGridTextColumn Header="Salary" Width="*" Binding="{Binding Salary}"/>
                 <DataGridTextColumn Header="Spacialization" Width="*" Binding="{Binding DoctorSpecialization}"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0 0 20 20"/>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <Label FontSize="40" Grid.Row ="3" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 0">Entitlements</Label>
         <DataGrid Name="ProcedureDataGrid" Grid.Row="4" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Procedure Name" Width="*" Binding="{Binding ProcedureName}"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0 0 20 20"/>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="6" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">
             <Button.Resources>

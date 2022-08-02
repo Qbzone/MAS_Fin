@@ -9,7 +9,7 @@
         WindowStartupLocation="CenterScreen" >
     <Grid>
         <Grid.Background>
-            <ImageBrush Stretch="Fill" ImageSource="..\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
+            <ImageBrush Stretch="Fill" ImageSource=".\Images\background.jpg" AlignmentY="Top" AlignmentX="Center"/>
         </Grid.Background>
         <Grid.RowDefinitions>
             <RowDefinition Height="125"/>

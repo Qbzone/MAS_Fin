@@ -29,6 +29,11 @@
                 <DataGridTextColumn Header="Procedure" Width="*" Binding="{Binding Procedure.ProcedureName}"/>
                 <DataGridTextColumn Header="Term" Width="*" Binding="{Binding VisitStart, StringFormat='{}{0:dd.MM.yyyy   H:mm}'}"/>
             </DataGrid.Columns>
+            <DataGrid.Resources>
+                <Style TargetType="Border">
+                    <Setter Property="CornerRadius" Value="0 0 20 20"/>
+                </Style>
+            </DataGrid.Resources>
         </DataGrid>
         <Button x:Name="ReturnButton" Click="ReturnButton_Click" FontSize="30" Grid.Row="4" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Left" Margin="20 0 0 20" Padding="10 0 10 0">
             <Button.Resources>
