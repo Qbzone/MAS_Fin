@@ -78,8 +78,8 @@ namespace Mas_Final_Project
         private void DateSetup()
         {
             DatePicker.SelectedDate = DateTime.Today.DayOfWeek == DayOfWeek.Saturday
-                ? DateTime.Today.AddDays(2)
-                : DateTime.Today.DayOfWeek == DayOfWeek.Sunday ? DateTime.Today.AddDays(1) : DateTime.Today;
+                ? DateTime.Today.AddDays(2) : DateTime.Today.DayOfWeek == DayOfWeek.Sunday
+                    ? DateTime.Today.AddDays(1) : DateTime.Today;
 
             DatePicker.BlackoutDates.Add(new CalendarDateRange(new DateTime(2021, 01, 01), DateTime.Now.AddDays(-1)));
 
