@@ -45,35 +45,6 @@ namespace Mas_Final_Project
             VisitsDataGrid.ItemsSource = filteredVisits;
         }
 
-        /* Activated by double-clicking on a visit, the method takes you to a detailed view of that visit. */
-        private void VisitsDataGrid_DoubleClick(object sender, RoutedEventArgs rEA)
-        {
-            if (selectedPatient != null)
-            {
-                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
-
-                new VisitDetails(selectedWizyta, selectedPatient).Show();
-
-                Close();
-            }
-            else if (selectedDoctor != null)
-            {
-                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
-
-                new VisitDetails(selectedWizyta, selectedDoctor).Show();
-
-                Close();
-            }
-            else
-            {
-                Visit selectedWizyta = (Visit)VisitsDataGrid.SelectedItem;
-
-                new VisitDetails(selectedWizyta).Show();
-
-                Close();
-            }
-        }
-
         /* The method, which is activated when the " Return" button is clicked, takes the user back to the visit selection view. */
         private void ReturnButton_Click(object sender, RoutedEventArgs rEA)
         {

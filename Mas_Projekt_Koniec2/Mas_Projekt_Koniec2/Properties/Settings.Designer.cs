@@ -25,8 +25,8 @@ namespace Mas_Final_Project.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source = localhost; Initial Catalog = MasProjektKoniec; Integrated Security " +
-            "= True")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source = localhost; Initial Catalog = Mas_Final_Project; Integrated Security" +
+            " = True")]
         public string connectionString {
             get {
                 return ((string)(this["connectionString"]));

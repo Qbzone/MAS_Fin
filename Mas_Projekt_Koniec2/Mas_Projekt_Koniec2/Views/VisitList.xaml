@@ -22,12 +22,14 @@
             <ColumnDefinition/>
         </Grid.ColumnDefinitions>
         <Label FontSize="40" Grid.Row ="0" Grid.Column="0" VerticalAlignment="Center" HorizontalAlignment="Center">Visits</Label>
-        <DataGrid Name="VisitsDataGrid" MouseDoubleClick="VisitsDataGrid_DoubleClick" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
+        <DataGrid Name="VisitsDataGrid" Grid.Row="2" Grid.RowSpan="2" Grid.Column="0" Margin="20 0 20 20" Background="Transparent" IsReadOnly="True" AutoGenerateColumns="False">
             <DataGrid.Columns>
                 <DataGridTextColumn Header="Patient" Width="*" Binding="{Binding Patient.PatientFirstAndLastName}"/>
                 <DataGridTextColumn Header="Doctor" Width="*" Binding="{Binding Doctor.DoctorFirstAndLastName}"/>
-                <DataGridTextColumn Header="Procedure" Width="*" Binding="{Binding Procedure.ProcedureName}"/>
+                <DataGridTextColumn Header="Procedure Name" Width="*" Binding="{Binding Procedure.ProcedureName}"/>
+                <DataGridTextColumn Header="Procedure Cost" Width="*" Binding="{Binding Procedure.ProcedureCost}"/>
                 <DataGridTextColumn Header="Term" Width="*" Binding="{Binding VisitStart, StringFormat='{}{0:dd.MM.yyyy   H:mm}'}"/>
+                <DataGridTextColumn Header="Status" Width="*" Binding="{Binding StatusString}"/>
             </DataGrid.Columns>
             <DataGrid.Resources>
                 <Style TargetType="Border">

@@ -6,13 +6,13 @@ using static Mas_Final_Project.Models.Visit;
 
 namespace Mas_Final_Project.Models.Functional
 {
-    public static class StateExtensions
+    internal static class StateExtensions
     {
-        public static string GetOrderStateDisplayName(this VisitStatus statusWizyty)
+        public static string GetOrderStateDisplayName(this VisitStatus visitStatus)
         {
-            return statusWizyty
+            return visitStatus
                 .GetType()
-                .GetMember(statusWizyty.ToString())
+                .GetMember(visitStatus.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
