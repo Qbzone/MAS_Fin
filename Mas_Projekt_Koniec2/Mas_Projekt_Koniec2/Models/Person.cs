@@ -55,9 +55,6 @@ namespace Mas_Final_Project.Models
         {
             Employee = employee;
         }
-        public string GetFirstAndLastName()
-        {
-            return $"{FirstName + " " + LastName}";
-        }
+        public string GetFirstAndLastName() => $"{FirstName + " " + LastName}";
     }
 }

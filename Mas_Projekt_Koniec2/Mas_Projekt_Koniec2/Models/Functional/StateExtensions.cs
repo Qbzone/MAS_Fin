@@ -8,24 +8,18 @@ namespace Mas_Final_Project.Models.Functional
 {
     internal static class StateExtensions
     {
-        public static string GetOrderStateDisplayName(this VisitStatus visitStatus)
-        {
-            return visitStatus
+        public static string GetOrderStateDisplayName(this VisitStatus visitStatus) => visitStatus
                 .GetType()
                 .GetMember(visitStatus.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
-        }
 
-        public static string GetOrderStateDisplayName(this HospitalizationStatus hospitalizationStatus)
-        {
-            return hospitalizationStatus
+        public static string GetOrderStateDisplayName(this HospitalizationStatus hospitalizationStatus) => hospitalizationStatus
                 .GetType()
                 .GetMember(hospitalizationStatus.ToString())
                 .First()
                 .GetCustomAttribute<DisplayAttribute>()
                 .Name;
-        }
     }
 }

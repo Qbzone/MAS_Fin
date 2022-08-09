@@ -1,6 +1,8 @@
 ﻿using System;
 using Microsoft.EntityFrameworkCore.Migrations;
 
+#nullable disable
+
 namespace Mas_Final_Project.Migrations
 {
     public partial class InitialMigration : Migration
@@ -89,8 +91,7 @@ namespace Mas_Final_Project.Migrations
                         name: "FK_Employee_OperationalTeam_OperationalTeamId",
                         column: x => x.OperationalTeamId,
                         principalTable: "OperationalTeam",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Employee_Person_PersonId",
                         column: x => x.PersonId,
@@ -116,8 +117,7 @@ namespace Mas_Final_Project.Migrations
                         name: "FK_Patient_MedicalPackage_MedicalPackageId",
                         column: x => x.MedicalPackageId,
                         principalTable: "MedicalPackage",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Patient_Person_PersonId",
                         column: x => x.PersonId,
@@ -224,8 +224,7 @@ namespace Mas_Final_Project.Migrations
                         name: "FK_Visit_Employee_DoctorId",
                         column: x => x.DoctorId,
                         principalTable: "Employee",
-                        principalColumn: "Id",
-                        onDelete: ReferentialAction.Restrict);
+                        principalColumn: "Id");
                     table.ForeignKey(
                         name: "FK_Visit_Patient_PatientId",
                         column: x => x.PatientId,
@@ -302,9 +301,9 @@ namespace Mas_Final_Project.Migrations
                 columns: new[] { "Id", "Discriminator", "DoctorSpecialization", "OperationalTeamId", "PersonId", "Salary" },
                 values: new object[,]
                 {
-                    { 3L, "Doctor", "Laryngologist", null, 2L, 3300 },
                     { 1L, "Doctor", "Cardiologist", null, 4L, 3400 },
-                    { 2L, "Doctor", "Cardiologist", null, 5L, 3400 }
+                    { 2L, "Doctor", "Cardiologist", null, 5L, 3400 },
+                    { 3L, "Doctor", "Laryngologist", null, 2L, 3300 }
                 });
 
             migrationBuilder.InsertData(
@@ -334,13 +333,13 @@ namespace Mas_Final_Project.Migrations
                 columns: new[] { "DoctorsId", "EntitlementsId" },
                 values: new object[,]
                 {
-                    { 3L, 1L },
                     { 1L, 1L },
                     { 1L, 2L },
                     { 1L, 4L },
                     { 2L, 1L },
                     { 2L, 2L },
-                    { 2L, 4L }
+                    { 2L, 4L },
+                    { 3L, 1L }
                 });
 
             migrationBuilder.CreateIndex(
